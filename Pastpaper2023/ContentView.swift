@@ -25,13 +25,27 @@ struct Contest {
   let color: Color
 }
 
+
 struct ContentView: View {
     
+    func moveQuali(from source: IndexSet, to destination: Int) {
+      qualiList.move(fromOffsets: source, toOffset: destination)
+    }
+    
+    func moveExam(from source: IndexSet, to destination: Int) {
+      examList.move(fromOffsets: source, toOffset: destination)
+    }
+    
+    func moveContest(from source: IndexSet, to destination: Int) {
+      contestList.move(fromOffsets: source, toOffset: destination)
+    }
+    
+    @State private var editMode: EditMode = .inactive
     @State private var showingAlert = false
     @State private var showingSettingSheet = false
     @State private var showingInfoSheet = false
     
-    var qualiList = [
+    @State var qualiList = [
       Quali(image: "i.square.fill", name: "AS & A Level", color: .green),
       Quali(image: "a.square.fill", name: "International AS & A Level", color: .indigo),
       Quali(image: "i.square.fill", name: "International GCSE", color: .blue),
@@ -39,13 +53,13 @@ struct ContentView: View {
       Quali(image: "i.square.fill", name: "O Level", color: .purple),
     ]
     
-    var examList = [
+    @State var examList = [
       Exam(image: "c.square.fill", name: "CAIE", color: .brown),
       Exam(image: "e.square.fill", name: "Edexcel", color: .mint),
       Exam(image: "a.square.fill", name: "AQA", color: .red),
       ]
     
-    var contestList = [
+    @State var contestList = [
       Contest(image: "c.square.fill", name: "Oxford admissions", color: .gray),
       Contest(image: "e.square.fill", name: "Cambridge admissions", color: .orange),
       Contest(image: "a.square.fill", name: "MAA AMC", color: .cyan),
@@ -60,8 +74,10 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             List {
-                Section(header: Text("Qualification").padding(.top, 13).padding(.leading, -10)) {
-                    ForEach(qualiList, id: \.name) { quali in
+                Section(header: Text("Qualification").padding(.top, 17).padding(.leading, -10)) {
+                    ForEach(qualiList.filter { quali in
+                        searchText.isEmpty || quali.name.localizedStandardContains(searchText)
+                    }, id: \.name) { quali in
                         NavigationLink(destination: Text("test")) {
                             HStack {
                                 Image(systemName: quali.image)
@@ -73,30 +89,34 @@ struct ContentView: View {
                             .offset(x: -12)
                         }
                     }
+                    .onMove(perform: moveQuali)
                 }
                 .listSectionSeparator(.visible)
                 .headerProminence(.increased)
                 
                 Section(header: Text("Examination Bureau").padding(.leading, -10)) {
-                    ForEach(examList, id: \.name) { exam in
+                    ForEach(examList.filter { exam in
+                        searchText.isEmpty || exam.name.localizedStandardContains(searchText)
+                    }, id: \.name) { exam in
                         NavigationLink(destination: Text("quali")) {
                             HStack {
                                 Image(systemName: exam.image)
                                      .font(Font.system(.title))
                                      .foregroundColor(exam.color)
                                 Text(exam.name)
-                               
                               }
                             .offset(x: -12)
                         }
-                        
                     }
-                    
+                    .onMove(perform: moveExam)
                 }
                 .listSectionSeparator(.visible)
                 .headerProminence(.increased)
+
                 Section(header: Text("Admission Tests").padding(.leading, -10)) {
-                    ForEach(contestList, id: \.name) { contest in
+                    ForEach(contestList.filter { contest in
+                        searchText.isEmpty || contest.name.localizedStandardContains(searchText)
+                    }, id: \.name) { contest in
                         NavigationLink(destination: Text("quali")) {
                             HStack {
                                 Image(systemName: contest.image)
@@ -107,13 +127,14 @@ struct ContentView: View {
                               }
                             .offset(x: -12)
                         }
-                        
                     }
-                    
+                    .onMove(perform: moveContest)
                 }
                 .listSectionSeparator(.visible)
                 .headerProminence(.increased)
+
             }
+            .environment(\.editMode, $editMode)
             .listStyle(.insetGrouped)
             .navigationBarTitle("Pastpaper", displayMode: .large)
             .searchable(text: $searchText, placement: .navigationBarDrawer)
@@ -141,20 +162,27 @@ struct ContentView: View {
                 ToolbarItem(placement: .navigationBarLeading){
                     HStack {
                         Button {
-                            
-                        }label: {
-                            Text("Edit")
-                       }
+                          withAnimation {
+                            if editMode == .inactive {
+                              editMode = .active
+                            } else {
+                              editMode = .inactive
+                            }
+                          }
+                        } label: {
+                          Text(editMode == .inactive ? "Edit" : "Done")
+                        }
+
                     }
                 }
             })
             .padding(.top, -18)
         }
+        
         .edgesIgnoringSafeArea(.all)
     }
     
 }
-
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
