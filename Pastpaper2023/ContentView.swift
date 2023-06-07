@@ -32,11 +32,11 @@ struct ContentView: View {
     @State private var showingInfoSheet = false
     
     var qualiList = [
-      Quali(image: "i.square.fill", name: "IGCSE", color: .blue),
-      Quali(image: "a.square.fill", name: "Advanced Level", color: .purple),
-      Quali(image: "i.square.fill", name: "International Advanced Level", color: .indigo),
-      Quali(image: "o.square.fill", name: "OLevel", color: .purple),
-      Quali(image: "i.square.fill", name: "IBDP", color: .yellow),
+      Quali(image: "i.square.fill", name: "AS & A Level", color: .green),
+      Quali(image: "a.square.fill", name: "International AS & A Level", color: .indigo),
+      Quali(image: "i.square.fill", name: "International GCSE", color: .blue),
+      Quali(image: "o.square.fill", name: "IBDP", color: .yellow),
+      Quali(image: "i.square.fill", name: "O Level", color: .purple),
     ]
     
     var examList = [
@@ -60,7 +60,7 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             List {
-                Section(header: Text("Qualification")) {
+                Section(header: Text("Qualification").padding(.top, 13).padding(.leading, -10)) {
                     ForEach(qualiList, id: \.name) { quali in
                         NavigationLink(destination: Text("test")) {
                             HStack {
@@ -77,7 +77,7 @@ struct ContentView: View {
                 .listSectionSeparator(.visible)
                 .headerProminence(.increased)
                 
-                Section(header: Text("Examination Bureau")) {
+                Section(header: Text("Examination Bureau").padding(.leading, -10)) {
                     ForEach(examList, id: \.name) { exam in
                         NavigationLink(destination: Text("quali")) {
                             HStack {
@@ -95,7 +95,7 @@ struct ContentView: View {
                 }
                 .listSectionSeparator(.visible)
                 .headerProminence(.increased)
-                Section(header: Text("Contest/Extra Tests")) {
+                Section(header: Text("Admission Tests").padding(.leading, -10)) {
                     ForEach(contestList, id: \.name) { contest in
                         NavigationLink(destination: Text("quali")) {
                             HStack {
@@ -114,24 +114,18 @@ struct ContentView: View {
                 .listSectionSeparator(.visible)
                 .headerProminence(.increased)
             }
-            //.listRowInsets(EdgeInsets())
-            //.padding(.vertical, -10)
             .listStyle(.insetGrouped)
             .navigationBarTitle("Pastpaper", displayMode: .large)
-            //.navigationBarHidden(false)
             .searchable(text: $searchText, placement: .navigationBarDrawer)
             .toolbar(content: {
                 ToolbarItem(placement: .primaryAction){
                     HStack {
-                       
                         Button(action: {
                             let impactLight = UIImpactFeedbackGenerator(style: .rigid)
                             impactLight.impactOccurred()
                         }) {
                             Image(systemName: "ellipsis.circle")
                         }
-                        
-                        
                         Button(action: {
                             showingSettingSheet.toggle()
                             let impactLight = UIImpactFeedbackGenerator(style: .rigid)
@@ -155,39 +149,10 @@ struct ContentView: View {
                 }
             })
             .padding(.top, -18)
-            
         }
-        
-        
+        .edgesIgnoringSafeArea(.all)
     }
     
-    var searchResults1: [String] {
-        if searchText.isEmpty {
-            return qualifications
-        } else {
-            return qualifications.filter {
-                $0.localizedCaseInsensitiveContains(searchText)}
-            
-        }
-    }
-
-    var searchResults2: [String] {
-        if searchText.isEmpty {
-            return bureaus
-        } else {
-            return bureaus.filter { $0.localizedCaseInsensitiveContains(searchText)}
-            
-        }
-    }
-    
-    var searchResults3: [String] {
-        if searchText.isEmpty {
-            return extraTests
-        } else {
-            return extraTests.filter { $0.localizedCaseInsensitiveContains(searchText.lowercased()) }
-            
-        }
-    }
 }
 
 
