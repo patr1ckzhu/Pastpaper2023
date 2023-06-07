@@ -7,37 +7,103 @@
 
 import SwiftUI
 
-struct Quali {
+struct Quali: Codable {
   let image: String
   let name: String
-  let color: Color
+  let color: String
 }
 
-struct Exam {
+struct Exam: Codable {
   let image: String
   let name: String
-  let color: Color
+  let color: String
 }
 
-struct Contest {
+struct Contest: Codable {
   let image: String
   let name: String
-  let color: Color
+  let color: String
 }
+
 
 struct ContentView: View {
     
     func moveQuali(from source: IndexSet, to destination: Int) {
-      qualiList.move(fromOffsets: source, toOffset: destination)
+        qualiList.move(fromOffsets: source, toOffset: destination)
+        saveList()
     }
     
     func moveExam(from source: IndexSet, to destination: Int) {
-      examList.move(fromOffsets: source, toOffset: destination)
+        examList.move(fromOffsets: source, toOffset: destination)
+        saveList()
     }
     
     func moveContest(from source: IndexSet, to destination: Int) {
-      contestList.move(fromOffsets: source, toOffset: destination)
+        contestList.move(fromOffsets: source, toOffset: destination)
+        saveList()
     }
+    
+    func colorFromString(_ color: String) -> Color {
+        switch color {
+        case "red":
+            return .red
+        case "green":
+            return .green
+        case "blue":
+            return .blue
+        case "indigo":
+            return .indigo
+        case "yellow":
+            return .yellow
+        case "purple":
+            return .purple
+        case "brown":
+            return .brown
+        case "mint":
+            return .mint
+        case "gray":
+            return .gray
+        case "orange":
+            return .orange
+        case "cyan":
+            return .cyan
+        case "black":
+            return .black
+            
+        default:
+            return .white // Default color if nothing matches
+        }
+    }
+
+    func saveList() {
+            let encoder = JSONEncoder()
+            if let encodedQualiList = try? encoder.encode(qualiList) {
+                UserDefaults.standard.set(encodedQualiList, forKey: "qualiList")
+            }
+            if let encodedExamList = try? encoder.encode(examList) {
+                UserDefaults.standard.set(encodedExamList, forKey: "examList")
+            }
+            if let encodedContestList = try? encoder.encode(contestList) {
+                UserDefaults.standard.set(encodedContestList, forKey: "contestList")
+            }
+        }
+
+        // 读取列表数据
+        func loadList() {
+            let decoder = JSONDecoder()
+            if let qualiListData = UserDefaults.standard.data(forKey: "qualiList"),
+               let decodedQualiList = try? decoder.decode([Quali].self, from: qualiListData) {
+                self.qualiList = decodedQualiList
+            }
+            if let examListData = UserDefaults.standard.data(forKey: "examList"),
+               let decodedExamList = try? decoder.decode([Exam].self, from: examListData) {
+                self.examList = decodedExamList
+            }
+            if let contestListData = UserDefaults.standard.data(forKey: "contestList"),
+               let decodedContestList = try? decoder.decode([Contest].self, from: contestListData) {
+                self.contestList = decodedContestList
+            }
+        }
     
     @State private var editMode: EditMode = .inactive
     @State private var showingAlert = false
@@ -45,24 +111,24 @@ struct ContentView: View {
     @State private var showingInfoSheet = false
     
     @State var qualiList = [
-      Quali(image: "i.square.fill", name: "AS & A Level", color: .green),
-      Quali(image: "a.square.fill", name: "International AS & A Level", color: .indigo),
-      Quali(image: "i.square.fill", name: "International GCSE", color: .blue),
-      Quali(image: "o.square.fill", name: "IBDP", color: .yellow),
-      Quali(image: "i.square.fill", name: "O Level", color: .purple),
+        Quali(image: "i.square.fill", name: "AS & A Level", color: "green"),
+      Quali(image: "a.square.fill", name: "International AS & A Level", color: "indigo"),
+      Quali(image: "i.square.fill", name: "International GCSE", color: "blue"),
+      Quali(image: "o.square.fill", name: "IBDP", color: "yellow"),
+      Quali(image: "i.square.fill", name: "O Level", color: "purple"),
     ]
     
     @State var examList = [
-      Exam(image: "c.square.fill", name: "CAIE", color: .brown),
-      Exam(image: "e.square.fill", name: "Edexcel", color: .mint),
-      Exam(image: "a.square.fill", name: "AQA", color: .red),
+      Exam(image: "c.square.fill", name: "CAIE", color: "brown"),
+      Exam(image: "e.square.fill", name: "Edexcel", color: "mint"),
+      Exam(image: "a.square.fill", name: "AQA", color: "red"),
       ]
     
     @State var contestList = [
-      Contest(image: "c.square.fill", name: "Oxford admissions", color: .gray),
-      Contest(image: "e.square.fill", name: "Cambridge admissions", color: .orange),
-      Contest(image: "a.square.fill", name: "MAA AMC", color: .cyan),
-      Contest(image: "a.square.fill", name: "UKMT", color: .black),
+      Contest(image: "c.square.fill", name: "Oxford admissions", color: "gray"),
+      Contest(image: "e.square.fill", name: "Cambridge admissions", color: "orange"),
+      Contest(image: "a.square.fill", name: "MAA AMC", color: "cyan"),
+      Contest(image: "a.square.fill", name: "UKMT", color: "black"),
         ]
     
     let qualifications = ["IGCSE", "Advanced Level", "International Advanced Level", "OLevel", "IBDP"]
@@ -80,7 +146,7 @@ struct ContentView: View {
                                 HStack {
                                     Image(systemName: quali.image)
                                         .font(Font.system(.title))
-                                        .foregroundColor(quali.color)
+                                        .foregroundColor(colorFromString(quali.color))
                                     Text(quali.name)
                                     
                                 }
@@ -100,7 +166,7 @@ struct ContentView: View {
                                 HStack {
                                     Image(systemName: exam.image)
                                          .font(Font.system(.title))
-                                         .foregroundColor(exam.color)
+                                         .foregroundColor(colorFromString(exam.color))
                                     Text(exam.name)
                                   }
                                 .offset(x: -12)
@@ -119,7 +185,7 @@ struct ContentView: View {
                                 HStack {
                                     Image(systemName: contest.image)
                                          .font(Font.system(.title))
-                                         .foregroundColor(contest.color)
+                                         .foregroundColor(colorFromString(contest.color))
                                     Text(contest.name)
                                    
                                   }
@@ -176,7 +242,7 @@ struct ContentView: View {
             })
             .padding(.top, -18)
         }
-        
+        .onAppear(perform: loadList)
         .edgesIgnoringSafeArea(.all)
     }
     
