@@ -14,6 +14,7 @@
 		CD013FF12A300F3F0048B9C4 /* Pastpaper2023Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD013FF02A300F3F0048B9C4 /* Pastpaper2023Tests.swift */; };
 		CD013FFB2A300F3F0048B9C4 /* Pastpaper2023UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD013FFA2A300F3F0048B9C4 /* Pastpaper2023UITests.swift */; };
 		CD013FFD2A300F3F0048B9C4 /* Pastpaper2023UITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD013FFC2A300F3F0048B9C4 /* Pastpaper2023UITestsLaunchTests.swift */; };
+		CD01400A2A3014700048B9C4 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0140092A3014700048B9C4 /* SettingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +46,7 @@
 		CD013FF62A300F3F0048B9C4 /* Pastpaper2023UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Pastpaper2023UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD013FFA2A300F3F0048B9C4 /* Pastpaper2023UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pastpaper2023UITests.swift; sourceTree = "<group>"; };
 		CD013FFC2A300F3F0048B9C4 /* Pastpaper2023UITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pastpaper2023UITestsLaunchTests.swift; sourceTree = "<group>"; };
+		CD0140092A3014700048B9C4 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +99,7 @@
 			children = (
 				CD013FDE2A300F3E0048B9C4 /* Pastpaper2023App.swift */,
 				CD013FE02A300F3E0048B9C4 /* ContentView.swift */,
+				CD0140092A3014700048B9C4 /* SettingView.swift */,
 				CD013FE22A300F3F0048B9C4 /* Assets.xcassets */,
 				CD013FE42A300F3F0048B9C4 /* Pastpaper2023.entitlements */,
 				CD013FE52A300F3F0048B9C4 /* Preview Content */,
@@ -259,6 +262,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD01400A2A3014700048B9C4 /* SettingView.swift in Sources */,
 				CD013FE12A300F3E0048B9C4 /* ContentView.swift in Sources */,
 				CD013FDF2A300F3E0048B9C4 /* Pastpaper2023App.swift in Sources */,
 			);
@@ -416,7 +420,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Pastpaper2023/Preview Content\"";
 				DEVELOPMENT_TEAM = 6MM6Y2NK23;
-				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_HARDENED_RUNTIME = NO;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -454,7 +458,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Pastpaper2023/Preview Content\"";
 				DEVELOPMENT_TEAM = 6MM6Y2NK23;
-				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_HARDENED_RUNTIME = NO;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
