@@ -25,7 +25,6 @@ struct Contest {
   let color: Color
 }
 
-
 struct ContentView: View {
     
     func moveQuali(from source: IndexSet, to destination: Int) {
@@ -74,65 +73,64 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             List {
-                Section(header: Text("Qualification").padding(.top, 17).padding(.leading, -10)) {
-                    ForEach(qualiList.filter { quali in
-                        searchText.isEmpty || quali.name.localizedStandardContains(searchText)
-                    }, id: \.name) { quali in
-                        NavigationLink(destination: Text("test")) {
-                            HStack {
-                                Image(systemName: quali.image)
-                                    .font(Font.system(.title))
-                                    .foregroundColor(quali.color)
-                                Text(quali.name)
-                                
+                if !qualiList.filter({ searchText.isEmpty || $0.name.localizedStandardContains(searchText) }).isEmpty {
+                    Section(header: Text("Qualification").padding(.top, 17).padding(.leading, -10)) {
+                        ForEach(qualiList.filter { searchText.isEmpty || $0.name.localizedStandardContains(searchText) }, id: \.name) { quali in
+                            NavigationLink(destination: Text("test")) {
+                                HStack {
+                                    Image(systemName: quali.image)
+                                        .font(Font.system(.title))
+                                        .foregroundColor(quali.color)
+                                    Text(quali.name)
+                                    
+                                }
+                                .offset(x: -12)
                             }
-                            .offset(x: -12)
                         }
+                        .onMove(perform: moveQuali)
                     }
-                    .onMove(perform: moveQuali)
+                    .listSectionSeparator(.visible)
+                    .headerProminence(.increased)
                 }
-                .listSectionSeparator(.visible)
-                .headerProminence(.increased)
-                
-                Section(header: Text("Examination Bureau").padding(.leading, -10)) {
-                    ForEach(examList.filter { exam in
-                        searchText.isEmpty || exam.name.localizedStandardContains(searchText)
-                    }, id: \.name) { exam in
-                        NavigationLink(destination: Text("quali")) {
-                            HStack {
-                                Image(systemName: exam.image)
-                                     .font(Font.system(.title))
-                                     .foregroundColor(exam.color)
-                                Text(exam.name)
-                              }
-                            .offset(x: -12)
-                        }
-                    }
-                    .onMove(perform: moveExam)
-                }
-                .listSectionSeparator(.visible)
-                .headerProminence(.increased)
 
-                Section(header: Text("Admission Tests").padding(.leading, -10)) {
-                    ForEach(contestList.filter { contest in
-                        searchText.isEmpty || contest.name.localizedStandardContains(searchText)
-                    }, id: \.name) { contest in
-                        NavigationLink(destination: Text("quali")) {
-                            HStack {
-                                Image(systemName: contest.image)
-                                     .font(Font.system(.title))
-                                     .foregroundColor(contest.color)
-                                Text(contest.name)
-                               
-                              }
-                            .offset(x: -12)
+                if !examList.filter({ searchText.isEmpty || $0.name.localizedStandardContains(searchText) }).isEmpty {
+                    Section(header: Text("Examination Bureau").padding(.leading, -10)) {
+                        ForEach(examList.filter { searchText.isEmpty || $0.name.localizedStandardContains(searchText) }, id: \.name) { exam in
+                            NavigationLink(destination: Text("quali")) {
+                                HStack {
+                                    Image(systemName: exam.image)
+                                         .font(Font.system(.title))
+                                         .foregroundColor(exam.color)
+                                    Text(exam.name)
+                                  }
+                                .offset(x: -12)
+                            }
                         }
+                        .onMove(perform: moveExam)
                     }
-                    .onMove(perform: moveContest)
+                    .listSectionSeparator(.visible)
+                    .headerProminence(.increased)
                 }
-                .listSectionSeparator(.visible)
-                .headerProminence(.increased)
 
+                if !contestList.filter({ searchText.isEmpty || $0.name.localizedStandardContains(searchText) }).isEmpty {
+                    Section(header: Text("Admission Tests").padding(.leading, -10)) {
+                        ForEach(contestList.filter { searchText.isEmpty || $0.name.localizedStandardContains(searchText) }, id: \.name) { contest in
+                            NavigationLink(destination: Text("quali")) {
+                                HStack {
+                                    Image(systemName: contest.image)
+                                         .font(Font.system(.title))
+                                         .foregroundColor(contest.color)
+                                    Text(contest.name)
+                                   
+                                  }
+                                .offset(x: -12)
+                            }
+                        }
+                        .onMove(perform: moveContest)
+                    }
+                    .listSectionSeparator(.visible)
+                    .headerProminence(.increased)
+                }
             }
             .environment(\.editMode, $editMode)
             .listStyle(.insetGrouped)
