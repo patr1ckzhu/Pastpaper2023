@@ -11,16 +11,19 @@ struct YearListView: View {
     @State var years: [String] = []
     
     var body: some View {
-            List(years, id: \.self) { year in
-                NavigationLink(destination: Text("Details for \(year)")) {
-                    Text(year)
-                }
+        List(years, id: \.self) { year in
+            NavigationLink(destination: Text("Details for \(year)")) {
+                Text(year)
             }
-            .onAppear(perform: loadYears)
-            .listStyle(.plain)
-            .navigationBarTitle("Years", displayMode: .inline)
         }
-    
+        .listStyle(.plain)
+        .navigationBarTitle("Years", displayMode: .inline)
+        .refreshable {
+            await reloadYears()
+        }
+        .onAppear(perform: loadYears)
+    }
+
     func loadYears() {
         guard let url = URL(string: "http://localhost:3000/pastpapers/years") else {
             print("Invalid URL")
@@ -39,7 +42,16 @@ struct YearListView: View {
             print("Fetch failed: \(error?.localizedDescription ?? "Unknown error")")
         }.resume()
     }
+    
+    func reloadYears() async {
+        await withUnsafeContinuation { continuation in
+            loadYears()
+            continuation.resume()
+        }
+    }
 }
+
+
 
 
 struct YearListView_Previews: PreviewProvider {
