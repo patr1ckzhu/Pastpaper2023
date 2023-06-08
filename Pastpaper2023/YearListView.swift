@@ -7,55 +7,73 @@
 
 import SwiftUI
 
+struct Year {
+    var id: String { year }
+    var year: String
+    var seasons: [Season]
+}
+
+struct Season {
+    var id: String { season }
+    var season: String
+    var papers: [Paper]
+}
+
+struct Paper: Decodable, Identifiable {
+    var id: String { name }
+    var year: String
+    var season: String
+    var type: String
+    var name: String
+    var url: String
+}
+
+
 struct YearListView: View {
-    @State var years: [String] = []
-    
+    @State var years: [Year] = []
+
     var body: some View {
-        List(years, id: \.self) { year in
-            NavigationLink(destination: Text("Details for \(year)")) {
-                Text(year)
+        List(years, id: \.year) { year in
+            NavigationLink(destination: SeasonListView(year: year)) {
+                Text(year.year)
             }
         }
         .listStyle(.plain)
         .navigationBarTitle("Years", displayMode: .inline)
         .refreshable {
-            await reloadYears()
+            await loadYears()
         }
-        .onAppear(perform: loadYears)
+        .task {
+            await loadYears()
+        }
     }
 
-    func loadYears() {
-        guard let url = URL(string: "http://localhost:3000/pastpapers/years") else {
+    func loadYears() async {
+        guard let url = URL(string: "http://localhost:3000/pastpapers") else {
             print("Invalid URL")
             return
         }
-        
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            if let data = data {
-                if let decodedResponse = try? JSONDecoder().decode([String].self, from: data) {
-                    DispatchQueue.main.async {
-                        self.years = decodedResponse
-                    }
-                    return
+
+        do {
+            let (data, _) = try await URLSession.shared.data(from: url)
+            if let decodedResponse = try? JSONDecoder().decode([Paper].self, from: data) {
+                let groupedPapersByYear = Dictionary(grouping: decodedResponse, by: { $0.year })
+
+                let years = groupedPapersByYear.map { (year, papers) -> Year in
+                    let groupedPapersBySeason = Dictionary(grouping: papers, by: { $0.season })
+                    let seasons = groupedPapersBySeason.map { Season(season: $0.key, papers: $0.value) }
+                    return Year(year: year, seasons: seasons)
+                }.sorted { $0.year > $1.year }
+
+                DispatchQueue.main.async {
+                    self.years = years
                 }
             }
-            print("Fetch failed: \(error?.localizedDescription ?? "Unknown error")")
-        }.resume()
-    }
-    
-    func reloadYears() async {
-        await withUnsafeContinuation { continuation in
-            loadYears()
-            continuation.resume()
+        } catch {
+            print("Fetch failed: \(error.localizedDescription)")
         }
     }
+
 }
 
 
-
-
-struct YearListView_Previews: PreviewProvider {
-    static var previews: some View {
-        YearListView()
-    }
-}
