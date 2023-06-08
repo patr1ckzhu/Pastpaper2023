@@ -15,6 +15,7 @@
 		CD013FFB2A300F3F0048B9C4 /* Pastpaper2023UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD013FFA2A300F3F0048B9C4 /* Pastpaper2023UITests.swift */; };
 		CD013FFD2A300F3F0048B9C4 /* Pastpaper2023UITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD013FFC2A300F3F0048B9C4 /* Pastpaper2023UITestsLaunchTests.swift */; };
 		CD01400A2A3014700048B9C4 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0140092A3014700048B9C4 /* SettingView.swift */; };
+		CD0140112A3270360048B9C4 /* YearListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0140102A3270360048B9C4 /* YearListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		CD013FFA2A300F3F0048B9C4 /* Pastpaper2023UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pastpaper2023UITests.swift; sourceTree = "<group>"; };
 		CD013FFC2A300F3F0048B9C4 /* Pastpaper2023UITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pastpaper2023UITestsLaunchTests.swift; sourceTree = "<group>"; };
 		CD0140092A3014700048B9C4 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
+		CD0140102A3270360048B9C4 /* YearListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 			children = (
 				CD013FDE2A300F3E0048B9C4 /* Pastpaper2023App.swift */,
 				CD013FE02A300F3E0048B9C4 /* ContentView.swift */,
+				CD0140102A3270360048B9C4 /* YearListView.swift */,
 				CD0140092A3014700048B9C4 /* SettingView.swift */,
 				CD013FE22A300F3F0048B9C4 /* Assets.xcassets */,
 				CD013FE42A300F3F0048B9C4 /* Pastpaper2023.entitlements */,
@@ -263,6 +266,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD01400A2A3014700048B9C4 /* SettingView.swift in Sources */,
+				CD0140112A3270360048B9C4 /* YearListView.swift in Sources */,
 				CD013FE12A300F3E0048B9C4 /* ContentView.swift in Sources */,
 				CD013FDF2A300F3E0048B9C4 /* Pastpaper2023App.swift in Sources */,
 			);

@@ -142,7 +142,7 @@ struct ContentView: View {
                 if !qualiList.filter({ searchText.isEmpty || $0.name.localizedStandardContains(searchText) }).isEmpty {
                     Section(header: Text("Qualification").padding(.top, 17).padding(.leading, -10)) {
                         ForEach(qualiList.filter { searchText.isEmpty || $0.name.localizedStandardContains(searchText) }, id: \.name) { quali in
-                            NavigationLink(destination: Text("test")) {
+                            NavigationLink(destination: YearListView()) {
                                 HStack {
                                     Image(systemName: quali.image)
                                         .font(Font.system(.title))
@@ -162,7 +162,7 @@ struct ContentView: View {
                 if !examList.filter({ searchText.isEmpty || $0.name.localizedStandardContains(searchText) }).isEmpty {
                     Section(header: Text("Examination Bureau").padding(.leading, -10)) {
                         ForEach(examList.filter { searchText.isEmpty || $0.name.localizedStandardContains(searchText) }, id: \.name) { exam in
-                            NavigationLink(destination: Text("quali")) {
+                            NavigationLink(destination: YearListView()) {
                                 HStack {
                                     Image(systemName: exam.image)
                                          .font(Font.system(.title))
@@ -200,7 +200,7 @@ struct ContentView: View {
             }
             .environment(\.editMode, $editMode)
             .listStyle(.insetGrouped)
-            .navigationBarTitle("Pastpaper", displayMode: .large)
+            .navigationBarTitle("Home", displayMode: .large)
             .searchable(text: $searchText, placement: .navigationBarDrawer)
             .toolbar(content: {
                 ToolbarItem(placement: .primaryAction){
@@ -243,7 +243,7 @@ struct ContentView: View {
             .padding(.top, -18)
         }
         .onAppear(perform: loadList)
-        .edgesIgnoringSafeArea(.all)
+        //.edgesIgnoringSafeArea(.all)
     }
     
 }
