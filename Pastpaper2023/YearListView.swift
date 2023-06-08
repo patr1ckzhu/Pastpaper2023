@@ -13,10 +13,16 @@ struct Year {
     var seasons: [Season]
 }
 
+struct ExamType {
+    var id: String { type }
+    var type: String
+    var papers: [Paper]
+}
+
 struct Season {
     var id: String { season }
     var season: String
-    var papers: [Paper]
+    var examTypes: [ExamType]
 }
 
 struct Paper: Decodable, Identifiable {
@@ -61,7 +67,13 @@ struct YearListView: View {
 
                 let years = groupedPapersByYear.map { (year, papers) -> Year in
                     let groupedPapersBySeason = Dictionary(grouping: papers, by: { $0.season })
-                    let seasons = groupedPapersBySeason.map { Season(season: $0.key, papers: $0.value) }
+                    
+                    let seasons = groupedPapersBySeason.map { (season, papers) -> Season in
+                        let groupedPapersByType = Dictionary(grouping: papers, by: { $0.type })
+                        let examTypes = groupedPapersByType.map { ExamType(type: $0.key, papers: $0.value) }
+                        return Season(season: season, examTypes: examTypes)
+                    }
+
                     return Year(year: year, seasons: seasons)
                 }.sorted { $0.year > $1.year }
 

@@ -8,12 +8,18 @@
 import SwiftUI
 
 struct ExamTypeListView: View {
-    let year: Year
-    let season: String
+    var season: Season
 
     var body: some View {
-        Text("hello")
+        List(season.examTypes, id: \.id) { examType in
+            NavigationLink(destination: PaperListView(papers: examType.papers)) {
+                Text(examType.id)
+            }
+        }
+        .navigationBarTitle("Exam Types", displayMode: .inline)
+        .listStyle(.plain)
     }
 }
+
 
 

@@ -12,7 +12,7 @@ struct SeasonListView: View {
 
     var body: some View {
         List(year.seasons, id: \.id) { season in
-            NavigationLink(destination: Text("hello")) {
+            NavigationLink(destination: ExamTypeListView(season: season)) {
                 Text(season.id)
             }
         }
