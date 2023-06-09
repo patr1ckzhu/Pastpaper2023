@@ -38,13 +38,12 @@ struct PaperListView: View {
 
 struct PaperView: View {
     var paper: Paper
-
+    
     var body: some View {
-        PDFKitView(url: URL(string: paper.url)!)
-            .navigationBarTitle(Text(paper.fileName), displayMode: .inline)
-            .onAppear {
-                // 确保 PDF 文件在视图出现时立即加载
-                print("PDF will appear.")
-            }
+        Webview(url: URL(string: paper.url)!)
+            .edgesIgnoringSafeArea(.all)
+            .navigationTitle(Text(paper.fileName))
+            .navigationBarTitleDisplayMode(.inline)
     }
 }
+

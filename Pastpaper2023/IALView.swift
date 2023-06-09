@@ -33,15 +33,12 @@ struct IALView: View {
                 
                 Section(header: Text("AQA")) {
                     
-                    
                     NavigationLink(destination: Text("quali")) {
                         Text("Biology")
                     }
                     NavigationLink(destination: Text("quali")) {
                         Text("Chemistry")
                     }
-                    
-                    
                     NavigationLink(destination: Text("quali")) {
                         Text("Physics")
                     }
@@ -50,12 +47,9 @@ struct IALView: View {
                     }
                 }
                 .headerProminence(.increased)
-                
-                
             }
             .listStyle(.insetGrouped)
             .navigationBarTitle("Subjects", displayMode: .inline)
-            
     }
 }
 
