@@ -10,47 +10,40 @@ import WebKit
 import SwiftUI
 import SafariServices
 
-class WebviewController: UIViewController, WKNavigationDelegate {
+class WebviewController: UIViewController {
+    
     lazy var webview: WKWebView = WKWebView()
     lazy var progressbar: UIProgressView = UIProgressView()
-
-    deinit {
-        self.webview.removeObserver(self, forKeyPath: "estimatedProgress")
-        self.webview.scrollView.removeObserver(self, forKeyPath: "contentOffset")
-    }
+    var preferredFrameRateRange = CAFrameRateRange(minimum:120, maximum:120, preferred:120)
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.webview.navigationDelegate = self
-        self.view.addSubview(self.webview)
-
         self.webview.frame = self.view.frame
         self.webview.translatesAutoresizingMaskIntoConstraints = false
+        self.webview.allowsBackForwardNavigationGestures = true
+        self.view.addSubview(self.webview)
+
+        self.view.addSubview(self.progressbar)
+        self.progressbar.translatesAutoresizingMaskIntoConstraints = false
         self.view.addConstraints([
-            self.webview.topAnchor.constraint(equalTo: self.view.topAnchor),
-            self.webview.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
-            self.webview.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-            self.webview.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+        self.progressbar.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
+        self.progressbar.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+        self.progressbar.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            
+        self.webview.topAnchor.constraint(equalTo: self.view.topAnchor),
+        self.webview.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+        self.webview.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+        self.webview.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+            
         ])
-
-        self.webview.addSubview(self.progressbar)
-        self.setProgressBarPosition()
-
-        webview.scrollView.addObserver(self, forKeyPath: "contentOffset", options: .new, context: nil)
+        
+//        NSLayoutConstraint.activate([
+//            progressbar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
+//        ])
 
         self.progressbar.progress = 0.1
         webview.addObserver(self, forKeyPath: "estimatedProgress", options: .new, context: nil)
-    }
-
-    func setProgressBarPosition() {
-        self.progressbar.translatesAutoresizingMaskIntoConstraints = false
-        self.webview.removeConstraints(self.webview.constraints)
-        self.webview.addConstraints([
-            self.progressbar.topAnchor.constraint(equalTo: self.webview.topAnchor, constant: self.webview.scrollView.contentOffset.y * -1),
-            self.progressbar.leadingAnchor.constraint(equalTo: self.webview.leadingAnchor),
-            self.progressbar.trailingAnchor.constraint(equalTo: self.webview.trailingAnchor),
-        ])
     }
 
     // MARK: - Web view progress
@@ -68,10 +61,6 @@ class WebviewController: UIViewController, WKNavigationDelegate {
                 self.progressbar.alpha = 1.0
                 progressbar.setProgress(Float(self.webview.estimatedProgress), animated: true)
             }
-
-        case "contentOffset":
-            self.setProgressBarPosition()
-
         default:
             super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
         }

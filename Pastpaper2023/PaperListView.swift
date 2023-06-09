@@ -36,14 +36,38 @@ struct PaperListView: View {
     }
 }
 
+struct ActivityViewController: UIViewControllerRepresentable {
+    let activityItems: [Any]
+    let applicationActivities: [UIActivity]? = nil
+
+    func makeUIViewController(context: UIViewControllerRepresentableContext<ActivityViewController>) -> UIActivityViewController {
+        let controller = UIActivityViewController(activityItems: activityItems, applicationActivities: applicationActivities)
+        return controller
+    }
+
+    func updateUIViewController(_ uiViewController: UIActivityViewController, context: UIViewControllerRepresentableContext<ActivityViewController>) {
+
+    }
+}
+
 struct PaperView: View {
+    @State private var showShareSheet = false
     var paper: Paper
-    
+
     var body: some View {
         Webview(url: URL(string: paper.url)!)
             .edgesIgnoringSafeArea(.all)
-            .navigationTitle(Text(paper.fileName))
-            .navigationBarTitleDisplayMode(.inline)
+            .navigationBarTitle(Text(paper.fileName), displayMode: .inline)
+            .navigationBarItems(trailing: Button(action: {
+                self.showShareSheet = true
+            }) {
+                Image(systemName: "square.and.arrow.up")
+            }.sheet(isPresented: $showShareSheet) {
+                ActivityViewController(activityItems: [URL(string: paper.url)!])
+                    .edgesIgnoringSafeArea(.all)
+            })
+            
     }
 }
+
 
