@@ -200,7 +200,8 @@ struct ContentView: View {
             }
             .environment(\.editMode, $editMode)
             .listStyle(.insetGrouped)
-            .navigationBarTitle("Home", displayMode: .large)
+            .navigationBarTitle("Home")
+            .navigationBarTitleDisplayMode(.large)
             .searchable(text: $searchText, placement: .navigationBarDrawer)
             .toolbar(content: {
                 ToolbarItem(placement: .primaryAction){

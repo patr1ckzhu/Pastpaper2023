@@ -28,7 +28,7 @@ struct PaperListView: View {
     var body: some View {
         List(papers) { paper in
             NavigationLink(destination: PaperView(paper: paper)) {
-                Text(paper.name)
+                Text(paper.fileName)
             }
         }
         .navigationBarTitle("Papers", displayMode: .inline)
@@ -41,7 +41,7 @@ struct PaperView: View {
 
     var body: some View {
         PDFKitView(url: URL(string: paper.url)!)
-            .navigationBarTitle(Text(paper.name), displayMode: .inline)
+            .navigationBarTitle(Text(paper.fileName), displayMode: .inline)
             .onAppear {
                 // 确保 PDF 文件在视图出现时立即加载
                 print("PDF will appear.")

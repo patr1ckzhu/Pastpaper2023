@@ -25,13 +25,20 @@ struct Season {
     var examTypes: [ExamType]
 }
 
-struct Paper: Decodable, Identifiable {
-    var id: String { name }
-    var year: String
-    var season: String
-    var type: String
-    var name: String
-    var url: String
+struct Paper: Identifiable, Codable {
+    let id = UUID()
+    let year: String
+    let season: String
+    let type: String
+    let name: String
+    let url: String
+
+    var fileName: String {
+        return URL(string: url)?.lastPathComponent ?? "Unknown"
+    }
+    enum CodingKeys: String, CodingKey {
+            case year, season, type, name, url
+        }
 }
 
 
