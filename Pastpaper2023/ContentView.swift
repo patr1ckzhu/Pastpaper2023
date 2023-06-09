@@ -111,11 +111,11 @@ struct ContentView: View {
     @State private var showingInfoSheet = false
     
     @State var qualiList = [
-        Quali(image: "i.square.fill", name: "AS & A Level", color: "green"),
-      Quali(image: "a.square.fill", name: "International AS & A Level", color: "indigo"),
+      Quali(image: "a.square.fill", name: "AS & A Level", color: "green"),
+      Quali(image: "i.square.fill", name: "International AS & A Level", color: "indigo"),
       Quali(image: "i.square.fill", name: "International GCSE", color: "blue"),
-      Quali(image: "o.square.fill", name: "IBDP", color: "yellow"),
-      Quali(image: "i.square.fill", name: "O Level", color: "purple"),
+      Quali(image: "i.square.fill", name: "IBDP", color: "yellow"),
+      Quali(image: "o.square.fill", name: "O Level", color: "purple"),
     ]
     
     @State var examList = [
@@ -125,10 +125,10 @@ struct ContentView: View {
       ]
     
     @State var contestList = [
-      Contest(image: "c.square.fill", name: "Oxford admissions", color: "gray"),
-      Contest(image: "e.square.fill", name: "Cambridge admissions", color: "orange"),
-      Contest(image: "a.square.fill", name: "MAA AMC", color: "cyan"),
-      Contest(image: "a.square.fill", name: "UKMT", color: "black"),
+      Contest(image: "o.square.fill", name: "Oxford admissions", color: "gray"),
+      Contest(image: "c.square.fill", name: "Cambridge admissions", color: "orange"),
+      Contest(image: "m.square.fill", name: "MAA AMC", color: "cyan"),
+      Contest(image: "u.square.fill", name: "UKMT", color: "black"),
         ]
     
     let qualifications = ["IGCSE", "Advanced Level", "International Advanced Level", "OLevel", "IBDP"]
@@ -142,15 +142,32 @@ struct ContentView: View {
                 if !qualiList.filter({ searchText.isEmpty || $0.name.localizedStandardContains(searchText) }).isEmpty {
                     Section(header: Text("Qualification").padding(.top, 17).padding(.leading, -10)) {
                         ForEach(qualiList.filter { searchText.isEmpty || $0.name.localizedStandardContains(searchText) }, id: \.name) { quali in
-                            NavigationLink(destination: YearListView()) {
-                                HStack {
-                                    Image(systemName: quali.image)
-                                        .font(Font.system(.title))
-                                        .foregroundColor(colorFromString(quali.color))
-                                    Text(quali.name)
-                                    
+                            switch quali.name {
+                            case "International AS & A Level":
+                                NavigationLink(destination: IALView()) {
+                                    HStack {
+                                        Image(systemName: quali.image)
+                                            .font(Font.system(.title))
+                                            .foregroundColor(colorFromString(quali.color))
+                                        Text(quali.name)
+                                    }
+                                    .offset(x: -12)
                                 }
-                                .offset(x: -12)
+                            // 如果你有其他的特定视图，你可以在这里添加更多的 case：
+                            // case "Another Name":
+                            //     NavigationLink(destination: AnotherView()) {
+                            //         ...
+                            //     }
+                            default:
+                                NavigationLink(destination: Text("hello")) {
+                                    HStack {
+                                        Image(systemName: quali.image)
+                                            .font(Font.system(.title))
+                                            .foregroundColor(colorFromString(quali.color))
+                                        Text(quali.name)
+                                    }
+                                    .offset(x: -12)
+                                }
                             }
                         }
                         .onMove(perform: moveQuali)

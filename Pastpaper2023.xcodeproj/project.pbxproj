@@ -19,6 +19,8 @@
 		CD0140142A328DC20048B9C4 /* SeasonListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0140132A328DC20048B9C4 /* SeasonListView.swift */; };
 		CD0140162A328E0F0048B9C4 /* ExamTypeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0140152A328E0F0048B9C4 /* ExamTypeListView.swift */; };
 		CD0140182A3299840048B9C4 /* PaperListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0140172A3299840048B9C4 /* PaperListView.swift */; };
+		CD01401A2A32A8510048B9C4 /* SubjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0140192A32A8510048B9C4 /* SubjectView.swift */; };
+		CD01401C2A32A9250048B9C4 /* IALView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD01401B2A32A9250048B9C4 /* IALView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +57,8 @@
 		CD0140132A328DC20048B9C4 /* SeasonListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeasonListView.swift; sourceTree = "<group>"; };
 		CD0140152A328E0F0048B9C4 /* ExamTypeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamTypeListView.swift; sourceTree = "<group>"; };
 		CD0140172A3299840048B9C4 /* PaperListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaperListView.swift; sourceTree = "<group>"; };
+		CD0140192A32A8510048B9C4 /* SubjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectView.swift; sourceTree = "<group>"; };
+		CD01401B2A32A9250048B9C4 /* IALView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IALView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +112,8 @@
 				CD013FDE2A300F3E0048B9C4 /* Pastpaper2023App.swift */,
 				CD013FE02A300F3E0048B9C4 /* ContentView.swift */,
 				CD0140102A3270360048B9C4 /* YearListView.swift */,
+				CD0140192A32A8510048B9C4 /* SubjectView.swift */,
+				CD01401B2A32A9250048B9C4 /* IALView.swift */,
 				CD0140132A328DC20048B9C4 /* SeasonListView.swift */,
 				CD0140152A328E0F0048B9C4 /* ExamTypeListView.swift */,
 				CD0140172A3299840048B9C4 /* PaperListView.swift */,
@@ -276,11 +282,13 @@
 			files = (
 				CD0140142A328DC20048B9C4 /* SeasonListView.swift in Sources */,
 				CD01400A2A3014700048B9C4 /* SettingView.swift in Sources */,
+				CD01401C2A32A9250048B9C4 /* IALView.swift in Sources */,
 				CD0140112A3270360048B9C4 /* YearListView.swift in Sources */,
 				CD0140182A3299840048B9C4 /* PaperListView.swift in Sources */,
 				CD013FE12A300F3E0048B9C4 /* ContentView.swift in Sources */,
 				CD013FDF2A300F3E0048B9C4 /* Pastpaper2023App.swift in Sources */,
 				CD0140162A328E0F0048B9C4 /* ExamTypeListView.swift in Sources */,
+				CD01401A2A32A8510048B9C4 /* SubjectView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
