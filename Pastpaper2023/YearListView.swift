@@ -44,15 +44,28 @@ struct Paper: Identifiable, Codable {
 
 struct YearListView: View {
     @State var years: [Year] = []
+    @State var isLoading: Bool = true
 
     var body: some View {
-        List(years, id: \.year) { year in
-            NavigationLink(destination: SeasonListView(year: year)) {
-                Text(year.year)
+        ZStack {
+            List {
+                Section(header: Text("Select Year")) {
+                    ForEach(years, id: \.year) { year in
+                        NavigationLink(destination: SeasonListView(year: year)) {
+                            Text(year.year)
+                        }
+                    }
+                }
+            }
+            .listStyle(.plain)
+            .navigationBarTitle("Years", displayMode: .inline)
+            .opacity(isLoading ? 0 : 1) // 控制列表的透明度，当加载完成后变为不透明
+            
+            if isLoading {
+                ProgressView() // 显示加载视图
+                    .progressViewStyle(CircularProgressViewStyle())
             }
         }
-        .listStyle(.plain)
-        .navigationBarTitle("Years", displayMode: .inline)
         .refreshable {
             await loadYears()
         }
@@ -87,13 +100,15 @@ struct YearListView: View {
 
                 DispatchQueue.main.async {
                     self.years = years
+                    self.isLoading = false // 年份加载完成，隐藏加载视图
                 }
             }
         } catch {
             print("Fetch failed: \(error.localizedDescription)")
+            self.isLoading = false // 加载出错，隐藏加载视图
         }
     }
-
 }
+
 
 
