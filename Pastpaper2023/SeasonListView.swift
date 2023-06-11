@@ -11,13 +11,17 @@ struct SeasonListView: View {
     var year: Year
 
     var body: some View {
-        List(year.seasons, id: \.id) { season in
-            NavigationLink(destination: ExamTypeListView(season: season)) {
-                Text(season.id)
-            }
-        }
-        .listStyle(.plain)
-        .navigationBarTitle("Seasons", displayMode: .inline)
+        List {
+                   Section(header: Text("Select Exam Season")) {
+                       ForEach(year.seasons, id: \.id) { season in
+                           NavigationLink(destination: ExamTypeListView(season: season)) {
+                               Text(season.id)
+                           }
+                       }
+                   }
+               }
+               .listStyle(.plain)
+               .navigationBarTitle("Seasons", displayMode: .inline)
     }
 }
 

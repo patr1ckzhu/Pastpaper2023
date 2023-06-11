@@ -49,7 +49,7 @@ struct YearListView: View {
     var body: some View {
         ZStack {
             List {
-                Section(header: Text("Select Year")) {
+                Section(header: Text("Select Exam Year")) {
                     ForEach(years, id: \.year) { year in
                         NavigationLink(destination: SeasonListView(year: year)) {
                             Text(year.year)

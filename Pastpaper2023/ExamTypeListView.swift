@@ -11,11 +11,15 @@ struct ExamTypeListView: View {
     var season: Season
 
     var body: some View {
-        List(season.examTypes, id: \.id) { examType in
-            NavigationLink(destination: PaperListView(papers: examType.papers)) {
-                Text(examType.id)
-            }
-        }
+        List {
+                   Section(header: Text("Select Exam Type")) {
+                       ForEach(season.examTypes, id: \.id) { examType in
+                           NavigationLink(destination: PaperListView(papers: examType.papers)) {
+                               Text(examType.id)
+                           }
+                       }
+                   }
+               }
         .navigationBarTitle("Exam Types", displayMode: .inline)
         .listStyle(.plain)
     }
