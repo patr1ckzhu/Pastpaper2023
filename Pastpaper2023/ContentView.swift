@@ -219,8 +219,8 @@ struct ContentView: View {
             .listStyle(.insetGrouped)
             .navigationTitle("Home")
             .navigationBarTitleDisplayMode(.large)
-            .navigationViewStyle(.stack) 
-            .searchable(text: $searchText, placement: .navigationBarDrawer)
+            .navigationViewStyle(.stack)
+            .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always))
             .toolbar(content: {
                 ToolbarItem(placement: .primaryAction){
                     HStack {
@@ -261,9 +261,7 @@ struct ContentView: View {
             })
             .padding(.top, -18)
         }
-        .onAppear(perform: loadList)
     }
-    
 }
 
 struct ContentView_Previews: PreviewProvider {
