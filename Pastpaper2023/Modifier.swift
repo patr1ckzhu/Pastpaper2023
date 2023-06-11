@@ -117,6 +117,12 @@ class RemoteURLDownloader: ObservableObject {
             }
         }.resume()
     }
+    func clearFileURL() {
+        DispatchQueue.main.async {
+            self.fileURL = nil
+        }
+    }
+
 }
 
 
@@ -127,7 +133,7 @@ struct ActivityView: UIViewControllerRepresentable {
     var activityItems: [Any]
     var applicationActivities: [UIActivity]?
     let excludedActivityTypes: [UIActivity.ActivityType]? = nil
-    let completion: CompletionWithItemsHandler? = nil
+    var completion: CompletionWithItemsHandler?
     
     func makeUIViewController(context: Context) -> UIActivityViewController {
         let controller = UIActivityViewController(activityItems: activityItems, applicationActivities: applicationActivities)
@@ -135,6 +141,7 @@ struct ActivityView: UIViewControllerRepresentable {
         controller.completionWithItemsHandler = completion
         return controller
     }
+
     
     func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {
         // no-op

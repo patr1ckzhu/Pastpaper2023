@@ -66,9 +66,13 @@ struct PaperView: View {
             })
             .sheet(isPresented: $showShareSheet) {
                 if let fileURL = self.downloader.fileURL {
-                    ActivityView(activityItems: [fileURL])
+                    ActivityView(activityItems: [fileURL]) { _, _, _, _ in
+                        self.showShareSheet = false
+                        self.downloader.clearFileURL()
+                    }
                 }
             }
+
             .onChange(of: downloader.fileURL) { newValue in
                 if newValue != nil {
                     self.showShareSheet = true
