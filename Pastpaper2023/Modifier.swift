@@ -67,7 +67,7 @@ class WebviewController: UIViewController {
     }
 }
 
-struct Webview: UIViewControllerRepresentable {
+struct WebView: UIViewControllerRepresentable {
     let url: URL
 
     func makeUIViewController(context: Context) -> WebviewController {
@@ -82,5 +82,61 @@ struct Webview: UIViewControllerRepresentable {
     func updateUIViewController(_ webviewController: WebviewController, context: Context) {
         let request = URLRequest(url: self.url, cachePolicy: .returnCacheDataElseLoad)
         webviewController.webview.load(request)
+    }
+}
+
+class RemoteURLDownloader: ObservableObject {
+    @Published var fileURL: URL?
+    private var session: URLSession
+
+    init(session: URLSession = URLSession.shared) {
+        self.session = session
+    }
+
+    func download(url: URL) {
+        self.session.dataTask(with: url) { [weak self] (data, response, error) in
+            guard let self = self,
+                  let data = data,
+                  error == nil
+            else {
+                print("Download error: \(String(describing: error))")
+                return
+            }
+
+            let pathComponent = url.lastPathComponent
+            let tempDirectoryURL = FileManager.default.temporaryDirectory
+            let targetURL = tempDirectoryURL.appendingPathComponent("\(pathComponent).pdf")
+
+            do {
+                try data.write(to: targetURL, options: .atomicWrite)
+                DispatchQueue.main.async {
+                    self.fileURL = targetURL
+                }
+            } catch {
+                print("File Error: \(error)")
+            }
+        }.resume()
+    }
+}
+
+
+
+struct ActivityView: UIViewControllerRepresentable {
+    typealias CompletionWithItemsHandler = (_ activityType: UIActivity.ActivityType?, _ completed: Bool, _ returnedItems: [Any]?, _ error: Error?) -> Void
+    
+    var activityItems: [Any]
+    var applicationActivities: [UIActivity]?
+    let excludedActivityTypes: [UIActivity.ActivityType]? = nil
+    let completion: CompletionWithItemsHandler? = nil
+    
+    func makeUIViewController(context: Context) -> UIActivityViewController {
+        let controller = UIActivityViewController(activityItems: activityItems, applicationActivities: applicationActivities)
+        controller.excludedActivityTypes = excludedActivityTypes
+        controller.completionWithItemsHandler = completion
+        return controller
+    }
+    
+    func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {
+        // no-op
     }
 }

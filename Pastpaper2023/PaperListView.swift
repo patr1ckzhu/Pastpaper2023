@@ -51,23 +51,31 @@ struct ActivityViewController: UIViewControllerRepresentable {
 }
 
 struct PaperView: View {
+    @StateObject private var downloader = RemoteURLDownloader()
     @State private var showShareSheet = false
     var paper: Paper
 
     var body: some View {
-        Webview(url: URL(string: paper.url)!)
+        WebView(url: URL(string: paper.url)!)
             .edgesIgnoringSafeArea(.all)
             .navigationBarTitle(Text(paper.fileName), displayMode: .inline)
             .navigationBarItems(trailing: Button(action: {
-                self.showShareSheet = true
+                self.downloader.download(url: URL(string: paper.url)!)
             }) {
                 Image(systemName: "square.and.arrow.up")
-            }.sheet(isPresented: $showShareSheet) {
-                ActivityViewController(activityItems: [URL(string: paper.url)!])
-                    .edgesIgnoringSafeArea(.all)
             })
-            
+            .sheet(isPresented: $showShareSheet) {
+                if let fileURL = self.downloader.fileURL {
+                    ActivityView(activityItems: [fileURL])
+                }
+            }
+            .onChange(of: downloader.fileURL) { newValue in
+                if newValue != nil {
+                    self.showShareSheet = true
+                }
+            }
     }
 }
+
 
 
