@@ -62,7 +62,7 @@ struct YearListView: View {
     }
 
     func loadYears() async {
-        guard let url = URL(string: "http://13.41.199.9:8080/pastpapers") else {
+        guard let url = URL(string: "http://13.41.199.9:8081/edx-ial-maths") else {
             print("Invalid URL")
             return
         }
@@ -78,8 +78,9 @@ struct YearListView: View {
                     let seasons = groupedPapersBySeason.map { (season, papers) -> Season in
                         let groupedPapersByType = Dictionary(grouping: papers, by: { $0.type })
                         let examTypes = groupedPapersByType.map { ExamType(type: $0.key, papers: $0.value) }
+                        .sorted { $0.type < $1.type } // 在这里对 examTypes 进行字母排序
                         return Season(season: season, examTypes: examTypes)
-                    }
+                    }.sorted { $0.season < $1.season }
 
                     return Year(year: year, seasons: seasons)
                 }.sorted { $0.year > $1.year }

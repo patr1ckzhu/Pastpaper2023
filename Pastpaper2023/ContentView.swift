@@ -262,7 +262,6 @@ struct ContentView: View {
             .padding(.top, -18)
         }
         .onAppear(perform: loadList)
-        //.edgesIgnoringSafeArea(.all)
     }
     
 }
