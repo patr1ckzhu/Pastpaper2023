@@ -147,3 +147,14 @@ struct ActivityView: UIViewControllerRepresentable {
         // no-op
     }
 }
+
+struct DisclosureIndicator: View {
+    
+    @ScaledMetric private var size: CGFloat = 13.5
+    
+    var body: some View {
+        Image(systemName: "chevron.right")
+            .foregroundColor(Color(.tertiaryLabel))
+            .font(.system(size: size, weight: .semibold))
+    }
+}

@@ -48,7 +48,7 @@ struct IALView: View {
                 }
                 .headerProminence(.increased)
             }
-            .listStyle(.insetGrouped)
+            .listStyle(.grouped)
             .navigationBarTitle("Subjects", displayMode: .inline)
     }
 }
