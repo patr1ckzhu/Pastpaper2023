@@ -61,6 +61,8 @@ struct PaperView: View {
             .navigationBarTitle(Text(paper.fileName), displayMode: .inline)
             .navigationBarItems(trailing: Button(action: {
                 self.downloader.download(url: URL(string: paper.url)!)
+                let impactLight = UIImpactFeedbackGenerator(style: .rigid)
+                impactLight.impactOccurred()
             }) {
                 Image(systemName: "square.and.arrow.up")
             })
