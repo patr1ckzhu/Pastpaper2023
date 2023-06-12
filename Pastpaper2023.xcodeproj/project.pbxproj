@@ -19,9 +19,9 @@
 		CD0140142A328DC20048B9C4 /* SeasonListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0140132A328DC20048B9C4 /* SeasonListView.swift */; };
 		CD0140162A328E0F0048B9C4 /* ExamTypeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0140152A328E0F0048B9C4 /* ExamTypeListView.swift */; };
 		CD0140182A3299840048B9C4 /* PaperListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0140172A3299840048B9C4 /* PaperListView.swift */; };
-		CD01401A2A32A8510048B9C4 /* SubjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0140192A32A8510048B9C4 /* SubjectView.swift */; };
 		CD01401C2A32A9250048B9C4 /* IALView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD01401B2A32A9250048B9C4 /* IALView.swift */; };
 		CD01401E2A3349FF0048B9C4 /* Modifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD01401D2A3349FF0048B9C4 /* Modifier.swift */; };
+		CD0140212A36A79A0048B9C4 /* TestView1.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0140202A36A79A0048B9C4 /* TestView1.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,10 +58,10 @@
 		CD0140132A328DC20048B9C4 /* SeasonListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeasonListView.swift; sourceTree = "<group>"; };
 		CD0140152A328E0F0048B9C4 /* ExamTypeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamTypeListView.swift; sourceTree = "<group>"; };
 		CD0140172A3299840048B9C4 /* PaperListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaperListView.swift; sourceTree = "<group>"; };
-		CD0140192A32A8510048B9C4 /* SubjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectView.swift; sourceTree = "<group>"; };
 		CD01401B2A32A9250048B9C4 /* IALView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IALView.swift; sourceTree = "<group>"; };
 		CD01401D2A3349FF0048B9C4 /* Modifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modifier.swift; sourceTree = "<group>"; };
 		CD01401F2A33C35B0048B9C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		CD0140202A36A79A0048B9C4 /* TestView1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView1.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,12 +116,12 @@
 				CD013FDE2A300F3E0048B9C4 /* Pastpaper2023App.swift */,
 				CD013FE02A300F3E0048B9C4 /* ContentView.swift */,
 				CD0140102A3270360048B9C4 /* YearListView.swift */,
-				CD0140192A32A8510048B9C4 /* SubjectView.swift */,
 				CD01401B2A32A9250048B9C4 /* IALView.swift */,
 				CD0140132A328DC20048B9C4 /* SeasonListView.swift */,
 				CD0140152A328E0F0048B9C4 /* ExamTypeListView.swift */,
 				CD0140172A3299840048B9C4 /* PaperListView.swift */,
 				CD0140092A3014700048B9C4 /* SettingView.swift */,
+				CD0140202A36A79A0048B9C4 /* TestView1.swift */,
 				CD01401D2A3349FF0048B9C4 /* Modifier.swift */,
 				CD013FE22A300F3F0048B9C4 /* Assets.xcassets */,
 				CD013FE42A300F3F0048B9C4 /* Pastpaper2023.entitlements */,
@@ -292,9 +292,9 @@
 				CD01401E2A3349FF0048B9C4 /* Modifier.swift in Sources */,
 				CD0140182A3299840048B9C4 /* PaperListView.swift in Sources */,
 				CD013FE12A300F3E0048B9C4 /* ContentView.swift in Sources */,
+				CD0140212A36A79A0048B9C4 /* TestView1.swift in Sources */,
 				CD013FDF2A300F3E0048B9C4 /* Pastpaper2023App.swift in Sources */,
 				CD0140162A328E0F0048B9C4 /* ExamTypeListView.swift in Sources */,
-				CD01401A2A32A8510048B9C4 /* SubjectView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
