@@ -13,8 +13,21 @@ struct TestView1: View {
     @State private var isSearching = false
     @State private var showingAlert = false
     @State private var showingSettingSheet = false
+    @State private var selectedDisplayCount = ListDisplayCount.ten
+
+        var displayCount: Int {
+            switch selectedDisplayCount {
+            case .ten:
+                return 10
+            case .twenty:
+                return 20
+            case .all:
+                return papers.count
+            }
+        }
 
     var body: some View {
+        
         NavigationView {
             Group {
                 if isSearching {
@@ -27,7 +40,7 @@ struct TestView1: View {
                                 paper.type.lowercased().contains(keyword) ||
                                 paper.year.lowercased().contains(keyword)
                             }
-                        }) { paper in
+                        }.prefix(displayCount)) { paper in  //只显示前10个元素
                             // 显示单个试卷的 View
                             NavigationLink(destination: WebView(url: URL(string: paper.url)!)
                                 .edgesIgnoringSafeArea(.all)
@@ -189,17 +202,8 @@ struct TestView1: View {
                             Image(systemName: "gearshape")
                         }
                         .sheet(isPresented: $showingSettingSheet) {
-                            SettingView()
+                            SettingView(selectedDisplayCount: $selectedDisplayCount)
                         }
-                    }
-                }
-                ToolbarItem(placement: .navigationBarLeading){
-                    HStack {
-                        Button {
-                            
-                        }label: {
-                            Text("Edit")
-                       }
                     }
                 }
             })

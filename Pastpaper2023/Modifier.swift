@@ -158,3 +158,11 @@ struct DisclosureIndicator: View {
             .font(.system(size: size, weight: .semibold))
     }
 }
+
+enum ListDisplayCount: String, CaseIterable, Identifiable {
+    case ten = "10"
+    case twenty = "20"
+    case all = "All"
+    
+    var id: String { self.rawValue }
+}

@@ -12,6 +12,7 @@ import Foundation
 struct SettingView: View {
     @State private var showFeedback = true
     @State private var showingAlert = false
+    @Binding var selectedDisplayCount: ListDisplayCount
     
     var body: some View {
         NavigationView {
@@ -24,6 +25,11 @@ struct SettingView: View {
                         NavigationLink(destination: EmptyView()) {
                             Text("Color & Icon")
                         }
+                        Picker("Search Result Count", selection: $selectedDisplayCount) {
+                                ForEach(ListDisplayCount.allCases) { count in
+                                    Text(count.rawValue).tag(count)
+                                }
+                            }
                         Toggle("Taptic Engine Feedback", isOn: $showFeedback)
 
                     }
@@ -36,6 +42,7 @@ struct SettingView: View {
                         }.alert("All cache being removed", isPresented: $showingAlert) {
                             
                         }
+                        
                         NavigationLink(destination: EmptyView()) {
                             Text("Rate PaperHub")
                         }

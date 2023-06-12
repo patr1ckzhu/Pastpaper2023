@@ -237,9 +237,9 @@ struct ContentView: View {
                         }) {
                             Image(systemName: "gearshape")
                         }
-                        .sheet(isPresented: $showingSettingSheet) {
-                            SettingView()
-                        }
+//                        .sheet(isPresented: $showingSettingSheet) {
+//                            SettingView()
+//                        }
                     }
                 }
                 ToolbarItem(placement: .navigationBarLeading){
