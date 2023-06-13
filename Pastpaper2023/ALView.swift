@@ -99,7 +99,7 @@ struct ALView: View {
     
         }
         .listStyle(.grouped)
-        .navigationBarTitle("Subjects", displayMode: .inline)
+        .navigationBarTitle("AS & A Levels", displayMode: .inline)
     }
 }
 

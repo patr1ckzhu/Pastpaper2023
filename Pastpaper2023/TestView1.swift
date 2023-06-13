@@ -51,7 +51,39 @@ struct TestView1: View {
                     }
                 } else {
                     List {
-                        Section(header: Text("Qualifications").padding(.top, 18)) {
+                        Section(header: Text("Exam Boards").padding(.top, 5)) {
+                            NavigationLink(destination: CAIEView()) {
+                                HStack {
+                                    Image(systemName: "c.square.fill")
+                                        .font(Font.system(.title))
+                                        .foregroundColor(.brown)
+                                    Text("CAIE")
+                                }
+                                .offset(x: -8)
+                            }
+                            NavigationLink(destination: Text("hello")) {
+                                HStack {
+                                    Image(systemName: "e.square.fill")
+                                        .font(Font.system(.title))
+                                        .foregroundColor(.mint)
+                                    Text("Edexcel")
+                                }
+                                .offset(x: -8)
+                            }
+                            NavigationLink(destination: Text("hello")) {
+                                HStack {
+                                    Image(systemName: "a.square.fill")
+                                        .font(Font.system(.title))
+                                        .foregroundColor(.red)
+                                    Text("AQA")
+                                }
+                                .offset(x: -8)
+                            }
+                        }
+                        .listSectionSeparator(.visible)
+                        .headerProminence(.increased)
+                        
+                        Section(header: Text("Qualifications")) {
                             NavigationLink(destination: ALView()) {
                                 HStack {
                                     Image(systemName: "a.square.fill")
@@ -101,37 +133,7 @@ struct TestView1: View {
                             }
                         }
                         .headerProminence(.increased)
-                        Section(header: Text("Examination Bureau")) {
-                            NavigationLink(destination: CAIEView()) {
-                                HStack {
-                                    Image(systemName: "c.square.fill")
-                                        .font(Font.system(.title))
-                                        .foregroundColor(.brown)
-                                    Text("CAIE")
-                                }
-                                .offset(x: -8)
-                            }
-                            NavigationLink(destination: Text("hello")) {
-                                HStack {
-                                    Image(systemName: "e.square.fill")
-                                        .font(Font.system(.title))
-                                        .foregroundColor(.mint)
-                                    Text("Edexcel")
-                                }
-                                .offset(x: -8)
-                            }
-                            NavigationLink(destination: Text("hello")) {
-                                HStack {
-                                    Image(systemName: "a.square.fill")
-                                        .font(Font.system(.title))
-                                        .foregroundColor(.red)
-                                    Text("AQA")
-                                }
-                                .offset(x: -8)
-                            }
-                        }
-                        .listSectionSeparator(.visible)
-                        .headerProminence(.increased)
+                        
                         Section(header: Text("Admissions Tests")) {
                             NavigationLink(destination: Text("hello")) {
                                 HStack {
@@ -172,8 +174,9 @@ struct TestView1: View {
                         }
                         .listSectionSeparator(.visible)
                         .headerProminence(.increased)
+                        //.padding(.top, -18)
                     }
-                    .padding(.top, -18)
+                    //.padding(.top, -18)
                 }
             }
             .listStyle(.grouped)
