@@ -22,7 +22,7 @@ struct SeasonListView: View {
                    }
                }
                .listStyle(.plain)
-               .navigationBarTitle("Seasons", displayMode: .inline)
+               .navigationBarTitle(year.year, displayMode: .inline)
     }
 }
 

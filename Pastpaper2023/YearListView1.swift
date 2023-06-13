@@ -24,7 +24,7 @@ struct YearListView1: View {
                 }
             }
             .listStyle(.plain)
-            .navigationBarTitle("Years", displayMode: .inline)
+            .navigationBarTitle("Mathematics (9709)", displayMode: .inline)
             .opacity(isLoading ? 0 : 1) // 控制列表的透明度，当加载完成后变为不透明
             
             if isLoading {

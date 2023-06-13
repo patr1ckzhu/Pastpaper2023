@@ -29,7 +29,7 @@ struct IALView: View {
                         Text("Psychology")
                     }
                 }
-                .headerProminence(.increased)
+                //.headerProminence(.increased)
                 
                 Section(header: Text("AQA")) {
                     
@@ -46,10 +46,10 @@ struct IALView: View {
                         Text("Psychology")
                     }
                 }
-                .headerProminence(.increased)
+                //.headerProminence(.increased)
             }
             .listStyle(.grouped)
-            .navigationBarTitle("Subjects", displayMode: .inline)
+            .navigationBarTitle("International AS & A Levels", displayMode: .inline)
     }
 }
 

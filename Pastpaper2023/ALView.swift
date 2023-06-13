@@ -67,7 +67,7 @@ struct ALView: View {
                 }
                 
             }
-            .headerProminence(.increased)
+            //.headerProminence(.increased)
             
             Section(header: Text("Edexcel")) {
                 NavigationLink(destination: Text("quali")) {
@@ -81,7 +81,7 @@ struct ALView: View {
                 }
                 
             }
-            .headerProminence(.increased)
+            //.headerProminence(.increased)
             
             Section(header: Text("AQA")) {
                NavigationLink(destination: Text("quali")) {
@@ -95,7 +95,7 @@ struct ALView: View {
                 }
 
             }
-            .headerProminence(.increased)
+            //.headerProminence(.increased)
     
         }
         .listStyle(.grouped)

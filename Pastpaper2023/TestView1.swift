@@ -102,7 +102,7 @@ struct TestView1: View {
                         }
                         .headerProminence(.increased)
                         Section(header: Text("Examination Bureau")) {
-                            NavigationLink(destination: Text("hello")) {
+                            NavigationLink(destination: CAIEView()) {
                                 HStack {
                                     Image(systemName: "c.square.fill")
                                         .font(Font.system(.title))

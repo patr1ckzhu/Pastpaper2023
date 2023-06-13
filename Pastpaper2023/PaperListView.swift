@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct PaperListView: View {
+    var examType: ExamType
     var papers: [Paper]
 
     var body: some View {
@@ -16,10 +17,11 @@ struct PaperListView: View {
                 Text(paper.fileName)
             }
         }
-        .navigationBarTitle("Papers", displayMode: .inline)
+        .navigationBarTitle(examType.id, displayMode: .inline)
         .listStyle(.plain)
     }
 }
+
 
 struct ActivityViewController: UIViewControllerRepresentable {
     let activityItems: [Any]
