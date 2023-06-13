@@ -17,7 +17,7 @@ struct YearListView1: View {
             List {
                 Section(header: Text("Select Exam Year")) {
                     ForEach(years, id: \.year) { year in
-                        NavigationLink(destination: EmptyView()) {
+                        NavigationLink(destination: SeasonListView(year: year)) {
                             Text(year.year)
                         }
                     }
