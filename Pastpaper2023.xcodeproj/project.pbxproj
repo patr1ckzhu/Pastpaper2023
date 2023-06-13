@@ -22,6 +22,7 @@
 		CD01401C2A32A9250048B9C4 /* IALView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD01401B2A32A9250048B9C4 /* IALView.swift */; };
 		CD01401E2A3349FF0048B9C4 /* Modifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD01401D2A3349FF0048B9C4 /* Modifier.swift */; };
 		CD0140212A36A79A0048B9C4 /* TestView1.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0140202A36A79A0048B9C4 /* TestView1.swift */; };
+		CD0140292A37E61B0048B9C4 /* AppearanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0140282A37E61B0048B9C4 /* AppearanceView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,7 @@
 		CD01401D2A3349FF0048B9C4 /* Modifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modifier.swift; sourceTree = "<group>"; };
 		CD01401F2A33C35B0048B9C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		CD0140202A36A79A0048B9C4 /* TestView1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView1.swift; sourceTree = "<group>"; };
+		CD0140282A37E61B0048B9C4 /* AppearanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +123,7 @@
 				CD0140152A328E0F0048B9C4 /* ExamTypeListView.swift */,
 				CD0140172A3299840048B9C4 /* PaperListView.swift */,
 				CD0140092A3014700048B9C4 /* SettingView.swift */,
+				CD0140282A37E61B0048B9C4 /* AppearanceView.swift */,
 				CD0140202A36A79A0048B9C4 /* TestView1.swift */,
 				CD01401D2A3349FF0048B9C4 /* Modifier.swift */,
 				CD013FE22A300F3F0048B9C4 /* Assets.xcassets */,
@@ -285,6 +288,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD0140292A37E61B0048B9C4 /* AppearanceView.swift in Sources */,
 				CD0140142A328DC20048B9C4 /* SeasonListView.swift in Sources */,
 				CD01400A2A3014700048B9C4 /* SettingView.swift in Sources */,
 				CD01401C2A32A9250048B9C4 /* IALView.swift in Sources */,

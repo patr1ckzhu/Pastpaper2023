@@ -10,6 +10,7 @@ import WebKit
 import Foundation
 
 struct SettingView: View {
+    @AppStorage("Theme") var theme: Theme = .systemDefault
     @State private var showFeedback = true
     @State private var showingAlert = false
     @Binding var selectedDisplayCount: ListDisplayCount
@@ -19,11 +20,8 @@ struct SettingView: View {
             VStack {
                 List {
                     Section(header: Text("PREFERENCE")) {
-                        NavigationLink(destination: EmptyView()) {
-                            Text("Appearence")
-                        }
-                        NavigationLink(destination: EmptyView()) {
-                            Text("Color & Icon")
+                        NavigationLink(destination: AppearanceView()) {
+                            Text("Appearance")
                         }
                         Picker("Search Result Count", selection: $selectedDisplayCount) {
                                 ForEach(ListDisplayCount.allCases) { count in
