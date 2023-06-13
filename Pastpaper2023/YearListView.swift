@@ -60,12 +60,8 @@ struct YearListView: View {
             }
             .listStyle(.plain)
             .navigationBarTitle("Mathematics", displayMode: .inline)
+            .navigationBarItems(trailing: loadingIndicator)
             .opacity(isLoading ? 0 : 1) // 控制列表的透明度，当加载完成后变为不透明
-            
-            if isLoading {
-                ProgressView() // 显示加载视图
-                    .progressViewStyle(CircularProgressViewStyle())
-            }
         }
         .refreshable {
             await loadYears()
@@ -75,6 +71,15 @@ struct YearListView: View {
         }
     }
 
+    var loadingIndicator: some View {
+        Group {
+            if isLoading {
+                ProgressView()
+                    .progressViewStyle(CircularProgressViewStyle())
+            }
+        }
+    }
+    
     func loadYears() async {
         guard let url = URL(string: "http://13.41.199.9:8081/edx-ial-maths") else {
             print("Invalid URL")
@@ -110,6 +115,5 @@ struct YearListView: View {
         }
     }
 }
-
 
 

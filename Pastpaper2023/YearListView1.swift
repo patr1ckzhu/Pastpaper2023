@@ -25,18 +25,23 @@ struct YearListView1: View {
             }
             .listStyle(.plain)
             .navigationBarTitle("Mathematics (9709)", displayMode: .inline)
+            .navigationBarItems(trailing: loadingIndicator)
             .opacity(isLoading ? 0 : 1) // 控制列表的透明度，当加载完成后变为不透明
-            
-            if isLoading {
-                ProgressView() // 显示加载视图
-                    .progressViewStyle(CircularProgressViewStyle())
-            }
         }
         .refreshable {
             await loadYears()
         }
         .task {
             await loadYears()
+        }
+    }
+
+    var loadingIndicator: some View {
+        Group {
+            if isLoading {
+                ProgressView()
+                    .progressViewStyle(CircularProgressViewStyle())
+            }
         }
     }
 
