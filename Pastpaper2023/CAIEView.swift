@@ -147,7 +147,7 @@ struct CaieOLView: View {
 struct CaieALView: View {
     var body: some View {
         List {
-            Section(header: Text("CAIE")) {
+            Section(header: Text("Select Subject")) {
                NavigationLink(destination: Text("quali")) {
                     Text("Art & Design (9479)")
                     //TitleLabel("Art & Design", subtitle: "9479")

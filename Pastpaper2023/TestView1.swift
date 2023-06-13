@@ -61,7 +61,7 @@ struct TestView1: View {
                                 }
                                 .offset(x: -8)
                             }
-                            NavigationLink(destination: Text("hello")) {
+                            NavigationLink(destination: EdexcelView()) {
                                 HStack {
                                     Image(systemName: "e.square.fill")
                                         .font(Font.system(.title))

@@ -26,6 +26,7 @@
 		CD8B24D82A38CC6400533D37 /* ALView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8B24D72A38CC6400533D37 /* ALView.swift */; };
 		CD8B24DA2A38D1B800533D37 /* YearListView1.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8B24D92A38D1B800533D37 /* YearListView1.swift */; };
 		CD8B24DC2A38D6AF00533D37 /* CAIEView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8B24DB2A38D6AF00533D37 /* CAIEView.swift */; };
+		CD8B24DE2A38E7EB00533D37 /* EdexcelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8B24DD2A38E7EB00533D37 /* EdexcelView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +71,7 @@
 		CD8B24D72A38CC6400533D37 /* ALView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ALView.swift; sourceTree = "<group>"; };
 		CD8B24D92A38D1B800533D37 /* YearListView1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearListView1.swift; sourceTree = "<group>"; };
 		CD8B24DB2A38D6AF00533D37 /* CAIEView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CAIEView.swift; sourceTree = "<group>"; };
+		CD8B24DD2A38E7EB00533D37 /* EdexcelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdexcelView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +128,7 @@
 				CD01401B2A32A9250048B9C4 /* IALView.swift */,
 				CD8B24D72A38CC6400533D37 /* ALView.swift */,
 				CD8B24DB2A38D6AF00533D37 /* CAIEView.swift */,
+				CD8B24DD2A38E7EB00533D37 /* EdexcelView.swift */,
 				CD0140102A3270360048B9C4 /* YearListView.swift */,
 				CD8B24D92A38D1B800533D37 /* YearListView1.swift */,
 				CD0140132A328DC20048B9C4 /* SeasonListView.swift */,
@@ -302,6 +305,7 @@
 				CD8B24DC2A38D6AF00533D37 /* CAIEView.swift in Sources */,
 				CD01400A2A3014700048B9C4 /* SettingView.swift in Sources */,
 				CD8B24D82A38CC6400533D37 /* ALView.swift in Sources */,
+				CD8B24DE2A38E7EB00533D37 /* EdexcelView.swift in Sources */,
 				CD01401C2A32A9250048B9C4 /* IALView.swift in Sources */,
 				CD0140112A3270360048B9C4 /* YearListView.swift in Sources */,
 				CD01401E2A3349FF0048B9C4 /* Modifier.swift in Sources */,
