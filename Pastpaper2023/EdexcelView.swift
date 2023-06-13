@@ -29,7 +29,7 @@ struct EdexcelView: View {
                         Text("AS & A Levels")
                     }
                 }
-                NavigationLink(destination: EmptyView()) {
+                NavigationLink(destination: EdexcelIALView()) {
                     HStack {
                         Text("International AS & A Levels")
                     }
@@ -38,6 +38,33 @@ struct EdexcelView: View {
         }
         .listStyle(.grouped)
         .navigationBarTitle("Edexcel", displayMode: .inline)
+    }
+}
+
+struct EdexcelIALView: View {
+    var body: some View {
+        List{
+            Section(header: Text("Select Subject")) {
+                NavigationLink(destination: Text("quali")) {
+                    Text("Business")
+                }
+                NavigationLink(destination: Text("quali")) {
+                    Text("Economics")
+                }
+                NavigationLink(destination: YearListView()) {
+                    Text("Mathematics")
+                }
+                
+                NavigationLink(destination: Text("quali")) {
+                    Text("Physics")
+                }
+                NavigationLink(destination: Text("quali")) {
+                    Text("Psychology")
+                }
+            }
+        }
+        .listStyle(.grouped)
+        .navigationBarTitle("International AS & A Levels", displayMode: .inline)
     }
 }
 
