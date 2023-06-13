@@ -1,49 +1,14 @@
 //
-//  YearListView.swift
+//  YearListView1.swift
 //  Pastpaper2023
 //
-//  Created by Patrick on 2023/6/8.
+//  Created by Patrick on 2023/6/13.
 //
 
 import SwiftUI
 
-struct Year {
-    var id: String { year }
-    var year: String
-    var seasons: [Season]
-}
-
-struct ExamType {
-    var id: String { type }
-    var type: String
-    var papers: [Paper]
-}
-
-struct Season {
-    var id: String { season }
-    var season: String
-    var examTypes: [ExamType]
-}
-
-struct Paper: Identifiable, Codable {
-    let id = UUID()
-    let year: String
-    let season: String
-    let type: String
-    let name: String
-    let url: String
-
-    var fileName: String {
-        return URL(string: url)?.lastPathComponent ?? "Unknown"
-    }
-    enum CodingKeys: String, CodingKey {
-            case year, season, type, name, url
-        }
-}
-
-
-struct YearListView: View {
-    //Edexcel-ial-Maths
+struct YearListView1: View {
+    // CAIE-Maths
     @State var years: [Year] = []
     @State var isLoading: Bool = true
 
@@ -52,7 +17,7 @@ struct YearListView: View {
             List {
                 Section(header: Text("Select Exam Year")) {
                     ForEach(years, id: \.year) { year in
-                        NavigationLink(destination: SeasonListView(year: year)) {
+                        NavigationLink(destination: EmptyView()) {
                             Text(year.year)
                         }
                     }
@@ -76,7 +41,7 @@ struct YearListView: View {
     }
 
     func loadYears() async {
-        guard let url = URL(string: "http://13.41.199.9:8081/edx-ial-maths") else {
+        guard let url = URL(string: "http://localhost:3000/caie-maths1") else {
             print("Invalid URL")
             return
         }
@@ -110,6 +75,4 @@ struct YearListView: View {
         }
     }
 }
-
-
 

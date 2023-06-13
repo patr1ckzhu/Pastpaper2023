@@ -52,7 +52,7 @@ struct TestView1: View {
                 } else {
                     List {
                         Section(header: Text("Qualifications").padding(.top, 18)) {
-                            NavigationLink(destination: Text("hello")) {
+                            NavigationLink(destination: ALView()) {
                                 HStack {
                                     Image(systemName: "a.square.fill")
                                         .font(Font.system(.title))

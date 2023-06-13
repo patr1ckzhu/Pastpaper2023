@@ -6,21 +6,6 @@
 //
 
 import SwiftUI
-import PDFKit
-
-struct PDFKitView: UIViewRepresentable {
-    let url: URL
-    
-    func makeUIView(context: Context) -> PDFKit.PDFView {
-        let pdfView = PDFKit.PDFView()
-        pdfView.autoScales = true
-        return pdfView
-    }
-
-    func updateUIView(_ pdfView: PDFKit.PDFView, context: Context) {
-        pdfView.document = PDFKit.PDFDocument(url: self.url)
-    }
-}
 
 struct PaperListView: View {
     var papers: [Paper]
