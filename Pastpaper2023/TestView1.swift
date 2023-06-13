@@ -70,7 +70,7 @@ struct TestView1: View {
                                 }
                                 .offset(x: -8)
                             }
-                            NavigationLink(destination: Text("hello")) {
+                            NavigationLink(destination: AQAView()) {
                                 HStack {
                                     Image(systemName: "a.square.fill")
                                         .font(Font.system(.title))

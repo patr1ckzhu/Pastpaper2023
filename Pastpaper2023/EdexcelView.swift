@@ -9,20 +9,7 @@ import SwiftUI
 
 struct EdexcelView: View {
     var body: some View {
-        List{
-            Section(header: Text("Pearson Edexcel A Levels")) {
-                NavigationLink(destination: EmptyView()) {
-                    HStack {
-                        Text("AS & A Levels")
-                    }
-                }
-                NavigationLink(destination: EmptyView()) {
-                    HStack {
-                        Text("International AS & A Levels")
-                    }
-                }
-                
-            }
+        List{       
             Section(header: Text("Pearson Edexcel GCSEs")) {
                 NavigationLink(destination: EmptyView()) {
                     HStack {
@@ -35,6 +22,18 @@ struct EdexcelView: View {
                     }
                 }
                 
+            }
+            Section(header: Text("Pearson Edexcel A Levels")) {
+                NavigationLink(destination: EmptyView()) {
+                    HStack {
+                        Text("AS & A Levels")
+                    }
+                }
+                NavigationLink(destination: EmptyView()) {
+                    HStack {
+                        Text("International AS & A Levels")
+                    }
+                }
             }
         }
         .listStyle(.grouped)
