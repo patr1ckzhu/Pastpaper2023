@@ -110,8 +110,11 @@ struct EdexcelIGCSEView: View {
     var body: some View {
         List{
             Section(header: Text("Select Subject")) {
-                NavigationLink(destination: Text("quali")) {
+                NavigationLink(destination: YearListView(urlString: "http://13.41.199.9:8091/edx-igcse-biology", navTitle: "Biology")) {
                     Text("Biology")
+                }
+                NavigationLink(destination: YearListView(urlString: "http://13.41.199.9:8092/edx-igcse-business", navTitle: "Business")) {
+                    Text("Business")
                 }
                 NavigationLink(destination: Text("quali")) {
                     Text("Chemistry")
