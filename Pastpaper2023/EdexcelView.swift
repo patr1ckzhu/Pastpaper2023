@@ -11,12 +11,12 @@ struct EdexcelView: View {
     var body: some View {
         List{       
             Section(header: Text("Pearson Edexcel GCSEs")) {
-                NavigationLink(destination: EmptyView()) {
+                NavigationLink(destination: EdexcelGCSEView()) {
                     HStack {
                         Text("GCSEs")
                     }
                 }
-                NavigationLink(destination: EmptyView()) {
+                NavigationLink(destination: EdexcelIGCSEView()) {
                     HStack {
                         Text("International GCSEs")
                     }
@@ -24,7 +24,7 @@ struct EdexcelView: View {
                 
             }
             Section(header: Text("Pearson Edexcel A Levels")) {
-                NavigationLink(destination: EmptyView()) {
+                NavigationLink(destination: EdexcelALView()) {
                     HStack {
                         Text("AS & A Levels")
                     }
@@ -51,6 +51,9 @@ struct EdexcelIALView: View {
                 NavigationLink(destination: Text("quali")) {
                     Text("Economics")
                 }
+                NavigationLink(destination: Text("quali")) {
+                    Text("Geography")
+                }
                 NavigationLink(destination: YearListView()) {
                     Text("Mathematics")
                 }
@@ -68,8 +71,131 @@ struct EdexcelIALView: View {
     }
 }
 
-struct EdexcelView_Previews: PreviewProvider {
-    static var previews: some View {
-        EdexcelView()
+struct EdexcelGCSEView: View {
+    var body: some View {
+        List{
+            Section(header: Text("Select Subject")) {
+                NavigationLink(destination: YearListView2()) {
+                    Text("Art and Design")
+                }
+                NavigationLink(destination: Text("quali")) {
+                    Text("Biology")
+                }
+                NavigationLink(destination: Text("quali")) {
+                    Text("Chemistry")
+                }
+                NavigationLink(destination: EmptyView()) {
+                    Text("Computer Science")
+                }
+                NavigationLink(destination: Text("quali")) {
+                    Text("Economics")
+                }
+                NavigationLink(destination: Text("quali")) {
+                    Text("English Language")
+                }
+                NavigationLink(destination: Text("quali")) {
+                    Text("History")
+                }
+                NavigationLink(destination: Text("quali")) {
+                    Text("Mathematics")
+                }
+                NavigationLink(destination: Text("quali")) {
+                    Text("Physics")
+                }
+                NavigationLink(destination: Text("quali")) {
+                    Text("Statistics")
+                }
+            }
+        }
+        .listStyle(.grouped)
+        .navigationBarTitle("GCSEs", displayMode: .inline)
     }
 }
+
+struct EdexcelIGCSEView: View {
+    var body: some View {
+        List{
+            Section(header: Text("Select Subject")) {
+                NavigationLink(destination: Text("quali")) {
+                    Text("Biology")
+                }
+                NavigationLink(destination: Text("quali")) {
+                    Text("Chemistry")
+                }
+                NavigationLink(destination: EmptyView()) {
+                    Text("Computer Science")
+                }
+                NavigationLink(destination: Text("quali")) {
+                    Text("Economics")
+                }
+                NavigationLink(destination: Text("quali")) {
+                    Text("History")
+                }
+                NavigationLink(destination: Text("quali")) {
+                    Text("Mathematics A")
+                }
+                NavigationLink(destination: Text("quali")) {
+                    Text("Mathematics B")
+                }
+                NavigationLink(destination: Text("quali")) {
+                    Text("Physics")
+                }
+            }
+        }
+        .listStyle(.grouped)
+        .navigationBarTitle("International GCSEs", displayMode: .inline)
+    }
+}
+
+struct EdexcelALView: View {
+    var body: some View {
+        List{
+            Section(header: Text("Select Subject")) {
+                NavigationLink(destination: Text("quali")) {
+                    Text("Art and Design")
+                }
+                NavigationLink(destination: Text("quali")) {
+                    Text("Biology")
+                }
+                NavigationLink(destination: Text("quali")) {
+                    Text("Business")
+                }
+                NavigationLink(destination: Text("quali")) {
+                    Text("Chemistry")
+                }
+                NavigationLink(destination: Text("quali")) {
+                    Text("Chinese")
+                }
+                NavigationLink(destination: EmptyView()) {
+                    Text("Computer Science")
+                }
+                Group {
+                    NavigationLink(destination: Text("quali")) {
+                        Text("Economics")
+                    }
+                    NavigationLink(destination: Text("quali")) {
+                        Text("English Language")
+                    }
+                    NavigationLink(destination: Text("quali")) {
+                        Text("History")
+                    }
+                    NavigationLink(destination: Text("quali")) {
+                        Text("Mathematics")
+                    }
+                    NavigationLink(destination: Text("quali")) {
+                        Text("Physics")
+                    }
+                    NavigationLink(destination: Text("quali")) {
+                        Text("Psychology")
+                    }
+                    NavigationLink(destination: Text("quali")) {
+                        Text("Statistics")
+                    }
+                }
+            }
+        }
+        .listStyle(.grouped)
+        .navigationBarTitle("AS & A Levels", displayMode: .inline)
+    }
+}
+
