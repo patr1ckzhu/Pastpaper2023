@@ -81,16 +81,7 @@ struct EdexcelGCSEView: View {
                 NavigationLink(destination: YearListView(urlString: "http://13.41.199.9:8084/edx-gcse-business", navTitle: "Business")) {
                     Text("Business")
                 }
-                NavigationLink(destination: Text("quali")) {
-                    Text("Chemistry")
-                }
-                NavigationLink(destination: EmptyView()) {
-                    Text("Computer Science")
-                }
-                NavigationLink(destination: Text("quali")) {
-                    Text("Economics")
-                }
-                NavigationLink(destination: Text("quali")) {
+                NavigationLink(destination: YearListView(urlString: "http://13.41.199.9:8085/edx-gcse-eng", navTitle: "English Language")) {
                     Text("English Language")
                 }
                 NavigationLink(destination: Text("quali")) {
