@@ -37,10 +37,6 @@ class WebviewController: UIViewController {
         self.webview.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
             
         ])
-        
-//        NSLayoutConstraint.activate([
-//            progressbar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
-//        ])
 
         self.progressbar.progress = 0.1
         webview.addObserver(self, forKeyPath: "estimatedProgress", options: .new, context: nil)

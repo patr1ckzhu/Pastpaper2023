@@ -90,7 +90,7 @@ struct EdexcelGCSEView: View {
                 NavigationLink(destination: YearListView(urlString: "http://13.41.199.9:8087/edx-gcse-maths", navTitle: "Mathematics")) {
                     Text("Mathematics")
                 }
-                NavigationLink(destination: Text("quali")) {
+                NavigationLink(destination: YearListView(urlString: "http://13.41.199.9:8088/edx-gcse-physics", navTitle: "Physics Education")) {
                     Text("Physics Education")
                 }
                 NavigationLink(destination: Text("quali")) {
