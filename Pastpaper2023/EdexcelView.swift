@@ -54,7 +54,7 @@ struct EdexcelIALView: View {
                 NavigationLink(destination: Text("quali")) {
                     Text("Geography")
                 }
-                NavigationLink(destination: YearListView()) {
+                NavigationLink(destination: YearListView(urlString: "http://13.41.199.9:8081/edx-ial-maths")) {
                     Text("Mathematics")
                 }
                 
@@ -75,7 +75,7 @@ struct EdexcelGCSEView: View {
     var body: some View {
         List{
             Section(header: Text("Select Subject")) {
-                NavigationLink(destination: YearListView2()) {
+                NavigationLink(destination: YearListView(urlString: "http://13.41.199.9:8083/edx-gcse-art")) {
                     Text("Art and Design")
                 }
                 NavigationLink(destination: Text("quali")) {

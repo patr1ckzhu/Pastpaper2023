@@ -46,6 +46,7 @@ struct YearListView: View {
     //Edexcel-ial-Maths
     @State var years: [Year] = []
     @State var isLoading: Bool = true
+    var urlString: String
 
     var body: some View {
         ZStack {
@@ -81,7 +82,7 @@ struct YearListView: View {
     }
     
     func loadYears() async {
-        guard let url = URL(string: "http://13.41.199.9:8081/edx-ial-maths") else {
+        guard let url = URL(string: self.urlString) else {
             print("Invalid URL")
             return
         }
