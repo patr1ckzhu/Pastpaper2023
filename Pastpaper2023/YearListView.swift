@@ -47,6 +47,7 @@ struct YearListView: View {
     @State var years: [Year] = []
     @State var isLoading: Bool = true
     var urlString: String
+    var navTitle: String
 
     var body: some View {
         ZStack {
@@ -60,7 +61,7 @@ struct YearListView: View {
                 }
             }
             .listStyle(.plain)
-            .navigationBarTitle("Mathematics", displayMode: .inline)
+            .navigationBarTitle(navTitle, displayMode: .inline)
             .navigationBarItems(trailing: loadingIndicator)
             .opacity(isLoading ? 0 : 1) // 控制列表的透明度，当加载完成后变为不透明
         }

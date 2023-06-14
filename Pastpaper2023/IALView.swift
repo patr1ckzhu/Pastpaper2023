@@ -18,7 +18,7 @@ struct IALView: View {
                     NavigationLink(destination: Text("quali")) {
                         Text("Economics")
                     }
-                    NavigationLink(destination: YearListView(urlString: "http://13.41.199.9:8081/edx-ial-maths")) {
+                    NavigationLink(destination: YearListView(urlString: "http://13.41.199.9:8081/edx-ial-maths", navTitle: "Mathematics")) {
                         Text("Mathematics")
                     }
                     

@@ -179,7 +179,7 @@ struct ContentView: View {
                 if !examList.filter({ searchText.isEmpty || $0.name.localizedStandardContains(searchText) }).isEmpty {
                     Section(header: Text("Examination Bureau").padding(.leading, -10)) {
                         ForEach(examList.filter { searchText.isEmpty || $0.name.localizedStandardContains(searchText) }, id: \.name) { exam in
-                            NavigationLink(destination: YearListView(urlString: "http://13.41.199.9:8081/edx-ial-maths")) {
+                            NavigationLink(destination: YearListView(urlString: "http://13.41.199.9:8081/edx-ial-maths", navTitle: "Mathematics")) {
                                 HStack {
                                     Image(systemName: exam.image)
                                          .font(Font.system(.title))

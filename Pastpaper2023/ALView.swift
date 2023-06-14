@@ -52,7 +52,7 @@ struct ALView: View {
                         Text("History (9389)")
                         //TitleLabel("History", subtitle: "9389")
                     }
-                    NavigationLink(destination: YearListView(urlString: "http://13.41.199.9:8082/caie-maths1")) {
+                    NavigationLink(destination: YearListView(urlString: "http://13.41.199.9:8082/caie-maths1", navTitle: "Mathematics")) {
                         Text("Mathematics (9709)")
                         //TitleLabel("Mathematics", subtitle: "9709")
                     }
