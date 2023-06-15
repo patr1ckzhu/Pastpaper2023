@@ -54,7 +54,7 @@ struct EdexcelIALView: View {
                 NavigationLink(destination: Text("quali")) {
                     Text("Geography")
                 }
-                NavigationLink(destination: YearListView(urlString: "http://13.41.199.9:8081/edx-ial-maths", navTitle: "Mathematics")) {
+                NavigationLink(destination: YearListView(urlString: "http://54.151.228.139:8081/edx-ial-maths", navTitle: "Mathematics")) {
                     Text("Mathematics")
                 }
                 
@@ -75,28 +75,28 @@ struct EdexcelGCSEView: View {
     var body: some View {
         List{
             Section(header: Text("Select Subject")) {
-                NavigationLink(destination: YearListView(urlString: "http://13.41.199.9:8083/edx-gcse-art", navTitle: "Art and Design")) {
+                NavigationLink(destination: YearListView(urlString: "http://54.151.228.139:8083/edx-gcse-art", navTitle: "Art and Design")) {
                     Text("Art and Design")
                 }
-                NavigationLink(destination: YearListView(urlString: "http://13.41.199.9:8084/edx-gcse-business", navTitle: "Business")) {
+                NavigationLink(destination: YearListView(urlString: "http://54.151.228.139:8084/edx-gcse-business", navTitle: "Business")) {
                     Text("Business")
                 }
-                NavigationLink(destination: YearListView(urlString: "http://13.41.199.9:8085/edx-gcse-eng", navTitle: "English Language")) {
+                NavigationLink(destination: YearListView(urlString: "http://54.151.228.139:8085/edx-gcse-eng", navTitle: "English Language")) {
                     Text("English Language")
                 }
-                NavigationLink(destination: YearListView(urlString: "http://13.41.199.9:8086/edx-gcse-history", navTitle: "History")) {
+                NavigationLink(destination: YearListView(urlString: "http://54.151.228.139:8086/edx-gcse-history", navTitle: "History")) {
                     Text("History")
                 }
-                NavigationLink(destination: YearListView(urlString: "http://13.41.199.9:8087/edx-gcse-maths", navTitle: "Mathematics")) {
+                NavigationLink(destination: YearListView(urlString: "http://54.151.228.139:8087/edx-gcse-maths", navTitle: "Mathematics")) {
                     Text("Mathematics")
                 }
-                NavigationLink(destination: YearListView(urlString: "http://13.41.199.9:8088/edx-gcse-physics", navTitle: "Physics Education")) {
+                NavigationLink(destination: YearListView(urlString: "http://54.151.228.139:8088/edx-gcse-physics", navTitle: "Physics Education")) {
                     Text("Physics Education")
                 }
-                NavigationLink(destination: YearListView(urlString: "http://13.41.199.9:8089/edx-gcse-psychology", navTitle: "Psychology")) {
+                NavigationLink(destination: YearListView(urlString: "http://54.151.228.139:8089/edx-gcse-psychology", navTitle: "Psychology")) {
                     Text("Psychology")
                 }
-                NavigationLink(destination: YearListView(urlString: "http://13.41.199.9:8090/edx-gcse-statistics", navTitle: "Statistics")) {
+                NavigationLink(destination: YearListView(urlString: "http://54.151.228.139:8090/edx-gcse-statistics", navTitle: "Statistics")) {
                     Text("Statistics")
                 }
             }
@@ -110,22 +110,25 @@ struct EdexcelIGCSEView: View {
     var body: some View {
         List{
             Section(header: Text("Select Subject")) {
-                NavigationLink(destination: YearListView(urlString: "http://13.41.199.9:8091/edx-igcse-biology", navTitle: "Biology")) {
+                NavigationLink(destination: YearListView(urlString: "http://54.151.228.139:8091/edx-igcse-biology", navTitle: "Biology")) {
                     Text("Biology")
                 }
-                NavigationLink(destination: YearListView(urlString: "http://13.41.199.9:8092/edx-igcse-business", navTitle: "Business")) {
+                NavigationLink(destination: YearListView(urlString: "http://54.151.228.139:8092/edx-igcse-business", navTitle: "Business")) {
                     Text("Business")
                 }
-                NavigationLink(destination: YearListView(urlString: "http://13.41.199.9:8093/edx-igcse-chemistry", navTitle: "Chemistry")) {
+                NavigationLink(destination: YearListView(urlString: "http://54.151.228.139:8093/edx-igcse-chemistry", navTitle: "Chemistry")) {
                     Text("Chemistry")
                 }
-                NavigationLink(destination: YearListView(urlString: "http://13.41.199.9:8094/edx-igcse-cs", navTitle: "Computer Science")) {
+                NavigationLink(destination: YearListView(urlString: "http://54.151.228.139:8094/edx-igcse-cs", navTitle: "Computer Science")) {
                     Text("Computer Science")
                 }
-                NavigationLink(destination: YearListView(urlString: "http://13.41.199.9:8095/edx-igcse-eco", navTitle: "Economics")) {
+                NavigationLink(destination: YearListView(urlString: "http://54.151.228.139:8095/edx-igcse-eco", navTitle: "Economics")) {
                     Text("Economics")
                 }
-                NavigationLink(destination: Text("quali")) {
+                NavigationLink(destination: YearListView(urlString: "http://54.151.228.139:8096/edx-igcse-esl", navTitle: "English as Second Language")) {
+                    Text("English as a Second Language")
+                }
+                NavigationLink(destination: YearListView(urlString: "http://18.140.169.240:8098/edx-igcse-history", navTitle: "History")) {
                     Text("History")
                 }
                 NavigationLink(destination: Text("quali")) {
