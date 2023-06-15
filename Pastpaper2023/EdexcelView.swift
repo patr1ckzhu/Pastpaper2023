@@ -116,13 +116,13 @@ struct EdexcelIGCSEView: View {
                 NavigationLink(destination: YearListView(urlString: "http://13.41.199.9:8092/edx-igcse-business", navTitle: "Business")) {
                     Text("Business")
                 }
-                NavigationLink(destination: Text("quali")) {
+                NavigationLink(destination: YearListView(urlString: "http://13.41.199.9:8093/edx-igcse-chemistry", navTitle: "Chemistry")) {
                     Text("Chemistry")
                 }
-                NavigationLink(destination: EmptyView()) {
+                NavigationLink(destination: YearListView(urlString: "http://13.41.199.9:8094/edx-igcse-cs", navTitle: "Computer Science")) {
                     Text("Computer Science")
                 }
-                NavigationLink(destination: Text("quali")) {
+                NavigationLink(destination: YearListView(urlString: "http://13.41.199.9:8095/edx-igcse-eco", navTitle: "Economics")) {
                     Text("Economics")
                 }
                 NavigationLink(destination: Text("quali")) {
