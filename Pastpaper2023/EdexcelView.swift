@@ -131,13 +131,13 @@ struct EdexcelIGCSEView: View {
                 NavigationLink(destination: YearListView(urlString: "http://18.140.169.240:8098/edx-igcse-history", navTitle: "History")) {
                     Text("History")
                 }
-                NavigationLink(destination: Text("quali")) {
+                NavigationLink(destination: YearListView(urlString: "http://18.140.169.240:8099/edx-igcse-matha", navTitle: "Mathematics A")) {
                     Text("Mathematics A")
                 }
-                NavigationLink(destination: Text("quali")) {
+                NavigationLink(destination: YearListView(urlString: "http://18.140.169.240:8100/edx-igcse-mathb", navTitle: "Mathematics B")) {
                     Text("Mathematics B")
                 }
-                NavigationLink(destination: Text("quali")) {
+                NavigationLink(destination: YearListView(urlString: "http://18.140.169.240:8101/edx-igcse-physics", navTitle: "Physics")) {
                     Text("Physics")
                 }
             }
@@ -151,23 +151,23 @@ struct EdexcelALView: View {
     var body: some View {
         List{
             Section(header: Text("Select Subject")) {
-                NavigationLink(destination: Text("quali")) {
+                NavigationLink(destination: YearListView(urlString: "http://18.140.169.240:8102/edx-al-art", navTitle: "Art and Design")) {
                     Text("Art and Design")
                 }
-                NavigationLink(destination: Text("quali")) {
-                    Text("Biology")
+                NavigationLink(destination: YearListView(urlString: "http://18.140.169.240:8103/edx-al-biologya", navTitle: "Biology A")) {
+                    Text("Biology A (Salters-Nuffield)")
                 }
-                NavigationLink(destination: Text("quali")) {
+                NavigationLink(destination: YearListView(urlString: "http://18.140.169.240:8104/edx-al-biologyb", navTitle: "Biology B")) {
+                    Text("Biology B")
+                }
+                NavigationLink(destination: YearListView(urlString: "http://18.140.169.240:8105/edx-al-business", navTitle: "Business")) {
                     Text("Business")
                 }
-                NavigationLink(destination: Text("quali")) {
+                NavigationLink(destination: YearListView(urlString: "http://18.140.169.240:8106/edx-al-chemistry", navTitle: "Chemistry")) {
                     Text("Chemistry")
                 }
-                NavigationLink(destination: Text("quali")) {
+                NavigationLink(destination: YearListView(urlString: "http://18.140.169.240:8107/edx-al-chinese", navTitle: "Chinese")) {
                     Text("Chinese")
-                }
-                NavigationLink(destination: EmptyView()) {
-                    Text("Computer Science")
                 }
                 Group {
                     NavigationLink(destination: Text("quali")) {
@@ -176,11 +176,17 @@ struct EdexcelALView: View {
                     NavigationLink(destination: Text("quali")) {
                         Text("English Language")
                     }
+                    NavigationLink(destination: EmptyView()) {
+                        Text("Geography")
+                    }
                     NavigationLink(destination: Text("quali")) {
                         Text("History")
                     }
                     NavigationLink(destination: Text("quali")) {
                         Text("Mathematics")
+                    }
+                    NavigationLink(destination: Text("quali")) {
+                        Text("Music")
                     }
                     NavigationLink(destination: Text("quali")) {
                         Text("Physics")
