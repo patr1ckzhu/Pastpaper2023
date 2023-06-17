@@ -170,31 +170,34 @@ struct EdexcelALView: View {
                     Text("Chinese")
                 }
                 Group {
-                    NavigationLink(destination: Text("quali")) {
-                        Text("Economics")
+                    NavigationLink(destination: YearListView(urlString: "http://18.140.169.240:8108/edx-al-ecoa", navTitle: "Economics A")) {
+                        Text("Economics A")
                     }
-                    NavigationLink(destination: Text("quali")) {
+                    NavigationLink(destination: YearListView(urlString: "http://18.140.169.240:8109/edx-al-ecob", navTitle: "Economics B")) {
+                        Text("Economics B")
+                    }
+                    NavigationLink(destination: YearListView(urlString: "http://18.140.169.240:8110/edx-al-eng", navTitle: "English Language")) {
                         Text("English Language")
                     }
-                    NavigationLink(destination: EmptyView()) {
+                    NavigationLink(destination: YearListView(urlString: "http://18.140.169.240:8111/edx-al-geo", navTitle: "Geography")) {
                         Text("Geography")
                     }
-                    NavigationLink(destination: Text("quali")) {
+                    NavigationLink(destination: YearListView(urlString: "http://18.140.169.240:8112/edx-al-history", navTitle: "History")) {
                         Text("History")
                     }
-                    NavigationLink(destination: Text("quali")) {
+                    NavigationLink(destination: YearListView(urlString: "http://18.140.169.240:8113/edx-al-maths", navTitle: "Mathematics")) {
                         Text("Mathematics")
                     }
-                    NavigationLink(destination: Text("quali")) {
+                    NavigationLink(destination: YearListView(urlString: "http://18.143.226.69:8114/edx-al-music", navTitle: "Music")) {
                         Text("Music")
                     }
-                    NavigationLink(destination: Text("quali")) {
+                    NavigationLink(destination: YearListView(urlString: "http://18.143.226.69:8115/edx-al-physics", navTitle: "Physics")) {
                         Text("Physics")
                     }
-                    NavigationLink(destination: Text("quali")) {
+                    NavigationLink(destination: YearListView(urlString: "http://18.143.226.69:8116/edx-al-psychology", navTitle: "Psychology")) {
                         Text("Psychology")
                     }
-                    NavigationLink(destination: Text("quali")) {
+                    NavigationLink(destination: YearListView(urlString: "http://18.143.226.69:8117/edx-al-statistics", navTitle: "Statistics")) {
                         Text("Statistics")
                     }
                 }
