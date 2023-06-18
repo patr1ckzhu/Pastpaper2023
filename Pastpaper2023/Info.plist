@@ -7,5 +7,38 @@
         <key>NSAllowsArbitraryLoads</key>
         <true/>
     </dict>
+    <key>CFBundleIcons</key>
+    <dict>
+        <key>CFBundleAlternateIcons</key>
+        <dict>
+            <key>Light</key>
+            <dict>
+                <key>CFBundleIconFiles</key>
+                <array>
+                    <string>Light</string>
+                </array>
+                <key>UIPrerenderedIcon</key>
+                <true/>
+            </dict>
+            <key>Grey</key>
+            <dict>
+                <key>CFBundleIconFiles</key>
+                <array>
+                    <string>Grey</string>
+                </array>
+                <key>UIPrerenderedIcon</key>
+                <true/>
+            </dict>
+            <key>Dark</key>
+            <dict>
+                <key>CFBundleIconFiles</key>
+                <array>
+                    <string>Dark</string>
+                </array>
+                <key>UIPrerenderedIcon</key>
+                <true/>
+            </dict>
+        </dict>
+    </dict>
 </dict>
 </plist>
