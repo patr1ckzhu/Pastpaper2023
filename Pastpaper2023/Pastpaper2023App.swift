@@ -9,12 +9,11 @@ import SwiftUI
 
 @main
 struct Pastpaper2023App: App {
-    @AppStorage("Theme") var theme: Theme = .systemDefault
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     
     var body: some Scene {
         WindowGroup {
             TestView1()
-                .preferredColorScheme(theme.colorScheme)
         }
     }
 }

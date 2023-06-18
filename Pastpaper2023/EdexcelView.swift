@@ -45,19 +45,27 @@ struct EdexcelIALView: View {
     var body: some View {
         List{
             Section(header: Text("Select Subject")) {
-                NavigationLink(destination: Text("quali")) {
+                NavigationLink(destination: YearListView(urlString: "http://18.143.226.69:8118/edx-ial-acc", navTitle: "Accounting")) {
+                    Text("Accounting")
+                }
+                NavigationLink(destination: YearListView(urlString: "http://18.143.226.69:8120/edx-ial-biology", navTitle: "Biology")) {
+                    Text("Biology")
+                }
+                NavigationLink(destination: YearListView(urlString: "http://18.143.226.69:8121/edx-ial-business", navTitle: "Business")) {
                     Text("Business")
                 }
-                NavigationLink(destination: Text("quali")) {
+                NavigationLink(destination: YearListView(urlString: "http://18.143.226.69:8122/edx-ial-chemistry", navTitle: "Chemistry")) {
+                    Text("Chemistry")
+                }
+                NavigationLink(destination: YearListView(urlString: "http://18.143.226.69:8123/edx-ial-eco", navTitle: "Economics")) {
                     Text("Economics")
                 }
-                NavigationLink(destination: Text("quali")) {
+                NavigationLink(destination: YearListView(urlString: "http://18.143.226.69:8124/edx-ial-geo", navTitle: "Geography")) {
                     Text("Geography")
                 }
-                NavigationLink(destination: YearListView(urlString: "http://54.151.228.139:8081/edx-ial-maths", navTitle: "Mathematics")) {
+                NavigationLink(destination: YearListView(urlString: "http://18.143.226.69:8119/edx-ial-maths2", navTitle: "Mathematics")) {
                     Text("Mathematics")
                 }
-                
                 NavigationLink(destination: Text("quali")) {
                     Text("Physics")
                 }

@@ -162,3 +162,19 @@ enum ListDisplayCount: String, CaseIterable, Identifiable {
     
     var id: String { self.rawValue }
 }
+
+class AppDelegate: NSObject, UIApplicationDelegate {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        let themeRawValue = UserDefaults.standard.string(forKey: "Theme") ?? Theme.systemDefault.rawValue
+        let theme = Theme(rawValue: themeRawValue) ?? .systemDefault
+        for scene in UIApplication.shared.connectedScenes {
+            if let windowScene = scene as? UIWindowScene {
+                for window in windowScene.windows {
+                    window.overrideUserInterfaceStyle = theme.userInterfaceStyle
+                }
+            }
+        }
+        return true
+    }
+}
+

@@ -19,12 +19,25 @@ struct AppearanceView: View {
                         Spacer()
                         if themeOption == theme {
                             Image(systemName: "checkmark")
+                                .font(.system(size: 15))
+                                .foregroundColor(.blue)
                         }
                     }
                     .contentShape(Rectangle())
                     .onTapGesture {
                         theme = themeOption
+                        UserDefaults.standard.set(theme.rawValue, forKey: "Theme")
+                        for scene in UIApplication.shared.connectedScenes {
+                            if let windowScene = scene as? UIWindowScene {
+                                windowScene.windows.forEach { window in
+                                    UIView.transition(with: window, duration: 0.3, options: .transitionCrossDissolve, animations: {
+                                        window.overrideUserInterfaceStyle = themeOption.userInterfaceStyle
+                                    }, completion: nil)
+                                }
+                            }
+                        }
                     }
+
                 }
             }
         }
@@ -34,15 +47,16 @@ struct AppearanceView: View {
     }
 }
 
+
 enum Theme: String, CaseIterable {
     case systemDefault = "System Default"
     case light = "Light Mode"
     case dark = "Dark Mode"
 
-    var colorScheme: ColorScheme? {
+    var userInterfaceStyle: UIUserInterfaceStyle {
         switch self {
         case .systemDefault:
-            return nil
+            return .unspecified
         case .light:
             return .light
         case .dark:
@@ -52,8 +66,3 @@ enum Theme: String, CaseIterable {
 }
 
 
-struct AppearanceView_Previews: PreviewProvider {
-    static var previews: some View {
-        AppearanceView()
-    }
-}
