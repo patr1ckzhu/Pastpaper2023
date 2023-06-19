@@ -29,18 +29,8 @@ struct AppearanceView: View {
                     .contentShape(Rectangle())
                     .onTapGesture {
                         theme = themeOption
-                        UserDefaults.standard.set(theme.rawValue, forKey: "Theme")
-                        for scene in UIApplication.shared.connectedScenes {
-                            if let windowScene = scene as? UIWindowScene {
-                                windowScene.windows.forEach { window in
-                                    UIView.transition(with: window, duration: 0.3, options: .transitionCrossDissolve, animations: {
-                                        window.overrideUserInterfaceStyle = themeOption.userInterfaceStyle
-                                    }, completion: nil)
-                                }
-                            }
-                        }
                     }
-
+                    
                 }
             }
             Section(header: Text("App Icon")) {
@@ -80,10 +70,10 @@ enum Theme: String, CaseIterable {
     case light = "Light Mode"
     case dark = "Dark Mode"
 
-    var userInterfaceStyle: UIUserInterfaceStyle {
+    var colorScheme: ColorScheme? {
         switch self {
         case .systemDefault:
-            return .unspecified
+            return nil
         case .light:
             return .light
         case .dark:
@@ -91,5 +81,6 @@ enum Theme: String, CaseIterable {
         }
     }
 }
+
 
 

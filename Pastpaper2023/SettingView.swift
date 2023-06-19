@@ -20,7 +20,7 @@ struct SettingView: View {
             VStack {
                 List {
                     Section(header: Text("PREFERENCE")) {
-                        NavigationLink(destination: AppearanceView()) {
+                        NavigationLink(destination: AppearanceView().preferredColorScheme(theme.colorScheme)) {
                             Text("Appearance")
                         }
                         Picker("Search Result Count", selection: $selectedDisplayCount) {
