@@ -9,11 +9,12 @@ import SwiftUI
 
 @main
 struct Pastpaper2023App: App {
+    @AppStorage("ShowFeedback") var showFeedback = true
     @AppStorage("Theme") var theme: Theme = .systemDefault
     
     var body: some Scene {
         WindowGroup {
-            TestView1()
+            TestView1(showFeedback: $showFeedback)
                 .preferredColorScheme(theme.colorScheme)
         }
     }

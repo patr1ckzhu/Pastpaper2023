@@ -11,7 +11,7 @@ import Foundation
 
 struct SettingView: View {
     @AppStorage("Theme") var theme: Theme = .systemDefault
-    @State private var showFeedback = true
+    @AppStorage("ShowFeedback") var showFeedback = true
     @State private var showingAlert = false
     @Binding var selectedDisplayCount: ListDisplayCount
     
@@ -20,7 +20,7 @@ struct SettingView: View {
             VStack {
                 List {
                     Section(header: Text("PREFERENCE")) {
-                        NavigationLink(destination: AppearanceView().preferredColorScheme(theme.colorScheme)) {
+                        NavigationLink(destination: AppearanceView(showFeedback: $showFeedback).preferredColorScheme(theme.colorScheme)) {
                             Text("Appearance")
                         }
                         Picker("Search Result Count", selection: $selectedDisplayCount) {

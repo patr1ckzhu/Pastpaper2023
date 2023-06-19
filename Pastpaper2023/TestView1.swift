@@ -14,6 +14,7 @@ struct TestView1: View {
     @State private var showingAlert = false
     @State private var showingSettingSheet = false
     @State private var selectedDisplayCount = ListDisplayCount.ten
+    @Binding var showFeedback: Bool
 
         var displayCount: Int {
             switch selectedDisplayCount {
@@ -190,8 +191,10 @@ struct TestView1: View {
                     HStack {
                        
                         Button(action: {
-                            let impactLight = UIImpactFeedbackGenerator(style: .rigid)
-                            impactLight.impactOccurred()
+                            if showFeedback {
+                                let impactLight = UIImpactFeedbackGenerator(style: .light)
+                                impactLight.impactOccurred()
+                            }
                         }) {
                             Image(systemName: "ellipsis.circle")
                         }
@@ -199,8 +202,10 @@ struct TestView1: View {
                         
                         Button(action: {
                             showingSettingSheet.toggle()
-                            let impactLight = UIImpactFeedbackGenerator(style: .rigid)
-                            impactLight.impactOccurred()
+                            if showFeedback {
+                                let impactLight = UIImpactFeedbackGenerator(style: .light)
+                                impactLight.impactOccurred()
+                            }
                         }) {
                             Image(systemName: "gearshape")
                         }

@@ -10,6 +10,7 @@ import SwiftUI
 struct AppearanceView: View {
     @AppStorage("Theme") var theme: Theme = .systemDefault
     @AppStorage("appIcon") var appIcon: String?
+    @Binding var showFeedback: Bool
         
     let appIcons = ["Light", "Grey", "Dark"]
 
@@ -54,6 +55,11 @@ struct AppearanceView: View {
                                 print("App icon changed successfully")
                             }
                         }
+                        if showFeedback {
+                            let notificationGenerator = UINotificationFeedbackGenerator()
+                            notificationGenerator.notificationOccurred(.success)
+                                    }
+                        
                     }
                 }
             }
