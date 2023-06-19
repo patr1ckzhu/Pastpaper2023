@@ -16,7 +16,7 @@ struct EdexcelView: View {
                         Text("GCSEs")
                     }
                 }
-                NavigationLink(destination: EmptyView()) {
+                NavigationLink(destination: SubjectListView(urlString: "http://18.143.226.69:8201/edx-igcse", navTitle: "International GCSEs")) {
                     HStack {
                         Text("International GCSEs")
                     }

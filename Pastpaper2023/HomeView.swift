@@ -39,7 +39,8 @@ struct HomeView: View {
                                 paper.name.lowercased().contains(keyword) ||
                                 paper.season.lowercased().contains(keyword) ||
                                 paper.type.lowercased().contains(keyword) ||
-                                paper.year.lowercased().contains(keyword)
+                                paper.year.lowercased().contains(keyword) ||
+                                paper.subject.lowercased().contains(keyword)
                             }
                         }.prefix(displayCount)) { paper in  //只显示前10个元素
                             // 显示单个试卷的 View
@@ -188,7 +189,7 @@ struct HomeView: View {
     }
 
     func fetchPapers() {
-        guard let url = URL(string: "http://13.41.199.9:8081/edx-ial-maths") else {
+        guard let url = URL(string: "http://18.143.226.69:8200/edx-gcse") else {
             print("Invalid URL")
             return
         }

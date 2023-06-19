@@ -120,6 +120,7 @@
 			children = (
 				CD01401F2A33C35B0048B9C4 /* Info.plist */,
 				CD013FDE2A300F3E0048B9C4 /* Pastpaper2023App.swift */,
+				CD0140202A36A79A0048B9C4 /* HomeView.swift */,
 				CD8B24DB2A38D6AF00533D37 /* CAIEView.swift */,
 				CD8B24DD2A38E7EB00533D37 /* EdexcelView.swift */,
 				CD8B24DF2A38F1CB00533D37 /* AQAView.swift */,
@@ -130,7 +131,6 @@
 				CD0140172A3299840048B9C4 /* PaperListView.swift */,
 				CD0140092A3014700048B9C4 /* SettingView.swift */,
 				CD0140282A37E61B0048B9C4 /* AppearanceView.swift */,
-				CD0140202A36A79A0048B9C4 /* HomeView.swift */,
 				CD01401D2A3349FF0048B9C4 /* Modifier.swift */,
 				CD013FE22A300F3F0048B9C4 /* Assets.xcassets */,
 				CD013FE42A300F3F0048B9C4 /* Pastpaper2023.entitlements */,
