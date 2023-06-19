@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct TestView1: View {
+struct HomeView: View {
     @State private var papers: [Paper] = []
     @State private var searchText = ""
     @State private var isSearching = false
