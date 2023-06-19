@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		CD013FDF2A300F3E0048B9C4 /* Pastpaper2023App.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD013FDE2A300F3E0048B9C4 /* Pastpaper2023App.swift */; };
-		CD013FE12A300F3E0048B9C4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD013FE02A300F3E0048B9C4 /* ContentView.swift */; };
 		CD013FE32A300F3F0048B9C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD013FE22A300F3F0048B9C4 /* Assets.xcassets */; };
 		CD013FE72A300F3F0048B9C4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD013FE62A300F3F0048B9C4 /* Preview Assets.xcassets */; };
 		CD013FF12A300F3F0048B9C4 /* Pastpaper2023Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD013FF02A300F3F0048B9C4 /* Pastpaper2023Tests.swift */; };
@@ -19,14 +18,13 @@
 		CD0140142A328DC20048B9C4 /* SeasonListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0140132A328DC20048B9C4 /* SeasonListView.swift */; };
 		CD0140162A328E0F0048B9C4 /* ExamTypeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0140152A328E0F0048B9C4 /* ExamTypeListView.swift */; };
 		CD0140182A3299840048B9C4 /* PaperListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0140172A3299840048B9C4 /* PaperListView.swift */; };
-		CD01401C2A32A9250048B9C4 /* IALView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD01401B2A32A9250048B9C4 /* IALView.swift */; };
 		CD01401E2A3349FF0048B9C4 /* Modifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD01401D2A3349FF0048B9C4 /* Modifier.swift */; };
-		CD0140212A36A79A0048B9C4 /* TestView1.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0140202A36A79A0048B9C4 /* TestView1.swift */; };
+		CD0140212A36A79A0048B9C4 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0140202A36A79A0048B9C4 /* HomeView.swift */; };
 		CD0140292A37E61B0048B9C4 /* AppearanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0140282A37E61B0048B9C4 /* AppearanceView.swift */; };
-		CD8B24D82A38CC6400533D37 /* ALView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8B24D72A38CC6400533D37 /* ALView.swift */; };
 		CD8B24DC2A38D6AF00533D37 /* CAIEView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8B24DB2A38D6AF00533D37 /* CAIEView.swift */; };
 		CD8B24DE2A38E7EB00533D37 /* EdexcelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8B24DD2A38E7EB00533D37 /* EdexcelView.swift */; };
 		CD8B24E02A38F1CB00533D37 /* AQAView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8B24DF2A38F1CB00533D37 /* AQAView.swift */; };
+		CD8B24E22A40B93300533D37 /* SubjectListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8B24E12A40B93300533D37 /* SubjectListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,7 +47,6 @@
 /* Begin PBXFileReference section */
 		CD013FDB2A300F3E0048B9C4 /* Pastpaper2023.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pastpaper2023.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD013FDE2A300F3E0048B9C4 /* Pastpaper2023App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pastpaper2023App.swift; sourceTree = "<group>"; };
-		CD013FE02A300F3E0048B9C4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		CD013FE22A300F3F0048B9C4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CD013FE42A300F3F0048B9C4 /* Pastpaper2023.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Pastpaper2023.entitlements; sourceTree = "<group>"; };
 		CD013FE62A300F3F0048B9C4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -63,15 +60,14 @@
 		CD0140132A328DC20048B9C4 /* SeasonListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeasonListView.swift; sourceTree = "<group>"; };
 		CD0140152A328E0F0048B9C4 /* ExamTypeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamTypeListView.swift; sourceTree = "<group>"; };
 		CD0140172A3299840048B9C4 /* PaperListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaperListView.swift; sourceTree = "<group>"; };
-		CD01401B2A32A9250048B9C4 /* IALView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IALView.swift; sourceTree = "<group>"; };
 		CD01401D2A3349FF0048B9C4 /* Modifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modifier.swift; sourceTree = "<group>"; };
 		CD01401F2A33C35B0048B9C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		CD0140202A36A79A0048B9C4 /* TestView1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView1.swift; sourceTree = "<group>"; };
+		CD0140202A36A79A0048B9C4 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		CD0140282A37E61B0048B9C4 /* AppearanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceView.swift; sourceTree = "<group>"; };
-		CD8B24D72A38CC6400533D37 /* ALView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ALView.swift; sourceTree = "<group>"; };
 		CD8B24DB2A38D6AF00533D37 /* CAIEView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CAIEView.swift; sourceTree = "<group>"; };
 		CD8B24DD2A38E7EB00533D37 /* EdexcelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdexcelView.swift; sourceTree = "<group>"; };
 		CD8B24DF2A38F1CB00533D37 /* AQAView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AQAView.swift; sourceTree = "<group>"; };
+		CD8B24E12A40B93300533D37 /* SubjectListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,19 +120,17 @@
 			children = (
 				CD01401F2A33C35B0048B9C4 /* Info.plist */,
 				CD013FDE2A300F3E0048B9C4 /* Pastpaper2023App.swift */,
-				CD013FE02A300F3E0048B9C4 /* ContentView.swift */,
-				CD01401B2A32A9250048B9C4 /* IALView.swift */,
-				CD8B24D72A38CC6400533D37 /* ALView.swift */,
+				CD0140202A36A79A0048B9C4 /* HomeView.swift */,
 				CD8B24DB2A38D6AF00533D37 /* CAIEView.swift */,
 				CD8B24DD2A38E7EB00533D37 /* EdexcelView.swift */,
 				CD8B24DF2A38F1CB00533D37 /* AQAView.swift */,
+				CD8B24E12A40B93300533D37 /* SubjectListView.swift */,
 				CD0140102A3270360048B9C4 /* YearListView.swift */,
 				CD0140132A328DC20048B9C4 /* SeasonListView.swift */,
 				CD0140152A328E0F0048B9C4 /* ExamTypeListView.swift */,
 				CD0140172A3299840048B9C4 /* PaperListView.swift */,
 				CD0140092A3014700048B9C4 /* SettingView.swift */,
 				CD0140282A37E61B0048B9C4 /* AppearanceView.swift */,
-				CD0140202A36A79A0048B9C4 /* TestView1.swift */,
 				CD01401D2A3349FF0048B9C4 /* Modifier.swift */,
 				CD013FE22A300F3F0048B9C4 /* Assets.xcassets */,
 				CD013FE42A300F3F0048B9C4 /* Pastpaper2023.entitlements */,
@@ -304,15 +298,13 @@
 				CD0140142A328DC20048B9C4 /* SeasonListView.swift in Sources */,
 				CD8B24DC2A38D6AF00533D37 /* CAIEView.swift in Sources */,
 				CD01400A2A3014700048B9C4 /* SettingView.swift in Sources */,
-				CD8B24D82A38CC6400533D37 /* ALView.swift in Sources */,
 				CD8B24DE2A38E7EB00533D37 /* EdexcelView.swift in Sources */,
 				CD8B24E02A38F1CB00533D37 /* AQAView.swift in Sources */,
-				CD01401C2A32A9250048B9C4 /* IALView.swift in Sources */,
+				CD8B24E22A40B93300533D37 /* SubjectListView.swift in Sources */,
 				CD0140112A3270360048B9C4 /* YearListView.swift in Sources */,
 				CD01401E2A3349FF0048B9C4 /* Modifier.swift in Sources */,
 				CD0140182A3299840048B9C4 /* PaperListView.swift in Sources */,
-				CD013FE12A300F3E0048B9C4 /* ContentView.swift in Sources */,
-				CD0140212A36A79A0048B9C4 /* TestView1.swift in Sources */,
+				CD0140212A36A79A0048B9C4 /* HomeView.swift in Sources */,
 				CD013FDF2A300F3E0048B9C4 /* Pastpaper2023App.swift in Sources */,
 				CD0140162A328E0F0048B9C4 /* ExamTypeListView.swift in Sources */,
 			);

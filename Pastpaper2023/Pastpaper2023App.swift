@@ -14,7 +14,7 @@ struct Pastpaper2023App: App {
     
     var body: some Scene {
         WindowGroup {
-            TestView1(showFeedback: $showFeedback)
+            HomeView(showFeedback: $showFeedback)
                 .preferredColorScheme(theme.colorScheme)
         }
     }
