@@ -80,59 +80,26 @@ struct TestView1: View {
                                 }
                                 .offset(x: -8)
                             }
-                        }
-                        .listSectionSeparator(.visible)
-                        .headerProminence(.increased)
-                        
-                        Section(header: Text("Qualifications")) {
-                            NavigationLink(destination: ALView()) {
+                            NavigationLink(destination: EmptyView()) {
                                 HStack {
-                                    Image(systemName: "a.square.fill")
+                                    Image(systemName: "o.square.fill")
                                         .font(Font.system(.title))
-                                        .foregroundColor(.green)
-                                    Text("AS & A Levels")
+                                        .foregroundColor(.yellow)
+                                    Text("OCR")
                                 }
                                 .offset(x: -8)
                             }
-                            NavigationLink(destination: IALView()) {
-                                    HStack {
-                                        Image(systemName: "i.square.fill")
-                                            .font(Font.system(.title))
-                                            .foregroundColor(.indigo)
-                                        Text("International AS & A Levels")
-                                    }
-                                    .offset(x: -8)
-                                }
-
-                            NavigationLink(destination: Text("hello")) {
+                            NavigationLink(destination: EmptyView()) {
                                 HStack {
                                     Image(systemName: "i.square.fill")
                                         .font(Font.system(.title))
                                         .foregroundColor(.blue)
-                                    Text("International GCSE")
-                                }
-                                .offset(x: -8)
-                            }
-                            NavigationLink(destination: Text("hello")) {
-                                HStack {
-                                    Image(systemName: "i.square.fill")
-                                        .font(Font.system(.title))
-                                        .foregroundColor(.yellow)
                                     Text("IBDP")
                                 }
                                 .offset(x: -8)
                             }
-
-                            NavigationLink(destination: Text("hello")) {
-                                HStack {
-                                    Image(systemName: "o.square.fill")
-                                        .font(Font.system(.title))
-                                        .foregroundColor(.purple)
-                                    Text("O Level")
-                                }
-                                .offset(x: -8)
-                            }
                         }
+                        .listSectionSeparator(.visible)
                         .headerProminence(.increased)
                         
                         Section(header: Text("Admissions Tests")) {
@@ -192,7 +159,7 @@ struct TestView1: View {
                        
                         Button(action: {
                             if showFeedback {
-                                let impactLight = UIImpactFeedbackGenerator(style: .light)
+                                let impactLight = UIImpactFeedbackGenerator(style: .rigid)
                                 impactLight.impactOccurred()
                             }
                         }) {
@@ -203,7 +170,7 @@ struct TestView1: View {
                         Button(action: {
                             showingSettingSheet.toggle()
                             if showFeedback {
-                                let impactLight = UIImpactFeedbackGenerator(style: .light)
+                                let impactLight = UIImpactFeedbackGenerator(style: .rigid)
                                 impactLight.impactOccurred()
                             }
                         }) {
@@ -217,6 +184,7 @@ struct TestView1: View {
             })
         }
         .onAppear(perform: fetchPapers)
+        
     }
 
     func fetchPapers() {

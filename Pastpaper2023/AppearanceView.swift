@@ -58,7 +58,7 @@ struct AppearanceView: View {
                         if showFeedback {
                             let notificationGenerator = UINotificationFeedbackGenerator()
                             notificationGenerator.notificationOccurred(.success)
-                                    }
+                        }
                         
                     }
                 }
