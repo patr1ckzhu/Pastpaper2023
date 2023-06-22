@@ -16,7 +16,7 @@ struct EdexcelView: View {
                         Text("GCSEs")
                     }
                 }
-                NavigationLink(destination: SubjectListView(urlString: "http://18.143.226.69:8201/edx-igcse", navTitle: "International GCSEs")) {
+                NavigationLink(destination: SubjectListView(urlString: "http://18.143.226.69:8302/edx-igcse", navTitle: "International GCSEs")) {
                     HStack {
                         Text("International GCSEs")
                     }
@@ -24,12 +24,12 @@ struct EdexcelView: View {
                 
             }
             Section(header: Text("Pearson Edexcel A Levels")) {
-                NavigationLink(destination: EmptyView()) {
+                NavigationLink(destination: SubjectListView(urlString: "http://18.143.226.69:8301/edx-al", navTitle: "AS & A Levels")) {
                     HStack {
                         Text("AS & A Levels")
                     }
                 }
-                NavigationLink(destination: EmptyView()) {
+                NavigationLink(destination: SubjectListView(urlString: "http://18.143.226.69:8300/edx-ial", navTitle: "International AS & A Levels")) {
                     HStack {
                         Text("International AS & A Levels")
                     }

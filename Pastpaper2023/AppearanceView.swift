@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AppearanceView: View {
     @AppStorage("Theme") var theme: Theme = .systemDefault
-    @AppStorage("appIcon") var appIcon: String?
+    @AppStorage("appIcon") var appIcon: String = "Light"
     @Binding var showFeedback: Bool
         
     let appIcons = ["Light", "Grey", "Dark"]

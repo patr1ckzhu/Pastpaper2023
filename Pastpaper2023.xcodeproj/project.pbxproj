@@ -25,6 +25,7 @@
 		CD8B24DE2A38E7EB00533D37 /* EdexcelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8B24DD2A38E7EB00533D37 /* EdexcelView.swift */; };
 		CD8B24E02A38F1CB00533D37 /* AQAView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8B24DF2A38F1CB00533D37 /* AQAView.swift */; };
 		CD8B24E22A40B93300533D37 /* SubjectListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8B24E12A40B93300533D37 /* SubjectListView.swift */; };
+		CD8B24E42A43BCA600533D37 /* SearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8B24E32A43BCA600533D37 /* SearchService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +69,7 @@
 		CD8B24DD2A38E7EB00533D37 /* EdexcelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdexcelView.swift; sourceTree = "<group>"; };
 		CD8B24DF2A38F1CB00533D37 /* AQAView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AQAView.swift; sourceTree = "<group>"; };
 		CD8B24E12A40B93300533D37 /* SubjectListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectListView.swift; sourceTree = "<group>"; };
+		CD8B24E32A43BCA600533D37 /* SearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +123,7 @@
 				CD01401F2A33C35B0048B9C4 /* Info.plist */,
 				CD013FDE2A300F3E0048B9C4 /* Pastpaper2023App.swift */,
 				CD0140202A36A79A0048B9C4 /* HomeView.swift */,
+				CD8B24E32A43BCA600533D37 /* SearchService.swift */,
 				CD8B24DB2A38D6AF00533D37 /* CAIEView.swift */,
 				CD8B24DD2A38E7EB00533D37 /* EdexcelView.swift */,
 				CD8B24DF2A38F1CB00533D37 /* AQAView.swift */,
@@ -305,6 +308,7 @@
 				CD01401E2A3349FF0048B9C4 /* Modifier.swift in Sources */,
 				CD0140182A3299840048B9C4 /* PaperListView.swift in Sources */,
 				CD0140212A36A79A0048B9C4 /* HomeView.swift in Sources */,
+				CD8B24E42A43BCA600533D37 /* SearchService.swift in Sources */,
 				CD013FDF2A300F3E0048B9C4 /* Pastpaper2023App.swift in Sources */,
 				CD0140162A328E0F0048B9C4 /* ExamTypeListView.swift in Sources */,
 			);
@@ -468,6 +472,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Pastpaper2023/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = PaperHub;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -511,6 +516,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Pastpaper2023/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = PaperHub;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
