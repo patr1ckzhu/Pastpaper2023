@@ -35,17 +35,16 @@ struct HomeView: View {
                 if isSearching {
                     List {
                         ForEach(searchService.results) { result in
-                            NavigationLink(destination: WebView(url: URL(string: result.url)!).navigationBarTitle(Text(result.name), displayMode: .inline)) {
+                            NavigationLink(destination: WebView(url: URL(string: result.url)!).edgesIgnoringSafeArea(.all).navigationBarTitle(Text(result._formatted.name), displayMode: .inline)) {
                                 VStack(alignment: .leading) {
-                                    Text(result.name)
-                                    
+                                    Text(result._formatted.name)
+                                    Text(result._formatted.text).font(.subheadline).foregroundColor(.gray)
                                 }
-                                
                             }
-                            
                         }
                     }
-                } else {
+                }
+                else {
                     List {
                         Section(header: Text("Exam Boards").padding(.top, 5)) {
                             NavigationLink(destination: CAIEView()) {

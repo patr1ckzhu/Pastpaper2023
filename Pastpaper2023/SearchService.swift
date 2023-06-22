@@ -9,11 +9,18 @@ import Foundation
 import Combine
 import SwiftUI
 
+struct FormattedResult: Codable {
+    let name: String
+    let text: String
+    let url: String
+}
+
 struct SearchResult: Codable, Identifiable {
     var id = UUID()
     let name: String
     let text: String
     let url: String
+    let _formatted: FormattedResult
 }
 
 struct SearchResponse: Codable {
@@ -25,7 +32,7 @@ class SearchService: ObservableObject {
 
     func search(query: String, maxResults: Int) {
         let encodedQuery = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
-        guard let url = URL(string: "http://localhost:7700/indexes/movies/search?q=\(encodedQuery)") else {
+        guard let url = URL(string: "http://localhost:7700/indexes/movies/search?q=\(encodedQuery)&attributesToCrop=*&cropLength=10") else {
             return
         }
 
@@ -49,8 +56,8 @@ class SearchService: ObservableObject {
             }
         }.resume()
     }
-
 }
+
 
 
 
