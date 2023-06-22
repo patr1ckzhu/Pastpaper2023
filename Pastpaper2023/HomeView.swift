@@ -19,12 +19,12 @@ struct HomeView: View {
     
     var displayCount: Int {
         switch selectedDisplayCount {
+        case .five:
+            return 5
         case .ten:
             return 10
         case .twenty:
             return 20
-        case .all:
-            return papers.count
         }
     }
     
