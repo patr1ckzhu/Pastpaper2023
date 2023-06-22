@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct HomeView: View {
+    @ObservedObject var searchService = SearchService()
     @State private var papers: [Paper] = []
     @State private var searchText = ""
     @State private var isSearching = false
@@ -15,40 +16,33 @@ struct HomeView: View {
     @State private var showingSettingSheet = false
     @State private var selectedDisplayCount = ListDisplayCount.ten
     @Binding var showFeedback: Bool
-
-        var displayCount: Int {
-            switch selectedDisplayCount {
-            case .ten:
-                return 10
-            case .twenty:
-                return 20
-            case .all:
-                return papers.count
-            }
+    
+    var displayCount: Int {
+        switch selectedDisplayCount {
+        case .ten:
+            return 10
+        case .twenty:
+            return 20
+        case .all:
+            return papers.count
         }
-
+    }
+    
     var body: some View {
         
         NavigationView {
             Group {
                 if isSearching {
                     List {
-                        let searchKeywords = searchText.lowercased().split(separator: " ")
-                        ForEach(papers.filter { paper in
-                            searchKeywords.allSatisfy { keyword in
-                                paper.name.lowercased().contains(keyword) ||
-                                paper.season.lowercased().contains(keyword) ||
-                                paper.type.lowercased().contains(keyword) ||
-                                paper.year.lowercased().contains(keyword) ||
-                                paper.subject.lowercased().contains(keyword)
-                            }
-                        }.prefix(displayCount)) { paper in  //只显示前10个元素
-                            // 显示单个试卷的 View
-                            NavigationLink(destination: WebView(url: URL(string: paper.url)!)
-                                .edgesIgnoringSafeArea(.all)
-                                .navigationBarTitle(Text(paper.fileName), displayMode: .inline)) {
-                                    Text(paper.name)
+                        ForEach(searchService.results) { result in
+                            NavigationLink(destination: WebView(url: URL(string: result.url)!).navigationBarTitle(Text(result.name), displayMode: .inline)) {
+                                VStack(alignment: .leading) {
+                                    Text(result.name)
+                                    
                                 }
+                                
+                            }
+                            
                         }
                     }
                 } else {
@@ -153,11 +147,17 @@ struct HomeView: View {
             .navigationBarTitle("Home", displayMode: .large)
             .onChange(of: searchText) { newValue in
                 isSearching = !newValue.isEmpty
+                if isSearching {
+                    searchService.search(query: searchText, maxResults: displayCount)
+                } else {
+                    searchService.results = []
+                }
             }
+            
             .toolbar(content: {
                 ToolbarItem(placement: .primaryAction){
                     HStack {
-                       
+                        
                         Button(action: {
                             if showFeedback {
                                 let impactLight = UIImpactFeedbackGenerator(style: .rigid)
@@ -184,33 +184,7 @@ struct HomeView: View {
                 }
             })
         }
-        .onAppear(perform: fetchPapers)
-        
-    }
-
-    func fetchPapers() {
-        guard let url = URL(string: "http://18.143.226.69:8200/edx-gcse") else {
-            print("Invalid URL")
-            return
-        }
-        
-        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
-            if let error = error {
-                print("Error: \(error)")
-            } else if let data = data {
-                let decoder = JSONDecoder()
-                
-                if let fetchedPapers = try? decoder.decode([Paper].self, from: data) {
-                    DispatchQueue.main.async {
-                        self.papers = fetchedPapers
-                    }
-                } else {
-                    print("Invalid response from server")
-                }
-            }
-        }
-        
-        task.resume()
     }
 }
+
 
