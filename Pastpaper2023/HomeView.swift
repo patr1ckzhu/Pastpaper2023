@@ -139,9 +139,7 @@ struct HomeView: View {
                         }
                         .listSectionSeparator(.visible)
                         .headerProminence(.increased)
-                        //.padding(.top, -18)
                     }
-                    //.padding(.top, -18)
                 }
             }
             .listStyle(.grouped)
@@ -187,6 +185,7 @@ struct HomeView: View {
                     }
                 }
             })
+            CAIEView()
         }
     }
 }
