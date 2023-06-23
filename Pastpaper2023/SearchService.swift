@@ -32,12 +32,12 @@ class SearchService: ObservableObject {
 
     func search(query: String, maxResults: Int) {
         let encodedQuery = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
-        guard let url = URL(string: "http://localhost:7700/indexes/movies/search?q=\(encodedQuery)&attributesToCrop=*&cropLength=10") else {
+        guard let url = URL(string: "https://ms-0a4a426b899d-4297.sgp.meilisearch.io/indexes/Paper_test1/search?q=\(encodedQuery)&attributesToCrop=*&cropLength=20") else {
             return
         }
 
         var request = URLRequest(url: url)
-        request.setValue("Bearer GDOWstuVp573dEvQELKLvEuh3fsPtlsjhSxhb1W4ufc", forHTTPHeaderField: "Authorization")
+        request.setValue("Bearer 7caaacdf03091ab0357affc290607d0e92bda640", forHTTPHeaderField: "Authorization")
 
         URLSession.shared.dataTask(with: request) { (data, response, error) in
             if let error = error {

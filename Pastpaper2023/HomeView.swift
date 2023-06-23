@@ -19,12 +19,12 @@ struct HomeView: View {
     
     var displayCount: Int {
         switch selectedDisplayCount {
+        case .five:
+            return 5
         case .ten:
             return 10
         case .twenty:
             return 20
-        case .all:
-            return papers.count
         }
     }
     
@@ -35,13 +35,16 @@ struct HomeView: View {
                 if isSearching {
                     List {
                         ForEach(searchService.results) { result in
-                            NavigationLink(destination: WebView(url: URL(string: result.url)!).edgesIgnoringSafeArea(.all).navigationBarTitle(Text(result._formatted.name), displayMode: .inline)) {
-                                VStack(alignment: .leading) {
-                                    Text(result._formatted.name)
-                                    Text(result._formatted.text).font(.subheadline).foregroundColor(.gray)
+                            if let url = URL(string: result.url) {
+                                NavigationLink(destination: WebView(url: url).edgesIgnoringSafeArea(.all).navigationBarTitle(Text(result._formatted.name), displayMode: .inline)) {
+                                    VStack(alignment: .leading) {
+                                        Text(result._formatted.name)
+                                        Text(result._formatted.text).font(.subheadline).foregroundColor(.gray)
+                                    }
                                 }
                             }
                         }
+
                     }
                 }
                 else {
@@ -136,21 +139,21 @@ struct HomeView: View {
                         }
                         .listSectionSeparator(.visible)
                         .headerProminence(.increased)
-                        //.padding(.top, -18)
                     }
-                    //.padding(.top, -18)
                 }
             }
             .listStyle(.grouped)
-            .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always))
+            .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: "Paper Name, Content...")
             .navigationBarTitle("Home", displayMode: .large)
             .onChange(of: searchText) { newValue in
-                isSearching = !newValue.isEmpty
-                if isSearching {
-                    searchService.search(query: searchText, maxResults: displayCount)
-                } else {
+                if newValue.isEmpty {
+                    isSearching = false
                     searchService.results = []
                 }
+            }
+            .onSubmit(of: .search) {
+                isSearching = true
+                searchService.search(query: searchText, maxResults: displayCount)
             }
             
             .toolbar(content: {
@@ -182,6 +185,7 @@ struct HomeView: View {
                     }
                 }
             })
+            CAIEView()
         }
     }
 }
