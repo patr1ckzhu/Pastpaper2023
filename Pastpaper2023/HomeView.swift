@@ -16,6 +16,7 @@ struct HomeView: View {
     @State private var showingSettingSheet = false
     @State private var selectedDisplayCount = ListDisplayCount.five
     @Binding var showFeedback: Bool
+    @State private var selectedOption: MenuOption? = nil
     
     var displayCount: Int {
         switch selectedDisplayCount {
@@ -159,36 +160,66 @@ struct HomeView: View {
             
             .toolbar(content: {
                 ToolbarItem(placement: .primaryAction){
-                    HStack {
-                        
-                        Button(action: {
+                    HStack(spacing: -3) {
+                        Menu {
+                            Button(action: {
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+                                    
+                                }
+                            }) {
+                                Label("Help", systemImage: "questionmark.circle")
+                            }
+                            
+                            Button(action: {
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+                                    
+                                }
+                            }) {
+                                Label("Paper Request", systemImage: "arrowshape.turn.up.forward")
+                            }
+                            
+                            Button(action: {
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+                                    
+                                }
+                            }) {
+                                Label("About PaperHub", systemImage: "info.circle")
+                            }
+                            
+                        } label: {
+                            Image(systemName: "ellipsis.circle")
+                        }
+                        .onTapGesture {
                             if showFeedback {
                                 let impactLight = UIImpactFeedbackGenerator(style: .rigid)
                                 impactLight.impactOccurred()
                             }
-                        }) {
-                            Image(systemName: "ellipsis.circle")
                         }
                         
-                        
                         Button(action: {
-                            showingSettingSheet.toggle()
-                            if showFeedback {
-                                let impactLight = UIImpactFeedbackGenerator(style: .rigid)
-                                impactLight.impactOccurred()
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+                                showingSettingSheet.toggle()
+                                if showFeedback {
+                                    let impactLight = UIImpactFeedbackGenerator(style: .rigid)
+                                    impactLight.impactOccurred()
+                                }
                             }
                         }) {
                             Image(systemName: "gearshape")
                         }
+                        .padding(.leading)
                         .sheet(isPresented: $showingSettingSheet) {
                             SettingView(selectedDisplayCount: $selectedDisplayCount)
                         }
                     }
                 }
             })
+
             CAIEView()
         }
     }
 }
 
-
+enum MenuOption {
+    case help, about
+}
