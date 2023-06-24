@@ -14,17 +14,17 @@ struct HomeView: View {
     @State private var isSearching = false
     @State private var showingAlert = false
     @State private var showingSettingSheet = false
-    @State private var selectedDisplayCount = ListDisplayCount.ten
+    @State private var selectedDisplayCount = ListDisplayCount.five
     @Binding var showFeedback: Bool
     
     var displayCount: Int {
         switch selectedDisplayCount {
+        case .three:
+            return 3
         case .five:
             return 5
         case .ten:
             return 10
-        case .twenty:
-            return 20
         }
     }
     
@@ -39,12 +39,13 @@ struct HomeView: View {
                                 NavigationLink(destination: WebView(url: url).edgesIgnoringSafeArea(.all).navigationBarTitle(Text(result._formatted.name), displayMode: .inline)) {
                                     VStack(alignment: .leading) {
                                         Text(result._formatted.name)
-                                        Text(result._formatted.text).font(.subheadline).foregroundColor(.gray)
+                                        Text(result._formatted.text.replacingOccurrences(of: "\n", with: "\\n"))
+                                            .font(.subheadline)
+                                            .foregroundColor(.gray)
                                     }
                                 }
                             }
                         }
-
                     }
                 }
                 else {
