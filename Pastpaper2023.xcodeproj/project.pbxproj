@@ -26,6 +26,7 @@
 		CD8B24E02A38F1CB00533D37 /* AQAView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8B24DF2A38F1CB00533D37 /* AQAView.swift */; };
 		CD8B24E22A40B93300533D37 /* SubjectListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8B24E12A40B93300533D37 /* SubjectListView.swift */; };
 		CD8B24E42A43BCA600533D37 /* SearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8B24E32A43BCA600533D37 /* SearchService.swift */; };
+		CDEAD6792A4791120045953C /* AcknowledgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDEAD6782A4791120045953C /* AcknowledgeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +71,7 @@
 		CD8B24DF2A38F1CB00533D37 /* AQAView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AQAView.swift; sourceTree = "<group>"; };
 		CD8B24E12A40B93300533D37 /* SubjectListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectListView.swift; sourceTree = "<group>"; };
 		CD8B24E32A43BCA600533D37 /* SearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchService.swift; sourceTree = "<group>"; };
+		CDEAD6782A4791120045953C /* AcknowledgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcknowledgeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +134,7 @@
 				CD0140152A328E0F0048B9C4 /* ExamTypeListView.swift */,
 				CD0140172A3299840048B9C4 /* PaperListView.swift */,
 				CD0140092A3014700048B9C4 /* SettingView.swift */,
+				CDEAD6782A4791120045953C /* AcknowledgeView.swift */,
 				CD0140282A37E61B0048B9C4 /* AppearanceView.swift */,
 				CD8B24E32A43BCA600533D37 /* SearchService.swift */,
 				CD01401D2A3349FF0048B9C4 /* Modifier.swift */,
@@ -303,6 +306,7 @@
 				CD01400A2A3014700048B9C4 /* SettingView.swift in Sources */,
 				CD8B24DE2A38E7EB00533D37 /* EdexcelView.swift in Sources */,
 				CD8B24E02A38F1CB00533D37 /* AQAView.swift in Sources */,
+				CDEAD6792A4791120045953C /* AcknowledgeView.swift in Sources */,
 				CD8B24E22A40B93300533D37 /* SubjectListView.swift in Sources */,
 				CD0140112A3270360048B9C4 /* YearListView.swift in Sources */,
 				CD01401E2A3349FF0048B9C4 /* Modifier.swift in Sources */,

@@ -14,17 +14,18 @@ struct HomeView: View {
     @State private var isSearching = false
     @State private var showingAlert = false
     @State private var showingSettingSheet = false
-    @State private var selectedDisplayCount = ListDisplayCount.ten
+    @State private var selectedDisplayCount = ListDisplayCount.five
     @Binding var showFeedback: Bool
+    @State private var selectedOption: MenuOption? = nil
     
     var displayCount: Int {
         switch selectedDisplayCount {
+        case .three:
+            return 3
         case .five:
             return 5
         case .ten:
             return 10
-        case .twenty:
-            return 20
         }
     }
     
@@ -39,12 +40,13 @@ struct HomeView: View {
                                 NavigationLink(destination: WebView(url: url).edgesIgnoringSafeArea(.all).navigationBarTitle(Text(result._formatted.name), displayMode: .inline)) {
                                     VStack(alignment: .leading) {
                                         Text(result._formatted.name)
-                                        Text(result._formatted.text).font(.subheadline).foregroundColor(.gray)
+                                        Text(result._formatted.text.replacingOccurrences(of: "\n", with: "\\n"))
+                                            .font(.subheadline)
+                                            .foregroundColor(.gray)
                                     }
                                 }
                             }
                         }
-
                     }
                 }
                 else {
@@ -158,36 +160,66 @@ struct HomeView: View {
             
             .toolbar(content: {
                 ToolbarItem(placement: .primaryAction){
-                    HStack {
-                        
-                        Button(action: {
+                    HStack(spacing: -3) {
+                        Menu {
+                            Button(action: {
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+                                    
+                                }
+                            }) {
+                                Label("Help", systemImage: "questionmark.circle")
+                            }
+                            
+                            Button(action: {
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+                                    
+                                }
+                            }) {
+                                Label("Paper Request", systemImage: "arrowshape.turn.up.forward")
+                            }
+                            
+                            Button(action: {
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+                                    
+                                }
+                            }) {
+                                Label("About PaperHub", systemImage: "info.circle")
+                            }
+                            
+                        } label: {
+                            Image(systemName: "ellipsis.circle")
+                        }
+                        .onTapGesture {
                             if showFeedback {
                                 let impactLight = UIImpactFeedbackGenerator(style: .rigid)
                                 impactLight.impactOccurred()
                             }
-                        }) {
-                            Image(systemName: "ellipsis.circle")
                         }
                         
-                        
                         Button(action: {
-                            showingSettingSheet.toggle()
-                            if showFeedback {
-                                let impactLight = UIImpactFeedbackGenerator(style: .rigid)
-                                impactLight.impactOccurred()
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+                                showingSettingSheet.toggle()
+                                if showFeedback {
+                                    let impactLight = UIImpactFeedbackGenerator(style: .rigid)
+                                    impactLight.impactOccurred()
+                                }
                             }
                         }) {
                             Image(systemName: "gearshape")
                         }
+                        .padding(.leading)
                         .sheet(isPresented: $showingSettingSheet) {
                             SettingView(selectedDisplayCount: $selectedDisplayCount)
                         }
                     }
                 }
             })
+
             CAIEView()
         }
     }
 }
 
-
+enum MenuOption {
+    case help, about
+}
