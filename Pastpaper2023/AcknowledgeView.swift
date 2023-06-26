@@ -16,6 +16,7 @@ struct AcknowledgeView: View {
                     .bold()
                 
                 Text("I would like to express my sincere appreciation and gratitude to the developers and contributors of the following third-party libraries and tools, which have been instrumental in the development of my app:")
+                    .font(.footnote)
                 
                 LibraryView(index: 1, name: "MeiliSearch", homepage: "https://www.meilisearch.com/", description: "MeiliSearch is an open-source search engine that has greatly enhanced the search functionality of my application. I am grateful to the MeiliSearch team for providing an efficient and versatile search solution.")
                 
@@ -25,9 +26,15 @@ struct AcknowledgeView: View {
                 
                 LibraryView(index: 4, name: "DynamoDB", homepage: "https://aws.amazon.com/dynamodb", description: "A highly scalable and fully managed NoSQL database service provided by Amazon Web Services (AWS). DynamoDB has been a critical component in the development of my software, and I am incredibly grateful for the robust features and capabilities it offers.")
                 
+                LibraryView(index: 5, name: "Redis", homepage: "https://redis.io", description: "Redis is an open-source in-memory data structure store that has been a crucial component in my software. Its versatility and performance have greatly contributed to the success and scalability of my application. I express my sincere gratitude to the Redis development team and community for their exceptional work.")
+                
                 Text("I would also like to express my heartfelt gratitude and appreciation to the examination boards, including CAIE (Cambridge Assessment International Education), AQA (Assessment and Qualifications Alliance), Edexcel, OCR (Oxford, Cambridge, and RSA Examinations), and other organizations, for their publicly available question banks. These question banks have played a vital role in the development of my software.")
+                    .font(.footnote)
+                    .multilineTextAlignment(.leading)
                 
                 Text("Once again, I express my sincerest gratitude to the examination boards and the developers of the third-party libraries for their invaluable contributions. The collaboration with these esteemed organizations and the utilization of their resources have been pivotal in the success and effectiveness of my software.")
+                    .font(.footnote)
+                    .multilineTextAlignment(.leading)
             }
             .padding()
         }
@@ -55,7 +62,7 @@ struct LibraryView: View {
                 .underline()
             
             Text(description)
-                .font(.body)
+                .font(.system(.caption, design: .monospaced)) // 使用等宽字体
         }
     }
 }
