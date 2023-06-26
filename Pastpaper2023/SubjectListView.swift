@@ -53,27 +53,38 @@ struct SubjectListView: View {
     @State var isLoading: Bool = true
     var urlString: String
     var navTitle: String
+    @State var errorOccurred: Bool = false
 
     var body: some View {
         ZStack {
-            List {
-                Section(header: Text("Select Subject")) {
-                    ForEach(subjects, id: \.subject) { subject in
-                        NavigationLink(destination: YearListView(subject: subject)) {
-                            Text(subject.subject)
+            if errorOccurred {
+                EmptyView()
+            } else {
+                List {
+                    Section(header: Text("Select Subject")) {
+                        ForEach(subjects, id: \.subject) { subject in
+                            NavigationLink(destination: YearListView(subject: subject)) {
+                                Text(subject.subject)
+                            }
                         }
                     }
                 }
+                .listStyle(.plain)
+                .navigationBarTitle(navTitle, displayMode: .inline)
+                .navigationBarItems(trailing: loadingIndicator)
+                .opacity(isLoading ? 0 : 1) // 控制列表的透明度，当加载完成后变为不透明
             }
-            .listStyle(.plain)
-            .navigationBarTitle(navTitle, displayMode: .inline)
-            .navigationBarItems(trailing: loadingIndicator)
-            .opacity(isLoading ? 0 : 1) // 控制列表的透明度，当加载完成后变为不透明
         }
         .refreshable {
             await loadSubjects()
         }
         .task {
+            do {
+                try await Task.sleep(nanoseconds: 1_000_000_00)
+            } catch {
+                print("Task cancelled: \(error)")
+            }
+
             await loadSubjects()
         }
     }
@@ -118,11 +129,15 @@ struct SubjectListView: View {
                 DispatchQueue.main.async {
                     self.subjects = subjects
                     self.isLoading = false // 科目加载完成，隐藏加载视图
+                    self.errorOccurred = false
                 }
             }
         } catch {
             print("Fetch failed: \(error.localizedDescription)")
-            self.isLoading = false // 加载出错，隐藏加载视图
+            DispatchQueue.main.async {
+                self.isLoading = false // 加载出错，隐藏加载视图
+                self.errorOccurred = true // 加载出错，显示错误消息
+            }
         }
     }
 }
