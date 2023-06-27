@@ -145,7 +145,7 @@ struct HomeView: View {
                 }
             }
             .listStyle(.grouped)
-            .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: "Paper Name, Content...")
+            .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: "Paper Name, Question...")
             .navigationBarTitle("Home", displayMode: .large)
             .onChange(of: searchText) { newValue in
                 if newValue.isEmpty {

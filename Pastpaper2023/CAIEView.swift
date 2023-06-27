@@ -27,7 +27,7 @@ struct CAIEView: View {
             }
             
             Section(header: Text("Cambridge Advanced")) {
-                NavigationLink(destination: EmptyView()) {
+                NavigationLink(destination: SubjectListView(urlString: "http://18.143.226.69:8401/caie-al", navTitle: "AS & A Levels")) {
                     HStack {
                         Text("AS & A Levels")
                     }

@@ -29,7 +29,7 @@ struct EdexcelView: View {
                         Text("AS & A Levels")
                     }
                 }
-                NavigationLink(destination: SubjectListView(urlString: "http://18.143.226.69:8300/edx-ial", navTitle: "International AS & A Levels")) {
+                NavigationLink(destination: SubjectListView(urlString: "http://18.143.226.69:8400/edx-ial", navTitle: "International AS & A Levels")) {
                     HStack {
                         Text("International AS & A Levels")
                     }

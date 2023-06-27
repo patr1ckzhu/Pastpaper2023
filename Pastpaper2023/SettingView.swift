@@ -33,7 +33,7 @@ struct SettingView: View {
                     }
                     
                     Section(header: Text("MISC")) {
-                        Button("Clear Cached Data") {
+                        Button("Clear Cache") {
                             self.showingAlert = true
                             
                             deleteCache()
@@ -42,13 +42,13 @@ struct SettingView: View {
                         }
                         
                         NavigationLink(destination: EmptyView()) {
-                            Text("Rate PaperHub")
+                            Text("Write Review")
                         }
                         NavigationLink(destination: EmptyView()) {
                             Text("Share with Friends")
                         }
-                        NavigationLink(destination: AcknowledgeView()) {
-                            Text("Acknowledgements")
+                        NavigationLink(destination: EmptyView()) {
+                            Text("About PaperHub")
                         }
                     }
                     Section(header: Text("FEEDBACK")) {
