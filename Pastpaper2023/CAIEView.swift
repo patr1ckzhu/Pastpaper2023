@@ -27,11 +27,10 @@ struct CAIEView: View {
             }
             
             Section(header: Text("Cambridge Advanced")) {
-                NavigationLink(destination: SubjectListView(urlString: "http://18.143.226.69:8401/caie-al", navTitle: "AS & A Levels")) {
+                NavigationLink(destination: EmptyView()) {
                     HStack {
                         Text("AS & A Levels")
                     }
-                    //.offset(x: -8)
                 }
                 Button(action: {
                     self.showingAlert = true
