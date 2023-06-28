@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import PDFKit
 
 struct HomeView: View {
     @ObservedObject var searchService = SearchService()
@@ -35,20 +36,28 @@ struct HomeView: View {
             Group {
                 if isSearching {
                     List {
-                        ForEach(searchService.results) { result in
+                        ForEach(searchService.results, id: \.id) { result in
                             if let url = URL(string: result.url) {
                                 NavigationLink(destination: WebView(url: url).edgesIgnoringSafeArea(.all).navigationBarTitle(Text(result._formatted.name), displayMode: .inline)) {
-                                    VStack(alignment: .leading) {
-                                        Text(result._formatted.name)
-                                        Text(result._formatted.text.replacingOccurrences(of: "\n", with: "\\n"))
-                                            .font(.subheadline)
-                                            .foregroundColor(.gray)
+                                    HStack {
+                                        // Display the PDF thumbnail
+                                        PDFThumbnailView(url: url)
+
+                                        // Display the search result text
+                                        VStack(alignment: .leading) {
+                                            Text("WEC11_01_msc_20210304")
+                                                .fontWeight(.semibold)
+                                            Text(result._formatted.text.replacingOccurrences(of: "\n", with: "\\n"))
+                                                .font(.subheadline)
+                                                .foregroundColor(.gray)
+                                        }
                                     }
                                 }
                             }
                         }
                     }
                 }
+
                 else {
                     List {
                         Section(header: Text("Exam Boards").padding(.top, 5)) {
@@ -222,4 +231,68 @@ struct HomeView: View {
 
 enum MenuOption {
     case help, about
+}
+
+func thumbnailFromPDF(url: URL) -> UIImage? {
+    guard let pdfDocument = PDFDocument(url: url) else { return nil }
+    guard let pdfPage = pdfDocument.page(at: 0) else { return nil }
+
+    let pdfPageBounds = pdfPage.bounds(for: .mediaBox)
+    let scale = UIScreen.main.scale
+    let pageSize = pdfPageBounds.size
+    let scaledPageSize = CGSize(width: pageSize.width * scale, height: pageSize.height * scale)
+    let renderer = UIGraphicsImageRenderer(size: scaledPageSize)
+
+    let image = renderer.image { (context) in
+        UIColor.white.set()
+        context.fill(CGRect(origin: .zero, size: scaledPageSize))
+
+        context.cgContext.translateBy(x: 0.0, y: scaledPageSize.height)
+        context.cgContext.scaleBy(x: scale, y: -scale)
+
+        pdfPage.draw(with: .mediaBox, to: context.cgContext)
+    }
+
+    return image
+}
+
+struct PDFThumbnailView: View {
+    @StateObject private var loader = PDFThumbnailLoader()
+    let url: URL
+
+    var body: some View {
+        Group {
+            if let image = loader.thumbnail {
+                Image(uiImage: image)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 72, height: 86)  // 设定图片大小
+                    .clipShape(RoundedRectangle(cornerRadius: 12))  // 设置圆角
+                    .overlay(RoundedRectangle(cornerRadius: 12).stroke(Color(UIColor.systemGray3), lineWidth: 1.35))
+            } else {
+                // Show a placeholder while the PDF thumbnail is loading
+                RoundedRectangle(cornerRadius: 12)
+                    .fill(Color(UIColor.systemGray5))
+                    .frame(width: 72, height: 86)
+            }
+        }
+        .onAppear {
+            loader.loadThumbnail(from: url)
+        }
+    }
+}
+
+
+
+class PDFThumbnailLoader: ObservableObject {
+    @Published var thumbnail: UIImage?
+    
+    func loadThumbnail(from url: URL) {
+        DispatchQueue.global(qos: .background).async {
+            let thumbnail = thumbnailFromPDF(url: url)
+            DispatchQueue.main.async {
+                self.thumbnail = thumbnail
+            }
+        }
+    }
 }

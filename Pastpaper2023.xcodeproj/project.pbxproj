@@ -183,6 +183,8 @@
 			dependencies = (
 			);
 			name = Pastpaper2023;
+			packageProductDependencies = (
+			);
 			productName = Pastpaper2023;
 			productReference = CD013FDB2A300F3E0048B9C4 /* Pastpaper2023.app */;
 			productType = "com.apple.product-type.application";
@@ -255,6 +257,8 @@
 				Base,
 			);
 			mainGroup = CD013FD22A300F3E0048B9C4;
+			packageReferences = (
+			);
 			productRefGroup = CD013FDC2A300F3E0048B9C4 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
