@@ -1,5 +1,5 @@
 //
-//  TestView1.swift
+//  HomeView.swift
 //  Pastpaper2023
 //
 //  Created by Patrick on 2023/6/12.
@@ -40,9 +40,10 @@ struct HomeView: View {
                                 NavigationLink(destination: WebView(url: url).edgesIgnoringSafeArea(.all).navigationBarTitle(Text(result._formatted.name), displayMode: .inline)) {
                                     VStack(alignment: .leading) {
                                         Text(result._formatted.name)
-                                        Text(result._formatted.text.replacingOccurrences(of: "\n", with: "\\n"))
+                                        Text(result._formatted.text.replacingOccurrences(of: "\n", with: "\u{00A0}"))
                                             .font(.subheadline)
                                             .foregroundColor(.gray)
+
                                     }
                                 }
                             }

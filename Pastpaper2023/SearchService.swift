@@ -32,7 +32,7 @@ class SearchService: ObservableObject {
 
     func search(query: String, maxResults: Int) {
         let encodedQuery = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
-        guard let url = URL(string: "https://ms-0a4a426b899d-4297.sgp.meilisearch.io/indexes/Paper_test3/search?q=\(encodedQuery)&attributesToCrop=*&cropLength=10") else {
+        guard let url = URL(string: "https://ms-0a4a426b899d-4297.sgp.meilisearch.io/indexes/Paper_test3/search?q=\(encodedQuery)&attributesToCrop=*&cropLength=14") else {
             return
         }
 
