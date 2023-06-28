@@ -140,8 +140,11 @@ struct CaieALView: View {
                 NavigationLink(destination: YearListView(urlString: "http://18.143.226.69:8504/caie-al/subject/Chinese", navTitle: "Chinese (9715)")) {
                     Text("Chinese (9715)")
                 }
-                NavigationLink(destination: YearListView(urlString: "http://18.143.226.69:8504/caie-al/subject/Computer%20Science", navTitle: "Computer Science (9608)")) {
+                NavigationLink(destination: YearListView(urlString: "http://18.143.226.69:8504/caie-al/subject/Computer%20Science%20(9608)", navTitle: "Computer Science (9608)")) {
                     Text("Computer Science (9608)")
+                }
+                NavigationLink(destination: YearListView(urlString: "http://18.143.226.69:8504/caie-al/subject/Computer%20Science%20(9618)", navTitle: "Computer Science (9618)")) {
+                    Text("Computer Science (9618)")
                 }
                 NavigationLink(destination: YearListView(urlString: "http://18.143.226.69:8504/caie-al/subject/Economics", navTitle: "Economics (9708)")) {
                     Text("Economics (9708)")
@@ -153,8 +156,11 @@ struct CaieALView: View {
                     NavigationLink(destination: YearListView(urlString: "http://18.143.226.69:8504/caie-al/subject/Geography", navTitle: "Geography")) {
                         Text("Geography (9696)")
                     }
-                    NavigationLink(destination: YearListView(urlString: "http://18.143.226.69:8504/caie-al/subject/History", navTitle: "History")) {
+                    NavigationLink(destination: YearListView(urlString: "http://18.143.226.69:8504/caie-al/subject/History%20(9389)", navTitle: "History")) {
                         Text("History (9389)")
+                    }
+                    NavigationLink(destination: YearListView(urlString: "http://18.143.226.69:8504/caie-al/subject/History%20(9489)", navTitle: "History")) {
+                        Text("History (9489)")
                     }
                     NavigationLink(destination: YearListView(urlString: "http://18.143.226.69:8504/caie-al/subject/Mathematics%20(9709)", navTitle: "Mathematics")) {
                         Text("Mathematics (9709)")
