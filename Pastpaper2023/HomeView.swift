@@ -14,7 +14,7 @@ struct HomeView: View {
     @State private var isSearching = false
     @State private var showingAlert = false
     @State private var showingSettingSheet = false
-    @State private var selectedDisplayCount = ListDisplayCount.five
+    @State private var selectedDisplayCount = ListDisplayCount.three
     @Binding var showFeedback: Bool
     @State private var selectedOption: MenuOption? = nil
     
@@ -24,8 +24,8 @@ struct HomeView: View {
             return 3
         case .five:
             return 5
-        case .ten:
-            return 10
+        case .eight:
+            return 8
         }
     }
     
@@ -39,11 +39,11 @@ struct HomeView: View {
                             if let url = URL(string: result.url) {
                                 NavigationLink(destination: WebView(url: url).edgesIgnoringSafeArea(.all).navigationBarTitle(Text(result._formatted.name), displayMode: .inline)) {
                                     VStack(alignment: .leading) {
-                                        Text(result._formatted.name)
                                         Text(result._formatted.text.replacingOccurrences(of: "\n", with: "\u{00A0}"))
+                                            .foregroundColor(Color.secondary)
+                                            .padding(.bottom, 1)
+                                        Text(result._formatted.name)
                                             .font(.subheadline)
-                                            .foregroundColor(.gray)
-
                                     }
                                 }
                             }
@@ -146,7 +146,7 @@ struct HomeView: View {
                 }
             }
             .listStyle(.grouped)
-            .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: "Paper Name, Question...")
+            .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: "Questions, File name...")
             .navigationBarTitle("Home", displayMode: .large)
             .onChange(of: searchText) { newValue in
                 if newValue.isEmpty {
