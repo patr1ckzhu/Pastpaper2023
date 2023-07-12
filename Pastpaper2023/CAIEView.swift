@@ -90,22 +90,25 @@ struct CaieOLView: View {
     var body: some View {
         List {
             Section(header: Text("Select Subject")) {
-                NavigationLink(destination: Text("quali")) {
+                NavigationLink(destination: YearListView(urlString: "http://18.143.226.69:8505/caie-ol/subject/Accounting", navTitle: "Accounting (7707)")) {
+                     Text("Accounting (7707)")
+                 }
+                NavigationLink(destination: YearListView(urlString: "http://18.143.226.69:8505/caie-ol/subject/Biology", navTitle: "Biology (5090)")) {
                     Text("Biology (5090)")
                 }
-                NavigationLink(destination: Text("quali")) {
+                NavigationLink(destination: YearListView(urlString: "http://18.143.226.69:8505/caie-ol/subject/Chemistry", navTitle: "Chemistry (5070)")) {
                     Text("Chemistry (5070)")
                 }
-                NavigationLink(destination: Text("quali")) {
+                NavigationLink(destination: YearListView(urlString: "http://18.143.226.69:8505/caie-ol/subject/Computer%20Science", navTitle: "Computer Science (2210)")) {
                     Text("Computer Science (2210)")
                 }
-                NavigationLink(destination: Text("quali")) {
+                NavigationLink(destination: YearListView(urlString: "http://18.143.226.69:8505/caie-ol/subject/Economics", navTitle: "Economics (2281)")) {
                     Text("Economics (2281)")
                 }
-                NavigationLink(destination: Text("quali")) {
+                NavigationLink(destination: YearListView(urlString: "http://18.143.226.69:8505/caie-ol/subject/English%20Language", navTitle: "English Language (1123)")) {
                     Text("English Language (1123)")
                 }
-                NavigationLink(destination: Text("quali")) {
+                NavigationLink(destination: YearListView(urlString: "http://18.143.226.69:8505/caie-ol/subject/Geography", navTitle: "Geography (2217)")) {
                     Text("Geography (2217)")
                 }
                 NavigationLink(destination: Text("quali")) {
@@ -125,6 +128,9 @@ struct CaieALView: View {
     var body: some View {
         List {
             Section(header: Text("Select Subject")) {
+                NavigationLink(destination: YearListView(urlString: "http://18.143.226.69:8504/caie-al/subject/Accounting", navTitle: "Accounting (9706)")) {
+                     Text("Accounting (9706)")
+                 }
                NavigationLink(destination: YearListView(urlString: "http://18.143.226.69:8504/caie-al/subject/Art%20&%20Design", navTitle: "Art and Design (9479)")) {
                     Text("Art and Design (9479)")
                 }
