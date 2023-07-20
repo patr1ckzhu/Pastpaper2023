@@ -34,22 +34,27 @@ struct HomeView: View {
         NavigationView {
             Group {
                 if isSearching {
-                    List {
-                        ForEach(searchService.results) { result in
-                            if let url = URL(string: result.url) {
-                                NavigationLink(destination: WebView(url: url).edgesIgnoringSafeArea(.all).navigationBarTitle(Text(result._formatted.name), displayMode: .inline)) {
-                                    VStack(alignment: .leading) {
-                                        Text(result._formatted.text.replacingOccurrences(of: "\n", with: "\u{00A0}"))
-                                            .foregroundColor(Color.secondary)
-                                            .padding(.bottom, 1)
-                                        Text(result._formatted.name)
-                                            .font(.subheadline)
+                    if searchService.results.isEmpty {
+                        ProgressView() 
+                    } else {
+                        List {
+                            ForEach(searchService.results) { result in
+                                if let url = URL(string: result.url) {
+                                    NavigationLink(destination: WebView(url: url).edgesIgnoringSafeArea(.all).navigationBarTitle(Text(result._formatted.name), displayMode: .inline)) {
+                                        VStack(alignment: .leading) {
+                                            Text(result._formatted.text.replacingOccurrences(of: "\n", with: "\u{00A0}"))
+                                                .foregroundColor(Color.secondary)
+                                                .padding(.bottom, 1)
+                                            Text(result._formatted.name)
+                                                .font(.subheadline)
+                                        }
                                     }
                                 }
                             }
                         }
                     }
                 }
+
                 else {
                     List {
                         Section(header: Text("Exam Boards").padding(.top, 5)) {
@@ -177,14 +182,6 @@ struct HomeView: View {
                                 }
                             }) {
                                 Label("Paper Request", systemImage: "arrowshape.turn.up.forward")
-                            }
-                            
-                            Button(action: {
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
-                                    
-                                }
-                            }) {
-                                Label("About PaperHub", systemImage: "info.circle")
                             }
                             
                         } label: {

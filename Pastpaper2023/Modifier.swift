@@ -156,9 +156,9 @@ struct DisclosureIndicator: View {
 }
 
 enum ListDisplayCount: String, CaseIterable, Identifiable {
-    case three = "3"
-    case five = "5"
-    case eight = "8"
+    case three = "Max 3"
+    case five = "Max 5"
+    case eight = "Max 8"
     
     var id: String { self.rawValue }
 }
