@@ -7,6 +7,12 @@
 
 import SwiftUI
 
+struct Subject {
+    let title: String
+    let code: String
+    let urlString: String
+}
+
 struct Year {
     var id: String { year }
     var year: String
