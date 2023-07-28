@@ -15,7 +15,7 @@ struct CAIEView: View {
             Section(header: Text("Cambridge Upper Secondary")) {
                 NavigationLink(destination: CaieIGCSEView()) {
                     HStack {
-                        Text("International GCSE")
+                        Text("IGCSE")
                     }
                 }
                 NavigationLink(destination: CaieOLView()) {
@@ -52,32 +52,23 @@ struct CAIEView: View {
 }
 
 struct CaieIGCSEView: View {
+    let subjects: [Subject] = [
+        Subject(title: "Accounting", code: "(0452)", urlString: "http://18.143.226.69:8600/paperhub1/CAIE/IGCSE/Accounting"),
+        Subject(title: "Biology", code: "(0610)", urlString: "http://18.143.226.69:8600/paperhub1/CAIE/IGCSE/Biology"),
+        Subject(title: "Business Studies", code: "(0450)", urlString: "http://18.143.226.69:8600/paperhub1/CAIE/IGCSE/Business%20Studies"),
+        Subject(title: "Chemistry", code: "(0620)", urlString: "http://18.143.226.69:8600/paperhub1/CAIE/IGCSE/Chemistry"),
+        Subject(title: "Computer Science", code: "(0478)", urlString: "http://18.143.226.69:8600/paperhub1/CAIE/IGCSE/Computer%20Science"),
+        Subject(title: "Drama", code: "(0411)", urlString: "http://18.143.226.69:8600/paperhub1/CAIE/IGCSE/Drama"),
+        Subject(title: "Economics", code: "(0455)", urlString: "http://18.143.226.69:8600/paperhub1/CAIE/IGCSE/Economics")
+    ]
+
     var body: some View {
         List {
             Section(header: Text("Select Subject")) {
-                NavigationLink(destination: Text("quali")) {
-                    Text("Biology (0610)")
-                }
-                NavigationLink(destination: Text("quali")) {
-                    Text("Chemistry (0620)")
-                }
-                NavigationLink(destination: Text("quali")) {
-                    Text("Computer Science (0478)")
-                }
-                NavigationLink(destination: Text("quali")) {
-                    Text("Economics (0455)")
-                }
-                NavigationLink(destination: Text("quali")) {
-                    Text("English Second Language (0511)")
-                }
-                NavigationLink(destination: Text("quali")) {
-                    Text("English First Language (0500)")
-                }
-                NavigationLink(destination: Text("quali")) {
-                    Text("Mathematics (0580)")
-                }
-                NavigationLink(destination: Text("quali")) {
-                    Text("Additional Mathematics (0606)")
+                ForEach(subjects, id: \.title) { subject in
+                    NavigationLink(destination: YearListView(urlString: subject.urlString, navTitle: "\(subject.title) \(subject.code)")) {
+                        Text("\(subject.title) \(subject.code)")
+                    }
                 }
             }
         }
@@ -85,7 +76,6 @@ struct CaieIGCSEView: View {
         .navigationBarTitle("IGCSE", displayMode: .inline)
     }
 }
-
 
 struct CaieOLView: View {
     let subjects: [Subject] = [
