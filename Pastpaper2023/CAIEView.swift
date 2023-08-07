@@ -59,7 +59,10 @@ struct CaieIGCSEView: View {
         Subject(title: "Chemistry", code: "(0620)", urlString: "http://18.143.226.69:8600/paperhub1/CAIE/IGCSE/Chemistry"),
         Subject(title: "Computer Science", code: "(0478)", urlString: "http://18.143.226.69:8600/paperhub1/CAIE/IGCSE/Computer%20Science"),
         Subject(title: "Drama", code: "(0411)", urlString: "http://18.143.226.69:8600/paperhub1/CAIE/IGCSE/Drama"),
-        Subject(title: "Economics", code: "(0455)", urlString: "http://18.143.226.69:8600/paperhub1/CAIE/IGCSE/Economics")
+        Subject(title: "Economics", code: "(0455)", urlString: "http://18.143.226.69:8600/paperhub1/CAIE/IGCSE/Economics"),
+        Subject(title: "English First Language", code: "(0500)", urlString: "http://18.143.226.69:8600/paperhub1/CAIE/IGCSE/English%20First%20Language"),
+        Subject(title: "History", code: "(0470)", urlString: "http://18.143.226.69:8600/paperhub1/CAIE/IGCSE/History"),
+        Subject(title: "Mathematics", code: "(0580)", urlString: "http://18.143.226.69:8600/paperhub1/CAIE/IGCSE/Mathematics"),
     ]
 
     var body: some View {
