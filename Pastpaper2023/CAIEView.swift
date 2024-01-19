@@ -130,17 +130,17 @@ struct CaieALView: View {
     ]
 
     var body: some View {
-        List {
-            Section(header: Text("Select Subject")) {
-                ForEach(subjects, id: \.title) { subject in
-                    NavigationLink(destination: YearListView(urlString: subject.urlString, navTitle: "\(subject.title) \(subject.code)")) {
-                        Text("\(subject.title) \(subject.code)")
+            List {
+                Section(header: Text("Select Subject")) {
+                    ForEach(subjects) { subject in  // 使用 id 而不是 title
+                        NavigationLink(destination: YearListView(urlString: subject.urlString, navTitle: "\(subject.title) \(subject.code)")) {
+                            Text("\(subject.title) \(subject.code)")
+                        }
                     }
                 }
             }
+            .listStyle(.plain)
+            .navigationBarTitle("AS & A Levels", displayMode: .inline)
         }
-        .listStyle(.plain)
-        .navigationBarTitle("AS & A Levels", displayMode: .inline)
-    }
 }
 
