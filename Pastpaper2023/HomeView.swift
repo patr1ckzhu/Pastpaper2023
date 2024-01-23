@@ -94,15 +94,15 @@ struct HomeView: View {
                                 }
                                 .offset(x: -8)
                             }
-                            NavigationLink(destination: EmptyView()) {
-                                HStack {
-                                    Image(systemName: "i.square.fill")
-                                        .font(Font.system(.title))
-                                        .foregroundColor(.blue)
-                                    Text("IBDP")
-                                }
-                                .offset(x: -8)
-                            }
+//                            NavigationLink(destination: EmptyView()) {
+//                                HStack {
+//                                    Image(systemName: "i.square.fill")
+//                                        .font(Font.system(.title))
+//                                        .foregroundColor(.blue)
+//                                    Text("IBDP")
+//                                }
+//                                .offset(x: -8)
+//                            }
                         }
                         .listSectionSeparator(.visible)
                         .headerProminence(.increased)

@@ -7,6 +7,13 @@
 
 import SwiftUI
 
+struct Subject: Identifiable {
+    let id = UUID()  // 添加 UUID 作为唯一标识符
+    let title: String
+    let code: String
+    let urlString: String
+}
+
 struct Year {
     var id: String { year }
     var year: String

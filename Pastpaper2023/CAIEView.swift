@@ -15,7 +15,7 @@ struct CAIEView: View {
             Section(header: Text("Cambridge Upper Secondary")) {
                 NavigationLink(destination: CaieIGCSEView()) {
                     HStack {
-                        Text("International GCSE")
+                        Text("IGCSE")
                     }
                 }
                 NavigationLink(destination: CaieOLView()) {
@@ -52,32 +52,26 @@ struct CAIEView: View {
 }
 
 struct CaieIGCSEView: View {
+    let subjects: [Subject] = [
+        Subject(title: "Accounting", code: "(0452)", urlString: "http://18.143.226.69:8600/paperhub1/CAIE/IGCSE/Accounting"),
+        Subject(title: "Biology", code: "(0610)", urlString: "http://18.143.226.69:8600/paperhub1/CAIE/IGCSE/Biology"),
+        Subject(title: "Business Studies", code: "(0450)", urlString: "http://18.143.226.69:8600/paperhub1/CAIE/IGCSE/Business%20Studies"),
+        Subject(title: "Chemistry", code: "(0620)", urlString: "http://18.143.226.69:8600/paperhub1/CAIE/IGCSE/Chemistry"),
+        Subject(title: "Computer Science", code: "(0478)", urlString: "http://18.143.226.69:8600/paperhub1/CAIE/IGCSE/Computer%20Science"),
+        Subject(title: "Drama", code: "(0411)", urlString: "http://18.143.226.69:8600/paperhub1/CAIE/IGCSE/Drama"),
+        Subject(title: "Economics", code: "(0455)", urlString: "http://18.143.226.69:8600/paperhub1/CAIE/IGCSE/Economics"),
+        Subject(title: "English First Language", code: "(0500)", urlString: "http://18.143.226.69:8600/paperhub1/CAIE/IGCSE/English%20First%20Language"),
+        Subject(title: "History", code: "(0470)", urlString: "http://18.143.226.69:8600/paperhub1/CAIE/IGCSE/History"),
+        Subject(title: "Mathematics", code: "(0580)", urlString: "http://18.143.226.69:8600/paperhub1/CAIE/IGCSE/Mathematics"),
+    ]
+
     var body: some View {
         List {
             Section(header: Text("Select Subject")) {
-                NavigationLink(destination: Text("quali")) {
-                    Text("Biology (0610)")
-                }
-                NavigationLink(destination: Text("quali")) {
-                    Text("Chemistry (0620)")
-                }
-                NavigationLink(destination: Text("quali")) {
-                    Text("Computer Science (0478)")
-                }
-                NavigationLink(destination: Text("quali")) {
-                    Text("Economics (0455)")
-                }
-                NavigationLink(destination: Text("quali")) {
-                    Text("English Second Language (0511)")
-                }
-                NavigationLink(destination: Text("quali")) {
-                    Text("English First Language (0500)")
-                }
-                NavigationLink(destination: Text("quali")) {
-                    Text("Mathematics (0580)")
-                }
-                NavigationLink(destination: Text("quali")) {
-                    Text("Additional Mathematics (0606)")
+                ForEach(subjects, id: \.title) { subject in
+                    NavigationLink(destination: YearListView(urlString: subject.urlString, navTitle: "\(subject.title) \(subject.code)")) {
+                        Text("\(subject.title) \(subject.code)")
+                    }
                 }
             }
         }
@@ -87,35 +81,25 @@ struct CaieIGCSEView: View {
 }
 
 struct CaieOLView: View {
+    let subjects: [Subject] = [
+        Subject(title: "Accounting", code: "(7707)", urlString: "http://18.143.226.69:8600/paperhub1/CAIE/Olevel/Accounting"),
+        Subject(title: "Biology", code: "(5090)", urlString: "http://18.143.226.69:8600/paperhub1/CAIE/Olevel/Biology"),
+        Subject(title: "Chemistry", code: "(5070)", urlString: "http://18.143.226.69:8600/paperhub1/CAIE/Olevel/Chemistry"),
+        Subject(title: "Computer Science", code: "(2210)", urlString: "http://18.143.226.69:8600/paperhub1/CAIE/Olevel/Computer%20Science"),
+        Subject(title: "Economics", code: "(2281)", urlString: "http://18.143.226.69:8600/paperhub1/CAIE/Olevel/Economics"),
+        Subject(title: "English Language", code: "(1123)", urlString: "http://18.143.226.69:8600/paperhub1/CAIE/Olevel/English%20Language"),
+        Subject(title: "Geography", code: "(2217)", urlString: "http://18.143.226.69:8600/paperhub1/CAIE/Olevel/Geography"),
+        Subject(title: "Mathematics D", code: "(4024)", urlString: "http://18.143.226.69:8600/paperhub1/CAIE/Olevel/Mathematics%20D"),
+        Subject(title: "Physics", code: "(5054)", urlString: "http://18.143.226.69:8600/paperhub1/CAIE/Olevel/Physics"),
+    ]
+
     var body: some View {
         List {
             Section(header: Text("Select Subject")) {
-                NavigationLink(destination: YearListView(urlString: "http://18.143.226.69:8600/paperhub1/CAIE/Olevel/Accounting", navTitle: "Accounting (7707)")) {
-                     Text("Accounting (7707)")
-                 }
-                NavigationLink(destination: YearListView(urlString: "http://18.143.226.69:8600/paperhub1/CAIE/Olevel/Biology", navTitle: "Biology (5090)")) {
-                    Text("Biology (5090)")
-                }
-                NavigationLink(destination: YearListView(urlString: "http://18.143.226.69:8600/paperhub1/CAIE/Olevel/Chemistry", navTitle: "Chemistry (5070)")) {
-                    Text("Chemistry (5070)")
-                }
-                NavigationLink(destination: YearListView(urlString: "http://18.143.226.69:8600/paperhub1/CAIE/Olevel/Computer%20Science", navTitle: "Computer Science (2210)")) {
-                    Text("Computer Science (2210)")
-                }
-                NavigationLink(destination: YearListView(urlString: "http://18.143.226.69:8600/paperhub1/CAIE/Olevel/Economics", navTitle: "Economics (2281)")) {
-                    Text("Economics (2281)")
-                }
-                NavigationLink(destination: YearListView(urlString: "http://18.143.226.69:8600/paperhub1/CAIE/Olevel/English%20Language", navTitle: "English Language (1123)")) {
-                    Text("English Language (1123)")
-                }
-                NavigationLink(destination: YearListView(urlString: "http://18.143.226.69:8600/paperhub1/CAIE/Olevel/Geography", navTitle: "Geography (2217)")) {
-                    Text("Geography (2217)")
-                }
-                NavigationLink(destination: YearListView(urlString: "http://18.143.226.69:8600/paperhub1/CAIE/Olevel/Mathematics%20D", navTitle: "Mathematics D (4024)")) {
-                    Text("Mathematics D (4024)")
-                }
-                NavigationLink(destination: YearListView(urlString: "http://18.143.226.69:8600/paperhub1/CAIE/Olevel/Physics", navTitle: "Physics (5054)")) {
-                    Text("Physics (5054)")
+                ForEach(subjects, id: \.title) { subject in
+                    NavigationLink(destination: YearListView(urlString: subject.urlString, navTitle: "\(subject.title) \(subject.code)")) {
+                        Text("\(subject.title) \(subject.code)")
+                    }
                 }
             }
         }
@@ -125,63 +109,38 @@ struct CaieOLView: View {
 }
 
 struct CaieALView: View {
+    let subjects: [Subject] = [
+        Subject(title: "Accounting", code: "(9706)", urlString: "http://18.143.226.69:8600/paperhub1/CAIE/Alevel/Accounting"),
+        Subject(title: "Art and Design", code: "(9479)", urlString: "http://18.143.226.69:8600/paperhub1/CAIE/Alevel/Art%20&%20Design"),
+        Subject(title: "Biology", code: "(9700)", urlString: "http://18.143.226.69:8600/paperhub1/CAIE/Alevel/Biology"),
+        Subject(title: "Business", code: "(9609)", urlString: "http://18.143.226.69:8600/paperhub1/CAIE/Alevel/Business"),
+        Subject(title: "Chemistry", code: "(9701)", urlString: "http://18.143.226.69:8600/paperhub1/CAIE/Alevel/Chemistry"),
+        Subject(title: "Chinese", code: "(9715)", urlString: "http://18.143.226.69:8600/paperhub1/CAIE/Alevel/Chinese"),
+        Subject(title: "Computer Science", code: "(9608)", urlString: "http://18.143.226.69:8600/paperhub1/CAIE/Alevel/Computer%20Science%20(9608)"),
+        Subject(title: "Computer Science", code: "(9618)", urlString: "http://18.143.226.69:8600/paperhub1/CAIE/Alevel/Computer%20Science%20(9618)"),
+        Subject(title: "Economics", code: "(9708)", urlString: "http://18.143.226.69:8600/paperhub1/CAIE/Alevel/Economics"),
+        Subject(title: "Further Mathematics", code: "(9231)", urlString: "http://18.143.226.69:8600/paperhub1/CAIE/Alevel/Mathematics%20Further"),
+        Subject(title: "Geography", code: "(9696)", urlString: "http://18.143.226.69:8600/paperhub1/CAIE/Alevel/Geography"),
+        Subject(title: "History", code: "(9389)", urlString: "http://18.143.226.69:8600/paperhub1/CAIE/Alevel/History%20(9389)"),
+        Subject(title: "History", code: "(9489)", urlString: "http://18.143.226.69:8600/paperhub1/CAIE/Alevel/History%20(9489)"),
+        Subject(title: "Mathematics", code: "(9709)", urlString: "http://18.143.226.69:8600/paperhub1/CAIE/Alevel/Mathematics%20(9709)"),
+        Subject(title: "Physics", code: "(9702)", urlString: "http://18.143.226.69:8600/paperhub1/CAIE/Alevel/Physics"),
+        Subject(title: "Psychology", code: "(9990)", urlString: "http://18.143.226.69:8600/paperhub1/CAIE/Alevel/Psychology")
+        
+    ]
+
     var body: some View {
-        List {
-            Section(header: Text("Select Subject")) {
-                NavigationLink(destination: YearListView(urlString: "http://18.143.226.69:8600/paperhub1/CAIE/Alevel/Accounting", navTitle: "Accounting (9706)")) {
-                     Text("Accounting (9706)")
-                 }
-               NavigationLink(destination: YearListView(urlString: "http://18.143.226.69:8600/paperhub1/CAIE/Alevel/Art%20&%20Design", navTitle: "Art and Design (9479)")) {
-                    Text("Art and Design (9479)")
-                }
-                NavigationLink(destination: YearListView(urlString: "http://18.143.226.69:8600/paperhub1/CAIE/Alevel/Biology", navTitle: "Biology")) {
-                    Text("Biology (9700)")
-                }
-                NavigationLink(destination: YearListView(urlString: "http://18.143.226.69:8600/paperhub1/CAIE/Alevel/Business", navTitle: "Business (9609)")) {
-                    Text("Business (9609)")
-                }
-                NavigationLink(destination: YearListView(urlString: "http://18.143.226.69:8600/paperhub1/CAIE/Alevel/Chemistry", navTitle: "Chemistry (9701)")) {
-                    Text("Chemistry (9701)")
-                }
-                NavigationLink(destination: YearListView(urlString: "http://18.143.226.69:8600/paperhub1/CAIE/Alevel/Chinese", navTitle: "Chinese (9715)")) {
-                    Text("Chinese (9715)")
-                }
-                NavigationLink(destination: YearListView(urlString: "http://18.143.226.69:8600/paperhub1/CAIE/Alevel/Computer%20Science%20(9608)", navTitle: "Computer Science (9608)")) {
-                    Text("Computer Science (9608)")
-                }
-                NavigationLink(destination: YearListView(urlString: "http://18.143.226.69:8600/paperhub1/CAIE/Alevel/Computer%20Science%20(9618)", navTitle: "Computer Science (9618)")) {
-                    Text("Computer Science (9618)")
-                }
-                NavigationLink(destination: YearListView(urlString: "http://18.143.226.69:8600/paperhub1/CAIE/Alevel/Economics", navTitle: "Economics (9708)")) {
-                    Text("Economics (9708)")
-                }
-                Group {
-                    NavigationLink(destination: YearListView(urlString: "http://18.143.226.69:8600/paperhub1/CAIE/Alevel/Mathematics%20Further", navTitle: "Mathematics Further (9231)")) {
-                        Text("Further Mathematics (9231)")
-                    }
-                    NavigationLink(destination: YearListView(urlString: "http://18.143.226.69:8600/paperhub1/CAIE/Alevel/Geography", navTitle: "Geography")) {
-                        Text("Geography (9696)")
-                    }
-                    NavigationLink(destination: YearListView(urlString: "http://18.143.226.69:8600/paperhub1/CAIE/Alevel/History%20(9389)", navTitle: "History")) {
-                        Text("History (9389)")
-                    }
-                    NavigationLink(destination: YearListView(urlString: "http://18.143.226.69:8600/paperhub1/CAIE/Alevel/History%20(9489)", navTitle: "History")) {
-                        Text("History (9489)")
-                    }
-                    NavigationLink(destination: YearListView(urlString: "http://18.143.226.69:8600/paperhub1/CAIE/Alevel/Mathematics%20(9709)", navTitle: "Mathematics")) {
-                        Text("Mathematics (9709)")
-                    }
-                    NavigationLink(destination: YearListView(urlString: "http://18.143.226.69:8600/paperhub1/CAIE/Alevel/Physics", navTitle: "Physics (9702)")) {
-                        Text("Physics (9702)")
-                    }
-                    NavigationLink(destination: YearListView(urlString: "http://18.143.226.69:8600/paperhub1/CAIE/Alevel/Psychology", navTitle: "Psychology (9990)")) {
-                        Text("Psychology (9990)")
+            List {
+                Section(header: Text("Select Subject")) {
+                    ForEach(subjects) { subject in  // 使用 id 而不是 title
+                        NavigationLink(destination: YearListView(urlString: subject.urlString, navTitle: "\(subject.title) \(subject.code)")) {
+                            Text("\(subject.title) \(subject.code)")
+                        }
                     }
                 }
-                
             }
+            .listStyle(.plain)
+            .navigationBarTitle("AS & A Levels", displayMode: .inline)
         }
-        .listStyle(.plain)
-        .navigationBarTitle("AS & A Levels", displayMode: .inline)
-    }
 }
+
