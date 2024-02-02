@@ -74,7 +74,9 @@ struct AqaGCSEView: View {
         Subject(title: "Geography", code: "(8035)", urlString: "http://18.143.226.69:8600/paperhub1/AQA/GCSE/Geography%20(8035)"),
         Subject(title: "History", code: "(8145)", urlString: "http://18.143.226.69:8600/paperhub1/AQA/GCSE/History%20(8145)"),
         Subject(title: "Mathematics", code: "(8300)", urlString: "http://18.143.226.69:8600/paperhub1/AQA/GCSE/Mathematics%20(8300)"),
-        
+        Subject(title: "Physics", code: "(8463)", urlString: "http://18.143.226.69:8600/paperhub1/AQA/GCSE/Physics%20(8463)"),
+        Subject(title: "Psychology", code: "(8182)", urlString: "http://18.143.226.69:8600/paperhub1/AQA/GCSE/Psychology%20(8182)"),
+        Subject(title: "Statistics", code: "(8382)", urlString: "http://18.143.226.69:8600/paperhub1/AQA/GCSE/Statistics%20(8382)"),
     ]
     var body: some View {
             List {
