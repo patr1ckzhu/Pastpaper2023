@@ -10,16 +10,22 @@ import SwiftUI
 struct AQAView: View {
     var body: some View {
         List{
-            Section(header: Text("All Qualification")) {
-                
+            Section(header: Text("Oxford AQA GCSEs")) {
                 NavigationLink(destination: AqaGCSEView()) {
                     HStack {
-                        Text("GCSE")
+                        Text("GCSEs")
                     }
                 }
+            }
+            Section(header: Text("Oxford AQA A Levels")) {
                 NavigationLink(destination: AqaALView()) {
                     HStack {
                         Text("AS & A Levels")
+                    }
+                }
+                NavigationLink(destination: AqaIALView()) {
+                    HStack {
+                        Text("International AS & A Levels")
                     }
                 }
             }
@@ -59,6 +65,31 @@ struct AqaALView: View {
             }
             .listStyle(.plain)
             .navigationBarTitle("AS & A Levels", displayMode: .inline)
+        }
+}
+
+struct AqaIALView: View {
+    let subjects: [Subject] = [
+        Subject(title: "Biology", code: "(9610)", urlString: "http://18.143.226.69:8600/paperhub1/AQA/IAL/Biology%20(9610)"),
+        Subject(title: "Business", code: "(9625)", urlString: "http://18.143.226.69:8600/paperhub1/AQA/IAL/Business%20(9625)"),
+        Subject(title: "Chemistry", code: "(9620)", urlString: "http://18.143.226.69:8600/paperhub1/AQA/IAL/Chemistry%20(9620)"),
+        Subject(title: "History", code: "(7041)", urlString: "http://18.143.226.69:8600/paperhub1/AQA/Alevel/History%20(7041)"),
+        Subject(title: "Mathematics", code: "(7356)", urlString: "http://18.143.226.69:8600/paperhub1/AQA/Alevel/Mathematics%20(7356)"),
+        Subject(title: "Physics", code: "(7407 7408)", urlString: "http://18.143.226.69:8600/paperhub1/AQA/Alevel/Physics%20(7407%207408)"),
+        
+    ]
+    var body: some View {
+            List {
+                Section(header: Text("Select Subject")) {
+                    ForEach(subjects) { subject in
+                        NavigationLink(destination: YearListView(urlString: subject.urlString, navTitle: "\(subject.title) \(subject.code)")) {
+                            Text("\(subject.title) \(subject.code)")
+                        }
+                    }
+                }
+            }
+            .listStyle(.plain)
+            .navigationBarTitle("International AS & A Levels", displayMode: .inline)
         }
 }
 
