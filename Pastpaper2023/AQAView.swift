@@ -73,10 +73,14 @@ struct AqaIALView: View {
         Subject(title: "Biology", code: "(9610)", urlString: "http://18.143.226.69:8600/paperhub1/AQA/IAL/Biology%20(9610)"),
         Subject(title: "Business", code: "(9625)", urlString: "http://18.143.226.69:8600/paperhub1/AQA/IAL/Business%20(9625)"),
         Subject(title: "Chemistry", code: "(9620)", urlString: "http://18.143.226.69:8600/paperhub1/AQA/IAL/Chemistry%20(9620)"),
-        Subject(title: "History", code: "(7041)", urlString: "http://18.143.226.69:8600/paperhub1/AQA/Alevel/History%20(7041)"),
-        Subject(title: "Mathematics", code: "(7356)", urlString: "http://18.143.226.69:8600/paperhub1/AQA/Alevel/Mathematics%20(7356)"),
-        Subject(title: "Physics", code: "(7407 7408)", urlString: "http://18.143.226.69:8600/paperhub1/AQA/Alevel/Physics%20(7407%207408)"),
-        
+        Subject(title: "Economics", code: "(9640)", urlString: "http://18.143.226.69:8600/paperhub1/AQA/IAL/Economics%20(9640)"),
+        Subject(title: "English Language", code: "(9670)", urlString: "http://18.143.226.69:8600/paperhub1/AQA/IAL/English%20Language%20(9670)"),
+        Subject(title: "English Literature", code: "(9675)", urlString: "http://18.143.226.69:8600/paperhub1/AQA/IAL/English%20Literature%20(9675)"),
+        Subject(title: "Further Mathematics", code: "(9665)", urlString: "http://18.143.226.69:8600/paperhub1/AQA/IAL/Further%20Mathematics%20(9665)"),
+        Subject(title: "Geography", code: "(9635)", urlString: "http://18.143.226.69:8600/paperhub1/AQA/IAL/Geography%20(9635)"),
+        Subject(title: "Mathematics", code: "(9660)", urlString: "http://18.143.226.69:8600/paperhub1/AQA/IAL/Mathematics%20(9660)"),
+        Subject(title: "Physics", code: "(9630)", urlString: "http://18.143.226.69:8600/paperhub1/AQA/IAL/Physics%20(9630)"),
+        Subject(title: "Psychology", code: "(9685)", urlString: "http://18.143.226.69:8600/paperhub1/AQA/IAL/Psychology%20(9685)"),
     ]
     var body: some View {
             List {
