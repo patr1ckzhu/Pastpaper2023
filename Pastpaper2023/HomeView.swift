@@ -29,131 +29,192 @@ struct HomeView: View {
         }
     }
     
+    @ViewBuilder
+    var searchResultsView: some View {
+        if searchService.isLoading {
+            ProgressView()
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+        } else if let errorMessage = searchService.errorMessage {
+            searchErrorView(errorMessage)
+        } else if searchService.results.isEmpty {
+            emptySearchView
+        } else {
+            searchResultsList
+        }
+    }
+    
+    @ViewBuilder
+    func searchErrorView(_ errorMessage: String) -> some View {
+        VStack {
+            Image(systemName: "exclamationmark.triangle")
+                .font(.largeTitle)
+                .foregroundColor(.orange)
+            Text("Search Error")
+                .font(.headline)
+            Text(errorMessage)
+                .font(.caption)
+                .multilineTextAlignment(.center)
+                .padding()
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+    }
+    
+    @ViewBuilder
+    var emptySearchView: some View {
+        VStack {
+            Image(systemName: "magnifyingglass")
+                .font(.largeTitle)
+                .foregroundColor(.gray)
+            Text("No Results")
+                .font(.headline)
+            Text("Try a different search term")
+                .font(.caption)
+                .foregroundColor(.secondary)
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+    }
+    
+    @ViewBuilder
+    var searchResultsList: some View {
+        List {
+            ForEach(searchService.results) { result in
+                if let url = URL(string: result.url) {
+                    NavigationLink(destination: WebView(url: url).edgesIgnoringSafeArea(.all).navigationBarTitle(Text(result._formatted.name), displayMode: .inline)) {
+                        searchResultRow(result)
+                    }
+                }
+            }
+        }
+    }
+    
+    @ViewBuilder
+    func searchResultRow(_ result: SearchResult) -> some View {
+        VStack(alignment: .leading) {
+            Text(result._formatted.text.replacingOccurrences(of: "\n", with: "\u{00A0}"))
+                .foregroundColor(Color.secondary)
+                .padding(.bottom, 1)
+            Text(result._formatted.name)
+                .font(.subheadline)
+        }
+    }
+    
+    @ViewBuilder
+    var mainMenuList: some View {
+        List {
+            examBoardsSection
+            admissionsTestsSection
+        }
+    }
+    
+    @ViewBuilder
+    var examBoardsSection: some View {
+        Section(header: Text("Exam Boards").padding(.top, 5)) {
+            examBoardLink("CAIE", icon: "c.square.fill", color: .brown, destination: CAIEView())
+            examBoardLink("Edexcel", icon: "e.square.fill", color: .mint, destination: EdexcelView())
+            examBoardLink("AQA", icon: "a.square.fill", color: .red, destination: AQAView())
+            examBoardLink("OCR", icon: "o.square.fill", color: .yellow, destination: EmptyView())
+        }
+        .listSectionSeparator(.visible)
+        .headerProminence(.increased)
+    }
+    
+    @ViewBuilder
+    var admissionsTestsSection: some View {
+        Section(header: Text("Admissions Tests")) {
+            examBoardLink("Cambridge admissions", icon: "c.square.fill", color: .orange, destination: Text("hello"))
+            examBoardLink("Oxford admissions", icon: "o.square.fill", color: .gray, destination: Text("hello"))
+            examBoardLink("MAA AMC", icon: "m.square.fill", color: .cyan, destination: Text("hello"))
+            examBoardLink("UKMT", icon: "u.square.fill", color: Color("Color2"), destination: Text("hello"))
+        }
+        .listSectionSeparator(.visible)
+        .headerProminence(.increased)
+    }
+    
+    @ViewBuilder
+    func examBoardLink<Destination: View>(_ title: String, icon: String, color: Color, destination: Destination) -> some View {
+        NavigationLink(destination: destination) {
+            HStack {
+                Image(systemName: icon)
+                    .font(Font.system(.title))
+                    .foregroundColor(color)
+                Text(title)
+            }
+            .offset(x: -8)
+        }
+    }
+    
+    @ViewBuilder
+    var toolbarContent: some View {
+        HStack(spacing: -3) {
+            menuButton
+            settingsButton
+        }
+    }
+    
+    @ViewBuilder
+    var menuButton: some View {
+        Menu {
+            Button(action: {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+                    // TODO: Implement help functionality
+                }
+            }) {
+                Label("Help", systemImage: "questionmark.circle")
+            }
+            
+            Button(action: {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+                    // TODO: Implement paper request functionality
+                }
+            }) {
+                Label("Paper Request", systemImage: "arrowshape.turn.up.forward")
+            }
+        } label: {
+            Image(systemName: "ellipsis.circle")
+        }
+        .onTapGesture {
+            if showFeedback {
+                let impactLight = UIImpactFeedbackGenerator(style: .rigid)
+                impactLight.impactOccurred()
+            }
+        }
+    }
+    
+    @ViewBuilder
+    var settingsButton: some View {
+        Button(action: {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+                showingSettingSheet.toggle()
+                if showFeedback {
+                    let impactLight = UIImpactFeedbackGenerator(style: .rigid)
+                    impactLight.impactOccurred()
+                }
+            }
+        }) {
+            Image(systemName: "gearshape")
+        }
+        .padding(.leading)
+        .sheet(isPresented: $showingSettingSheet) {
+            SettingView(selectedDisplayCount: $selectedDisplayCount)
+        }
+    }
+    
     var body: some View {
         
-        NavigationView {
+        NavigationStack {
             Group {
                 if isSearching {
-                    if searchService.results.isEmpty {
-                        ProgressView() 
-                    } else {
-                        List {
-                            ForEach(searchService.results) { result in
-                                if let url = URL(string: result.url) {
-                                    NavigationLink(destination: WebView(url: url).edgesIgnoringSafeArea(.all).navigationBarTitle(Text(result._formatted.name), displayMode: .inline)) {
-                                        VStack(alignment: .leading) {
-                                            Text(result._formatted.text.replacingOccurrences(of: "\n", with: "\u{00A0}"))
-                                                .foregroundColor(Color.secondary)
-                                                .padding(.bottom, 1)
-                                            Text(result._formatted.name)
-                                                .font(.subheadline)
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
+                    searchResultsView
                 }
 
                 else {
-                    List {
-                        Section(header: Text("Exam Boards").padding(.top, 5)) {
-                            NavigationLink(destination: CAIEView()) {
-                                HStack {
-                                    Image(systemName: "c.square.fill")
-                                        .font(Font.system(.title))
-                                        .foregroundColor(.brown)
-                                    Text("CAIE")
-                                }
-                                .offset(x: -8)
-                            }
-                            NavigationLink(destination: EdexcelView()) {
-                                HStack {
-                                    Image(systemName: "e.square.fill")
-                                        .font(Font.system(.title))
-                                        .foregroundColor(.mint)
-                                    Text("Edexcel")
-                                }
-                                .offset(x: -8)
-                            }
-                            NavigationLink(destination: AQAView()) {
-                                HStack {
-                                    Image(systemName: "a.square.fill")
-                                        .font(Font.system(.title))
-                                        .foregroundColor(.red)
-                                    Text("AQA")
-                                }
-                                .offset(x: -8)
-                            }
-                            NavigationLink(destination: EmptyView()) {
-                                HStack {
-                                    Image(systemName: "o.square.fill")
-                                        .font(Font.system(.title))
-                                        .foregroundColor(.yellow)
-                                    Text("OCR")
-                                }
-                                .offset(x: -8)
-                            }
-//                            NavigationLink(destination: EmptyView()) {
-//                                HStack {
-//                                    Image(systemName: "i.square.fill")
-//                                        .font(Font.system(.title))
-//                                        .foregroundColor(.blue)
-//                                    Text("IBDP")
-//                                }
-//                                .offset(x: -8)
-//                            }
-                        }
-                        .listSectionSeparator(.visible)
-                        .headerProminence(.increased)
-                        
-                        Section(header: Text("Admissions Tests")) {
-                            NavigationLink(destination: Text("hello")) {
-                                HStack {
-                                    Image(systemName: "c.square.fill")
-                                        .font(Font.system(.title))
-                                        .foregroundColor(.orange)
-                                    Text("Cambridge admissions")
-                                }
-                                .offset(x: -8)
-                            }
-                            NavigationLink(destination: Text("hello")) {
-                                HStack {
-                                    Image(systemName: "o.square.fill")
-                                        .font(Font.system(.title))
-                                        .foregroundColor(.gray)
-                                    Text("Oxford admissions")
-                                }
-                                .offset(x: -8)
-                            }
-                            NavigationLink(destination: Text("hello")) {
-                                HStack {
-                                    Image(systemName: "m.square.fill")
-                                        .font(Font.system(.title))
-                                        .foregroundColor(.cyan)
-                                    Text("MAA AMC")
-                                }
-                                .offset(x: -8)
-                            }
-                            NavigationLink(destination: Text("hello")) {
-                                HStack {
-                                    Image(systemName: "u.square.fill")
-                                        .font(Font.system(.title))
-                                        .foregroundColor(Color("Color2"))
-                                    Text("UKMT")
-                                }
-                                .offset(x: -8)
-                            }
-                        }
-                        .listSectionSeparator(.visible)
-                        .headerProminence(.increased)
-                    }
+                    mainMenuList
                 }
             }
             .listStyle(.grouped)
             .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: "Questions, File name...")
-            .navigationBarTitle("Home", displayMode: .large)
-            .onChange(of: searchText) { newValue in
+            .navigationTitle("Home")
+            .onChange(of: searchText) { _, newValue in
                 if newValue.isEmpty {
                     isSearching = false
                     searchService.results = []
@@ -161,59 +222,16 @@ struct HomeView: View {
             }
             .onSubmit(of: .search) {
                 isSearching = true
-                searchService.search(query: searchText, maxResults: displayCount)
+                Task {
+                    await searchService.search(query: searchText, maxResults: displayCount)
+                }
             }
             
-            .toolbar(content: {
-                ToolbarItem(placement: .primaryAction){
-                    HStack(spacing: -3) {
-                        Menu {
-                            Button(action: {
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
-                                    
-                                }
-                            }) {
-                                Label("Help", systemImage: "questionmark.circle")
-                            }
-                            
-                            Button(action: {
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
-                                    
-                                }
-                            }) {
-                                Label("Paper Request", systemImage: "arrowshape.turn.up.forward")
-                            }
-                            
-                        } label: {
-                            Image(systemName: "ellipsis.circle")
-                        }
-                        .onTapGesture {
-                            if showFeedback {
-                                let impactLight = UIImpactFeedbackGenerator(style: .rigid)
-                                impactLight.impactOccurred()
-                            }
-                        }
-                        
-                        Button(action: {
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
-                                showingSettingSheet.toggle()
-                                if showFeedback {
-                                    let impactLight = UIImpactFeedbackGenerator(style: .rigid)
-                                    impactLight.impactOccurred()
-                                }
-                            }
-                        }) {
-                            Image(systemName: "gearshape")
-                        }
-                        .padding(.leading)
-                        .sheet(isPresented: $showingSettingSheet) {
-                            SettingView(selectedDisplayCount: $selectedDisplayCount)
-                        }
-                    }
+            .toolbar {
+                ToolbarItem(placement: .primaryAction) {
+                    toolbarContent
                 }
-            })
-
-            CAIEView()
+            }
         }
     }
 }
