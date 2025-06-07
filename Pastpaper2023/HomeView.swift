@@ -8,12 +8,14 @@
 import SwiftUI
 
 struct HomeView: View {
-    @ObservedObject var searchService = SearchService()
+    @StateObject private var searchService = LocalSearchService()
+    @StateObject private var dataImporter = DataImporter()
     @State private var papers: [Paper] = []
     @State private var searchText = ""
     @State private var isSearching = false
     @State private var showingAlert = false
     @State private var showingSettingSheet = false
+    @State private var showingDataImportSheet = false
     @State private var selectedDisplayCount = ListDisplayCount.three
     @Binding var showFeedback: Bool
     @State private var selectedOption: MenuOption? = nil
@@ -156,6 +158,14 @@ struct HomeView: View {
         Menu {
             Button(action: {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+                    showingDataImportSheet = true
+                }
+            }) {
+                Label("Import Data", systemImage: "square.and.arrow.down")
+            }
+            
+            Button(action: {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
                     // TODO: Implement help functionality
                 }
             }) {
@@ -196,6 +206,9 @@ struct HomeView: View {
         .padding(.leading)
         .sheet(isPresented: $showingSettingSheet) {
             SettingView(selectedDisplayCount: $selectedDisplayCount)
+        }
+        .sheet(isPresented: $showingDataImportSheet) {
+            DataImportView(dataImporter: dataImporter)
         }
     }
     
