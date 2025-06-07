@@ -26,9 +26,14 @@ struct PhotoSearchView: View {
                 }
             }
             .background(Color(.systemBackground))
-            .ignoresSafeArea(.container, edges: .bottom)
-            .navigationTitle("Photo Search")
-            .navigationBarItems(trailing: clearButton)
+            .navigationTitle("Photo Search") // 使用标准的navigationTitle
+            .navigationBarTitleDisplayMode(.automatic)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    clearButton
+                }
+            }
+            
             .actionSheet(isPresented: $showingActionSheet) {
                 ActionSheet(
                     title: Text("Select Image Source"),
@@ -48,16 +53,18 @@ struct PhotoSearchView: View {
                     ]
                 )
             }
-            .sheet(isPresented: $showingImagePicker) {
+            .fullScreenCover(isPresented: $showingImagePicker) {
                 ImagePicker(
                     selectedImage: $selectedImage,
                     isPresented: $showingImagePicker,
                     sourceType: imagePickerSourceType
                 )
+                .ignoresSafeArea() // 忽略安全区域
+                .background(Color.black) // 设置黑色背景
             }
             .fullScreenCover(isPresented: $showingDocumentScanner) {
                 DocumentScannerView(recognizedImages: $scannedImages)
-                    .ignoresSafeArea(.all)
+                    .edgesIgnoringSafeArea(.all) // 确保完全覆盖
             }
             .onChange(of: selectedImage) { _, newImage in
                 if let image = newImage {
@@ -71,6 +78,8 @@ struct PhotoSearchView: View {
                 }
             }
         }
+        .navigationViewStyle(StackNavigationViewStyle()) // 强制使用Stack样式
+        .ignoresSafeArea()
     }
     
     @ViewBuilder
@@ -175,7 +184,7 @@ struct PhotoSearchView: View {
                 .foregroundColor(.primary)
             
             ForEach(photoSearchService.searchResults) { result in
-                NavigationLink(destination: 
+                NavigationLink(destination:
                     WebView(url: URL(string: result.url)!)
                         .edgesIgnoringSafeArea(.all)
                         .navigationBarTitle(Text(result._formatted.name), displayMode: .inline)
@@ -213,7 +222,7 @@ struct PhotoSearchView: View {
                 .foregroundColor(.orange)
             
             Text("Search Issue")
-                .font(.headline)
+                .font(.headline)  // 修复了未终止的字符串
             
             Text(message)
                 .font(.body)
@@ -265,11 +274,15 @@ struct PhotoSearchView: View {
     @ViewBuilder
     private var clearButton: some View {
         if selectedImage != nil || !photoSearchService.searchResults.isEmpty {
-            Button("Clear") {
+            Button(action: {
                 selectedImage = nil
                 scannedImages = []
                 photoSearchService.clearResults()
+            }) {
+                Image(systemName: "trash")
             }
         }
     }
 }
+
+

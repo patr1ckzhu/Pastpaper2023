@@ -104,7 +104,7 @@ class PhotoSearchService: ObservableObject {
         // 1. 移除版权标记和干扰文字
         let copyrightPatterns = [
             "© UCLES",
-            "©UCLES", 
+            "©UCLES",
             "UCLES",
             "Cambridge International Examinations",
             "Cambridge Assessment International Education",
@@ -119,11 +119,8 @@ class PhotoSearchService: ObservableObject {
             processedText = processedText.replacingOccurrences(of: pattern, with: "", options: [.regularExpression, .caseInsensitive])
         }
         
-        // 2. 清理常见的OCR错误
+        // 2. 清理常见的OCR错误（简化版本）
         let ocrCorrections = [
-            ("0", "O"), // 数字0误识别为字母O
-            ("1", "I"), // 数字1误识别为字母I
-            ("5", "S"), // 数字5误识别为字母S
             ("@", "a"), // 特殊字符误识别
             ("#", ""), // 移除井号
             ("$", "S"), // 美元符号误识别
@@ -132,13 +129,6 @@ class PhotoSearchService: ObservableObject {
         for (wrong, correct) in ocrCorrections {
             processedText = processedText.replacingOccurrences(of: wrong, with: correct)
         }
-        
-        // 2. 提取关键数学符号和术语（未来可用于关键词权重调整）
-        let _ = [
-            "equation", "solve", "find", "calculate", "derivative", "integral",
-            "function", "graph", "matrix", "probability", "statistics",
-            "geometry", "triangle", "circle", "angle", "theorem"
-        ]
         
         // 3. 移除常见的干扰词
         let stopWords = ["the", "a", "an", "and", "or", "but", "in", "on", "at", "to", "for", "of", "with", "by"]
