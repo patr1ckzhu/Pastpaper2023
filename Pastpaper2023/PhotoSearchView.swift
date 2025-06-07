@@ -13,6 +13,20 @@ struct PhotoSearchView: View {
     @State private var imagePickerSourceType: UIImagePickerController.SourceType = .camera
     @State private var scannedImages: [UIImage] = []
     @State private var showRecognizedText = false
+    @State private var showImagePreview = false  // 新增：控制图片预览的显示
+    @AppStorage("SelectedDisplayCount") private var selectedDisplayCount = ListDisplayCount.three
+    
+    // 计算属性来获取显示数量
+    private var displayCount: Int {
+        switch selectedDisplayCount {
+        case .three:
+            return 3
+        case .five:
+            return 5
+        case .eight:
+            return 8
+        }
+    }
     
     var body: some View {
         VStack(spacing: 0) {
@@ -71,15 +85,17 @@ struct PhotoSearchView: View {
         }
         .onChange(of: selectedImage) { _, newImage in
             if let image = newImage {
-                photoSearchService.recognizeText(from: image)
-                showRecognizedText = true
+                photoSearchService.recognizeText(from: image, maxResults: displayCount)
+                showRecognizedText = false  // 默认折叠
+                showImagePreview = false    // 默认折叠
             }
         }
         .onChange(of: scannedImages) { _, images in
             if let firstImage = images.first {
                 selectedImage = firstImage
-                photoSearchService.recognizeText(from: firstImage)
-                showRecognizedText = true
+                photoSearchService.recognizeText(from: firstImage, maxResults: displayCount)
+                showRecognizedText = false  // 默认折叠
+                showImagePreview = false    // 默认折叠
             }
         }
     }
@@ -167,9 +183,9 @@ struct PhotoSearchView: View {
     private var resultsView: some View {
         ScrollView {
             VStack(spacing: 20) {
-                // 图片预览卡片
+                // 图片预览卡片（可折叠）
                 if let image = selectedImage {
-                    imagePreviewCard(image)
+                    collapsibleImagePreviewCard(image)
                 }
                 
                 // 识别的文本（可折叠）
@@ -194,17 +210,38 @@ struct PhotoSearchView: View {
     
     // MARK: - Components
     @ViewBuilder
-    private func imagePreviewCard(_ image: UIImage) -> some View {
-        Image(uiImage: image)
-            .resizable()
-            .aspectRatio(contentMode: .fit)
-            .frame(maxHeight: 200)
-            .cornerRadius(12)
-            .overlay(
-                RoundedRectangle(cornerRadius: 12)
-                    .stroke(Color(.systemGray4), lineWidth: 0.5)
-            )
-            .shadow(color: Color.black.opacity(0.1), radius: 5, y: 2)
+    private func collapsibleImagePreviewCard(_ image: UIImage) -> some View {
+        VStack(alignment: .leading, spacing: 12) {
+            Button(action: { showImagePreview.toggle() }) {
+                HStack {
+                    Text("Captured Image")
+                        .font(.headline)
+                    
+                    Spacer()
+                    
+                    Image(systemName: showImagePreview ? "chevron.up" : "chevron.down")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                }
+            }
+            .buttonStyle(PlainButtonStyle())
+            
+            if showImagePreview {
+                Image(uiImage: image)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(maxHeight: 200)
+                    .cornerRadius(8)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 8)
+                            .stroke(Color(.systemGray4), lineWidth: 0.5)
+                    )
+            }
+        }
+        .padding()
+        .background(Color(.systemBackground))
+        .cornerRadius(12)
+        .shadow(color: Color.black.opacity(0.05), radius: 3, y: 1)
     }
     
     @ViewBuilder
@@ -342,6 +379,7 @@ struct PhotoSearchView: View {
             scannedImages = []
             photoSearchService.clearResults()
             showRecognizedText = false
+            showImagePreview = false
         }
     }
 }
@@ -408,19 +446,19 @@ struct ImagePicker: UIViewControllerRepresentable {
         picker.sourceType = sourceType
         picker.delegate = context.coordinator
         
-        // 设置全屏显示，避免安全区域问题
-        picker.modalPresentationStyle = .fullScreen
-        picker.modalPresentationCapturesStatusBarAppearance = true
-        
-        // 确保相机界面完全填充屏幕
-        picker.allowsEditing = false
-        picker.showsCameraControls = true
-        
-        // 如果是相机，设置相机视图填充整个屏幕
+        // 根据源类型设置不同的展示模式
         if sourceType == .camera {
+            picker.modalPresentationStyle = .fullScreen
+            picker.modalPresentationCapturesStatusBarAppearance = true
             picker.cameraViewTransform = CGAffineTransform.identity
             picker.view.backgroundColor = .black
+            picker.showsCameraControls = true
+        } else {
+            // 照片库使用默认的模态展示
+            picker.modalPresentationStyle = .automatic
         }
+        
+        picker.allowsEditing = false
         
         return picker
     }
@@ -450,3 +488,4 @@ struct ImagePicker: UIViewControllerRepresentable {
         }
     }
 }
+

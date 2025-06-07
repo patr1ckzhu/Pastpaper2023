@@ -13,7 +13,7 @@ class PhotoSearchService: ObservableObject {
     private let searchService = SearchService()
     
     // OCR文字识别
-    func recognizeText(from image: UIImage) {
+    func recognizeText(from image: UIImage, maxResults: Int = 10) {
         isProcessing = true
         errorMessage = nil
         recognizedText = ""
@@ -27,7 +27,7 @@ class PhotoSearchService: ObservableObject {
         
         let request = VNRecognizeTextRequest { [weak self] request, error in
             DispatchQueue.main.async {
-                self?.processOCRResults(request: request, error: error)
+                self?.processOCRResults(request: request, error: error, maxResults: maxResults)
             }
         }
         
@@ -50,7 +50,7 @@ class PhotoSearchService: ObservableObject {
         }
     }
     
-    private func processOCRResults(request: VNRequest, error: Error?) {
+    private func processOCRResults(request: VNRequest, error: Error?, maxResults: Int) {
         if let error = error {
             errorMessage = "OCR error: \(error.localizedDescription)"
             isProcessing = false
@@ -78,7 +78,7 @@ class PhotoSearchService: ObservableObject {
         
         // 预处理文本并搜索
         if !fullText.isEmpty {
-            searchWithRecognizedText(fullText)
+            searchWithRecognizedText(fullText, maxResults: maxResults)
         } else {
             errorMessage = "No text recognized from image"
             isProcessing = false
@@ -117,11 +117,11 @@ class PhotoSearchService: ObservableObject {
         return cleanedText
     }
     
-    private func searchWithRecognizedText(_ text: String) {
+    private func searchWithRecognizedText(_ text: String, maxResults: Int) {
         let processedQuery = preprocessSearchQuery(text)
         
         Task {
-            await searchService.search(query: processedQuery, maxResults: 10)
+            await searchService.search(query: processedQuery, maxResults: maxResults)
             
             DispatchQueue.main.async {
                 self.searchResults = self.searchService.results

@@ -14,7 +14,7 @@ struct HomeView: View {
     @State private var isSearching = false
     @State private var showingAlert = false
     @State private var showingSettingSheet = false
-    @State private var selectedDisplayCount = ListDisplayCount.three
+    @AppStorage("SelectedDisplayCount") private var selectedDisplayCount = ListDisplayCount.three  // 改为 AppStorage
     @Binding var showFeedback: Bool
     @State private var selectedOption: MenuOption? = nil
     
@@ -205,23 +205,23 @@ struct HomeView: View {
     }
     
     @ViewBuilder
-    var settingsButton: some View {
-        Button(action: {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
-                showingSettingSheet.toggle()
-                if showFeedback {
-                    let impactLight = UIImpactFeedbackGenerator(style: .rigid)
-                    impactLight.impactOccurred()
+        var settingsButton: some View {
+            Button(action: {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+                    showingSettingSheet.toggle()
+                    if showFeedback {
+                        let impactLight = UIImpactFeedbackGenerator(style: .rigid)
+                        impactLight.impactOccurred()
+                    }
                 }
+            }) {
+                Image(systemName: "gearshape")
             }
-        }) {
-            Image(systemName: "gearshape")
+            .padding(.leading)
+            .sheet(isPresented: $showingSettingSheet) {
+                SettingView()  // 不再需要传递 binding
+            }
         }
-        .padding(.leading)
-        .sheet(isPresented: $showingSettingSheet) {
-            SettingView(selectedDisplayCount: $selectedDisplayCount)
-        }
-    }
     
     var body: some View {
         
