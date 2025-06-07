@@ -43,6 +43,9 @@ struct SettingView: View {
                         NavigationLink(destination: EmptyView()) {
                             Text("About PaperHub")
                         }
+                        NavigationLink(destination: AcknowledgeView()) {
+                            Text("Acknowledgments")
+                        }
                     }
                     Section(header: Text("FEEDBACK")) {
                         NavigationLink(destination: EmptyView()) {
