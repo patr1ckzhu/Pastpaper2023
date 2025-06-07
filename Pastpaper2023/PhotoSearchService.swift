@@ -5,6 +5,7 @@ import UIKit
 
 class PhotoSearchService: ObservableObject {
     @Published var recognizedText: String = ""
+    @Published var displayText: String = ""  // 新增：用于显示处理后的文本
     @Published var isProcessing = false
     @Published var searchResults: [SearchResult] = []
     @Published var errorMessage: String?
@@ -16,6 +17,7 @@ class PhotoSearchService: ObservableObject {
         isProcessing = true
         errorMessage = nil
         recognizedText = ""
+        displayText = ""
         
         guard let cgImage = image.cgImage else {
             errorMessage = "Invalid image"
@@ -69,7 +71,10 @@ class PhotoSearchService: ObservableObject {
         }
         
         let fullText = recognizedStrings.joined(separator: " ")
-        recognizedText = fullText
+        recognizedText = fullText  // 保存原始文本
+        
+        // 清理文本用于显示
+        displayText = cleanTextForDisplay(fullText)
         
         // 预处理文本并搜索
         if !fullText.isEmpty {
@@ -78,6 +83,38 @@ class PhotoSearchService: ObservableObject {
             errorMessage = "No text recognized from image"
             isProcessing = false
         }
+    }
+    
+    // 清理文本用于显示（移除干扰信息）
+    private func cleanTextForDisplay(_ text: String) -> String {
+        var cleanedText = text
+        
+        // 移除版权标记和干扰文字
+        let patternsToRemove = [
+            "© UCLES.*?\\[Turn over",  // 移除整个版权行
+            "©UCLES.*?\\[Turn over",
+            "© UCLES \\d{4}.*?\\]",
+            "©UCLES \\d{4}.*?\\]",
+            "\\[Turn over\\]",
+            "Turn over",
+            "\\d{4}/\\d{2}/[A-Z]/[A-Z]/\\d{2}",  // 试卷代码
+            "Page \\d+"
+        ]
+        
+        for pattern in patternsToRemove {
+            cleanedText = cleanedText.replacingOccurrences(
+                of: pattern,
+                with: "",
+                options: [.regularExpression, .caseInsensitive]
+            )
+        }
+        
+        // 清理多余的空格和换行
+        cleanedText = cleanedText
+            .replacingOccurrences(of: "\\s+", with: " ", options: .regularExpression)
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        return cleanedText
     }
     
     private func searchWithRecognizedText(_ text: String) {
@@ -97,12 +134,14 @@ class PhotoSearchService: ObservableObject {
         }
     }
     
-    // 智能文本预处理
+    // 智能文本预处理（用于搜索）
     private func preprocessSearchQuery(_ text: String) -> String {
         var processedText = text
         
         // 1. 移除版权标记和干扰文字
         let copyrightPatterns = [
+            "© UCLES.*?\\[Turn over",
+            "©UCLES.*?\\[Turn over",
             "© UCLES",
             "©UCLES",
             "UCLES",
@@ -111,137 +150,54 @@ class PhotoSearchService: ObservableObject {
             "Page \\d+",
             "Turn over",
             "\\[Turn over\\]",
+            "\\d{4}/\\d{2}/[A-Z]/[A-Z]/\\d{2}",  // 完整的试卷代码格式
             "\\d{4}/\\d{2}",  // 年份/试卷代码格式
             "Question \\d+",   // 题号格式
         ]
         
         for pattern in copyrightPatterns {
-            processedText = processedText.replacingOccurrences(of: pattern, with: "", options: [.regularExpression, .caseInsensitive])
+            processedText = processedText.replacingOccurrences(
+                of: pattern,
+                with: "",
+                options: [.regularExpression, .caseInsensitive]
+            )
         }
         
-        // 2. 清理常见的OCR错误（简化版本）
+        // 2. 清理常见的OCR错误
         let ocrCorrections = [
-            ("@", "a"), // 特殊字符误识别
-            ("#", ""), // 移除井号
-            ("$", "S"), // 美元符号误识别
+            ("@", "a"),
+            ("#", ""),
+            ("$", "S"),
         ]
         
         for (wrong, correct) in ocrCorrections {
             processedText = processedText.replacingOccurrences(of: wrong, with: correct)
         }
         
-        // 3. 移除常见的干扰词
-        let stopWords = ["the", "a", "an", "and", "or", "but", "in", "on", "at", "to", "for", "of", "with", "by"]
+        // 3. 提取关键词
         let words = processedText.lowercased().components(separatedBy: .whitespacesAndNewlines)
-        let filteredWords = words.filter { word in
-            !stopWords.contains(word) && word.count > 1
+        
+        // 移除常见停用词
+        let stopWords = Set(["the", "a", "an", "and", "or", "but", "in", "on", "at", "to", "for", "of", "with", "by", "is", "are", "was", "were", "will", "you", "your"])
+        
+        // 保留有意义的关键词
+        let keywords = words.filter { word in
+            !stopWords.contains(word) &&
+            word.count > 2 &&
+            !word.contains(where: { $0.isNumber && $0.isPunctuation })
         }
         
-        // 4. 重新组合关键词
-        let keyWords = filteredWords.prefix(10) // 限制关键词数量
-        processedText = Array(keyWords).joined(separator: " ")
+        // 4. 重新组合关键词（限制数量以提高搜索精度）
+        let finalKeywords = Array(keywords.prefix(8))
+        processedText = finalKeywords.joined(separator: " ")
         
         return processedText.trimmingCharacters(in: .whitespacesAndNewlines)
     }
     
     func clearResults() {
         recognizedText = ""
+        displayText = ""
         searchResults = []
         errorMessage = nil
-    }
-}
-
-// MARK: - 文档扫描支持
-struct DocumentScannerView: UIViewControllerRepresentable {
-    @Binding var recognizedImages: [UIImage]
-    @Environment(\.dismiss) private var dismiss
-    
-    func makeUIViewController(context: Context) -> VNDocumentCameraViewController {
-        let scanner = VNDocumentCameraViewController()
-        scanner.delegate = context.coordinator
-        
-        // 设置状态栏样式
-        scanner.modalPresentationStyle = .fullScreen
-        scanner.modalPresentationCapturesStatusBarAppearance = true
-        
-        return scanner
-    }
-    
-    func updateUIViewController(_ uiViewController: VNDocumentCameraViewController, context: Context) {}
-    
-    func makeCoordinator() -> Coordinator {
-        Coordinator(self)
-    }
-    
-    class Coordinator: NSObject, VNDocumentCameraViewControllerDelegate {
-        let parent: DocumentScannerView
-        
-        init(_ parent: DocumentScannerView) {
-            self.parent = parent
-        }
-        
-        func documentCameraViewController(_ controller: VNDocumentCameraViewController, didFinishWith scan: VNDocumentCameraScan) {
-            var images: [UIImage] = []
-            
-            for pageIndex in 0..<scan.pageCount {
-                let image = scan.imageOfPage(at: pageIndex)
-                images.append(image)
-            }
-            
-            parent.recognizedImages = images
-            parent.dismiss()
-        }
-        
-        func documentCameraViewController(_ controller: VNDocumentCameraViewController, didFailWithError error: Error) {
-            parent.dismiss()
-        }
-        
-        func documentCameraViewControllerDidCancel(_ controller: VNDocumentCameraViewController) {
-            parent.dismiss()
-        }
-    }
-}
-
-// MARK: - 图片选择器
-struct ImagePicker: UIViewControllerRepresentable {
-    @Binding var selectedImage: UIImage?
-    @Binding var isPresented: Bool
-    let sourceType: UIImagePickerController.SourceType
-    
-    func makeUIViewController(context: Context) -> UIImagePickerController {
-        let picker = UIImagePickerController()
-        picker.sourceType = sourceType
-        picker.delegate = context.coordinator
-        
-        // 设置全屏显示，避免安全区域问题
-        picker.modalPresentationStyle = .fullScreen
-        picker.modalPresentationCapturesStatusBarAppearance = true
-        
-        return picker
-    }
-    
-    func updateUIViewController(_ uiViewController: UIImagePickerController, context: Context) {}
-    
-    func makeCoordinator() -> Coordinator {
-        Coordinator(self)
-    }
-    
-    class Coordinator: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-        let parent: ImagePicker
-        
-        init(_ parent: ImagePicker) {
-            self.parent = parent
-        }
-        
-        func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-            if let image = info[.originalImage] as? UIImage {
-                parent.selectedImage = image
-            }
-            parent.isPresented = false
-        }
-        
-        func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-            parent.isPresented = false
-        }
     }
 }
