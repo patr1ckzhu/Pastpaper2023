@@ -62,7 +62,7 @@ struct PaperView: View {
                 }
             }
 
-            .onChange(of: downloader.fileURL) { newValue in
+            .onChange(of: downloader.fileURL) { _, newValue in
                 if newValue != nil {
                     self.showShareSheet = true
                 }
