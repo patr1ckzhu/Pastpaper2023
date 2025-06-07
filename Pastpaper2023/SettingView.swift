@@ -1,10 +1,3 @@
-//
-//  SettingView.swift
-//  Pastpaper2023
-//
-//  Created by Patrick on 2023/6/7.
-//
-
 import SwiftUI
 import WebKit
 import Foundation
@@ -13,7 +6,7 @@ struct SettingView: View {
     @AppStorage("Theme") var theme: Theme = .systemDefault
     @AppStorage("ShowFeedback") var showFeedback = true
     @State private var showingAlert = false
-    @Binding var selectedDisplayCount: ListDisplayCount
+    @AppStorage("SelectedDisplayCount") var selectedDisplayCount = ListDisplayCount.three  // 改为 AppStorage
     
     var body: some View {
         NavigationView {
@@ -92,6 +85,3 @@ struct SettingView: View {
         }
     }
 }
-
-
-
