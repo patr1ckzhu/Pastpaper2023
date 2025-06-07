@@ -101,9 +101,33 @@ struct HomeView: View {
     @ViewBuilder
     var mainMenuList: some View {
         List {
+            smartSearchSection
             examBoardsSection
             admissionsTestsSection
         }
+    }
+    
+    @ViewBuilder
+    var smartSearchSection: some View {
+        Section(header: Text("Smart Search").padding(.top, 5)) {
+            NavigationLink(destination: PhotoSearchView()) {
+                HStack {
+                    Image(systemName: "camera.viewfinder")
+                        .font(Font.system(.title))
+                        .foregroundColor(.blue)
+                    VStack(alignment: .leading) {
+                        Text("Photo Search")
+                            .fontWeight(.medium)
+                        Text("Take a photo to find similar questions")
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                    }
+                }
+                .offset(x: -8)
+            }
+        }
+        .listSectionSeparator(.visible)
+        .headerProminence(.increased)
     }
     
     @ViewBuilder
