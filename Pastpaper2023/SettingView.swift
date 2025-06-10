@@ -43,9 +43,7 @@ struct SettingView: View {
                         NavigationLink(destination: EmptyView()) {
                             Text("About PaperHub")
                         }
-                        NavigationLink(destination: AcknowledgeView()) {
-                            Text("Acknowledgments")
-                        }
+                        
                     }
                     Section(header: Text("FEEDBACK")) {
                         NavigationLink(destination: EmptyView()) {
@@ -54,13 +52,16 @@ struct SettingView: View {
                         NavigationLink(destination: EmptyView()) {
                             Text("Twitter")
                         }
+                        NavigationLink(destination: AcknowledgeView()) {
+                            Text("Acknowledgments")
+                        }
                     }
                 }
                 .listStyle(.grouped)
                 .navigationTitle("Settings")
                 .navigationBarTitleDisplayMode(.inline)
                 
-                Text("Version 0.0.5(114)\n © 2023 Patrick Zhu")
+                Text("Version 0.0.5(114)\n © 2025 Patrick Zhu")
                     .multilineTextAlignment(.center)
                     .foregroundColor(Color.secondary)
                     .padding(.bottom, 5)
