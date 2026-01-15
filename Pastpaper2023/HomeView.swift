@@ -125,6 +125,22 @@ struct HomeView: View {
                 }
                 .offset(x: -8)
             }
+            
+            NavigationLink(destination: MathPaperView()) {
+                HStack {
+                    Image(systemName: "function")
+                        .font(Font.system(.title))
+                        .foregroundColor(.green)
+                    VStack(alignment: .leading) {
+                        Text("Math Viewer")
+                            .fontWeight(.medium)
+                        Text("Test interface for A-Level Math questions")
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                    }
+                }
+                .offset(x: -8)
+            }
         }
         .listSectionSeparator(.visible)
         .headerProminence(.increased)

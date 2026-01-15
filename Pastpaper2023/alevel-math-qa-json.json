@@ -1,0 +1,523 @@
+{
+  "exam": {
+    "title": "Cambridge A-Level Mathematics Paper 11",
+    "year": "2020",
+    "season": "Summer",
+    "totalMarks": 75,
+    "questions": [
+      {
+        "id": 1,
+        "number": "1",
+        "content": "The sum of the first nine terms of an arithmetic progression is 117. The sum of the next four terms is 91.\n\nFind the first term and the common difference of the progression.",
+        "marks": 4,
+        "parts": [
+          {
+            "partId": "main",
+            "question": "The sum of the first nine terms of an arithmetic progression is 117. The sum of the next four terms is 91.\n\nFind the first term and the common difference of the progression.",
+            "answer": {
+              "steps": [
+                {
+                  "step": "117 = 9/2(2a + 8d)",
+                  "marks": "B1"
+                },
+                {
+                  "step": "Either 91 = S₄ with 'a' as a + 4d or 117 + 91 = S₁₃\n(M1 for overall approach. M1 for Sₙ)",
+                  "marks": "M1M1"
+                },
+                {
+                  "step": "Simultaneous Equations → a = 7, d = 1.5",
+                  "marks": "A1"
+                }
+              ],
+              "finalAnswer": "a = 7, d = 1.5"
+            }
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "number": "2",
+        "content": "The coefficient of 1/x in the expansion of (kx + 1/x)⁵ + (1 - 2/x)⁸ is 74.\n\nFind the value of the positive constant k.",
+        "marks": 5,
+        "parts": [
+          {
+            "partId": "main",
+            "question": "The coefficient of 1/x in the expansion of (kx + 1/x)⁵ + (1 - 2/x)⁸ is 74.\n\nFind the value of the positive constant k.",
+            "answer": {
+              "steps": [
+                {
+                  "step": "Coefficient in (kx + 1/x)⁵ = 10 × k²\n(B1 for 10. B1 for k²)",
+                  "marks": "B1B1"
+                },
+                {
+                  "step": "Coefficient in (1 - 2/x)⁸ = 8 × -2",
+                  "marks": "B2,1,0"
+                },
+                {
+                  "step": "10k² - 16 = 74 → k = 3",
+                  "marks": "B1"
+                }
+              ],
+              "finalAnswer": "k = 3"
+            }
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "number": "3",
+        "content": "Each year the selling price of a diamond necklace increases by 5% of the price the year before. The selling price of the necklace in the year 2000 was $36000.",
+        "marks": 5,
+        "parts": [
+          {
+            "partId": "a",
+            "question": "Write down an expression for the selling price of the necklace n years later and hence find the selling price in 2008.",
+            "answer": {
+              "steps": [
+                {
+                  "step": "$36000 × (1.05)ⁿ\n(B1 for r = 1.05. M1 method for rth term)",
+                  "marks": "B1M1"
+                },
+                {
+                  "step": "$53200 after 8 years.",
+                  "marks": "A1"
+                }
+              ],
+              "finalAnswer": "$53200"
+            }
+          },
+          {
+            "partId": "b",
+            "question": "The company that makes the necklace only sells one each year. Find the total amount of money obtained in the ten-year period starting in the year 2000.",
+            "answer": {
+              "steps": [
+                {
+                  "step": "S₁₀ = 36000 × (1.05¹⁰ - 1) / (1.05 - 1)",
+                  "marks": "M1"
+                },
+                {
+                  "step": "$453000",
+                  "marks": "A1"
+                }
+              ],
+              "finalAnswer": "$453000"
+            }
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "number": "4",
+        "content": "The diagram shows the graph of y = f(x), where f(x) = 3/2 cos 2x + 1/2 for 0 ≤ x ≤ π.",
+        "marks": 5,
+        "imageUrl": "https://cdn.mathpix.com/cropped/2025_06_15_a08f39d9165ca87d6234g-05.jpg?height=495&width=881&top_left_y=261&top_left_x=633",
+        "parts": [
+          {
+            "partId": "a",
+            "question": "State the range of f.",
+            "answer": {
+              "steps": [
+                {
+                  "step": "-1 ≤ f(x) ≤ 2",
+                  "marks": "B1 B1"
+                }
+              ],
+              "finalAnswer": "-1 ≤ f(x) ≤ 2"
+            }
+          },
+          {
+            "partId": "b",
+            "question": "A function g is such that g(x) = f(x) + k, where k is a positive constant. The x-axis is a tangent to the curve y = g(x).\n\nState the value of k and hence describe fully the transformation that maps the curve y = f(x) on to y = g(x).",
+            "answer": {
+              "steps": [
+                {
+                  "step": "k = 1",
+                  "marks": "B1"
+                },
+                {
+                  "step": "Translation by 1 unit upwards parallel to the y-axis",
+                  "marks": "B1"
+                }
+              ],
+              "finalAnswer": "k = 1; Translation by 1 unit upwards parallel to the y-axis"
+            }
+          },
+          {
+            "partId": "c",
+            "question": "State the equation of the curve which is the reflection of y = f(x) in the x-axis. Give your answer in the form y = a cos 2x + b, where a and b are constants.",
+            "answer": {
+              "steps": [
+                {
+                  "step": "y = -3/2 cos 2x - 1/2",
+                  "marks": "B1"
+                }
+              ],
+              "finalAnswer": "y = -3/2 cos 2x - 1/2"
+            }
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "number": "5",
+        "content": "The equation of a line is y = mx + c, where m and c are constants, and the equation of a curve is xy = 16.",
+        "marks": 6,
+        "parts": [
+          {
+            "partId": "a",
+            "question": "Given that the line is a tangent to the curve, express m in terms of c.",
+            "answer": {
+              "steps": [
+                {
+                  "step": "x(mx + c) = 16 → mx² + cx - 16 = 0",
+                  "marks": "B1"
+                },
+                {
+                  "step": "Use of b² - 4ac = c² + 64m",
+                  "marks": "M1"
+                },
+                {
+                  "step": "Sets to 0 → m = -c²/64",
+                  "marks": "A1"
+                }
+              ],
+              "finalAnswer": "m = -c²/64"
+            }
+          },
+          {
+            "partId": "b",
+            "question": "Given instead that m = -4, find the set of values of c for which the line intersects the curve at two distinct points.",
+            "answer": {
+              "steps": [
+                {
+                  "step": "x(-4x + c) = 16\nUse of b² - 4ac → c² - 256",
+                  "marks": "M1"
+                },
+                {
+                  "step": "c > 16 and c < -16",
+                  "marks": "A1 A1"
+                }
+              ],
+              "finalAnswer": "c > 16 or c < -16"
+            }
+          }
+        ]
+      },
+      {
+        "id": 6,
+        "number": "6",
+        "content": "Functions f and g are defined for x ∈ ℝ by\nf: x ↦ 1/2 x - a,\ng: x ↦ 3x + b,\nwhere a and b are constants.",
+        "marks": 6,
+        "parts": [
+          {
+            "partId": "a",
+            "question": "Given that gg(2) = 10 and f⁻¹(2) = 14, find the values of a and b.",
+            "answer": {
+              "steps": [
+                {
+                  "step": "3(3x + b) + b = 9x + 4b → 10 = 18 + 4b",
+                  "marks": "M1"
+                },
+                {
+                  "step": "b = -2",
+                  "marks": "A1"
+                },
+                {
+                  "step": "Either f(14) = 2 or f⁻¹(x) = 2(x + a) etc.",
+                  "marks": "M1"
+                },
+                {
+                  "step": "a = 5",
+                  "marks": "A1"
+                }
+              ],
+              "finalAnswer": "a = 5, b = -2"
+            }
+          },
+          {
+            "partId": "b",
+            "question": "Using these values of a and b, find an expression for gf(x) in the form cx + d, where c and d are constants.",
+            "answer": {
+              "steps": [
+                {
+                  "step": "gf(x) = 3(1/2 x - 5) - 2",
+                  "marks": "M1"
+                },
+                {
+                  "step": "gf(x) = 3/2 x - 17",
+                  "marks": "A1"
+                }
+              ],
+              "finalAnswer": "gf(x) = 3/2 x - 17"
+            }
+          }
+        ]
+      },
+      {
+        "id": 7,
+        "number": "7",
+        "content": "",
+        "marks": 6,
+        "parts": [
+          {
+            "partId": "a",
+            "question": "Prove the identity (1 + sin θ)/(cos θ) + (cos θ)/(1 + sin θ) ≡ 2/(cos θ).",
+            "answer": {
+              "steps": [
+                {
+                  "step": "((1 + sin θ)² + cos² θ)/(cos θ(1 + sin θ))",
+                  "marks": "M1"
+                },
+                {
+                  "step": "Use of sin² θ + cos² θ = 1 → (2 + 2 sin θ)/(cos θ(1 + sin θ)) → 2/(cos θ)",
+                  "marks": "M1A1"
+                }
+              ],
+              "finalAnswer": "Identity proven"
+            }
+          },
+          {
+            "partId": "b",
+            "question": "Hence solve the equation (1 + sin θ)/(cos θ) + (cos θ)/(1 + sin θ) = 3/(sin θ), for 0 ≤ θ ≤ 2π.",
+            "answer": {
+              "steps": [
+                {
+                  "step": "2/(cos θ) = 3/(sin θ) → tan θ = 1.5",
+                  "marks": "M1"
+                },
+                {
+                  "step": "θ = 0.983 or 4.12\n(FT on second value for 1st value + π)",
+                  "marks": "A1 A1FT"
+                }
+              ],
+              "finalAnswer": "θ = 0.983 or θ = 4.12"
+            }
+          }
+        ]
+      },
+      {
+        "id": 8,
+        "number": "8",
+        "content": "In the diagram, ABC is a semicircle with diameter AC, centre O and radius 6 cm. The length of the arc AB is 15 cm. The point X lies on AC and BX is perpendicular to AX.\n\nFind the perimeter of the shaded region BXC.",
+        "marks": 6,
+        "imageUrl": "https://cdn.mathpix.com/cropped/2025_06_15_a08f39d9165ca87d6234g-10.jpg?height=472&width=889&top_left_y=261&top_left_x=629",
+        "parts": [
+          {
+            "partId": "main",
+            "question": "Find the perimeter of the shaded region BXC.",
+            "answer": {
+              "steps": [
+                {
+                  "step": "Angle AOB = 15 ÷ 6 = 2.5 radians",
+                  "marks": "B1"
+                },
+                {
+                  "step": "Angle BOC = π - 2.5 (FT on angle AOB)",
+                  "marks": "B1FT"
+                },
+                {
+                  "step": "BC = 6(π - 2.5) (BC = 3.850)",
+                  "marks": "M1"
+                },
+                {
+                  "step": "sin(π - 2.5) = BX ÷ 6 (BX = 3.59)",
+                  "marks": "M1"
+                },
+                {
+                  "step": "Either OX = 6 cos(π - 2.5) or Pythagoras (OX = 4.807)",
+                  "marks": "M1"
+                },
+                {
+                  "step": "XC = 6 - OX (XC = 1.193) → P = 8.63",
+                  "marks": "A1"
+                }
+              ],
+              "finalAnswer": "P = 8.63 cm"
+            }
+          }
+        ]
+      },
+      {
+        "id": 9,
+        "number": "9",
+        "content": "The equation of a curve is y = (3 - 2x)³ + 24x.",
+        "marks": 9,
+        "parts": [
+          {
+            "partId": "a",
+            "question": "Find expressions for dy/dx and d²y/dx².",
+            "answer": {
+              "steps": [
+                {
+                  "step": "dy/dx = 3(3 - 2x)² × -2 + 24 = -6(3 - 2x)² + 24\n(B1 without × -2. B1 for × -2)",
+                  "marks": "B1B1"
+                },
+                {
+                  "step": "d²y/dx² = -12(3 - 2x) × -2 = 24(3 - 2x)\n(B1FT from dy/dx without -2)",
+                  "marks": "B1FT B1"
+                }
+              ],
+              "finalAnswer": "dy/dx = -6(3 - 2x)² + 24, d²y/dx² = 24(3 - 2x)"
+            }
+          },
+          {
+            "partId": "b",
+            "question": "Find the coordinates of each of the stationary points on the curve.",
+            "answer": {
+              "steps": [
+                {
+                  "step": "dy/dx = 0 when 6(3 - 2x)² = 24 → 3 - 2x = ±2",
+                  "marks": "M1"
+                },
+                {
+                  "step": "x = 1/2, y = 20 or x = 2½, y = 52\n(A1 for both x values or a correct pair)",
+                  "marks": "A1A1"
+                }
+              ],
+              "finalAnswer": "(1/2, 20) and (2½, 52)"
+            }
+          },
+          {
+            "partId": "c",
+            "question": "Determine the nature of each stationary point.",
+            "answer": {
+              "steps": [
+                {
+                  "step": "If x = 1/2, d²y/dx² = 48 Minimum",
+                  "marks": "B1FT"
+                },
+                {
+                  "step": "If x = 2½, d²y/dx² = -48 Maximum",
+                  "marks": "B1FT"
+                }
+              ],
+              "finalAnswer": "(1/2, 48) is a minimum, (2½, -48) is a maximum"
+            }
+          }
+        ]
+      },
+      {
+        "id": 10,
+        "number": "10",
+        "content": "The coordinates of the points A and B are (-1, -2) and (7, 4) respectively.",
+        "marks": 11,
+        "parts": [
+          {
+            "partId": "a",
+            "question": "Find the equation of the circle, C, for which AB is a diameter.",
+            "answer": {
+              "steps": [
+                {
+                  "step": "Centre is (3, 1)",
+                  "marks": "B1"
+                },
+                {
+                  "step": "Radius = 5 (Pythagoras)",
+                  "marks": "B1"
+                },
+                {
+                  "step": "Equation of C is (x - 3)² + (y - 1)² = 25\n(FT on their centre)",
+                  "marks": "M1 A1FT"
+                }
+              ],
+              "finalAnswer": "(x - 3)² + (y - 1)² = 25"
+            }
+          },
+          {
+            "partId": "b",
+            "question": "Find the equation of the tangent, T, to circle C at the point B.",
+            "answer": {
+              "steps": [
+                {
+                  "step": "Gradient from (3, 1) to (7, 4) = 3/4 (this is the normal)",
+                  "marks": "B1"
+                },
+                {
+                  "step": "Gradient of tangent = -4/3",
+                  "marks": "M1"
+                },
+                {
+                  "step": "Equation is y - 4 = -4/3(x - 7) or 3y + 4x = 40",
+                  "marks": "M1A1"
+                }
+              ],
+              "finalAnswer": "3y + 4x = 40"
+            }
+          },
+          {
+            "partId": "c",
+            "question": "Find the equation of the circle which is the reflection of circle C in the line T.",
+            "answer": {
+              "steps": [
+                {
+                  "step": "B is centre of line joining centres → (11, 7)",
+                  "marks": "B1"
+                },
+                {
+                  "step": "Radius = 5\nNew equation is (x - 11)² + (y - 7)² = 25\n(FT on coordinates of B)",
+                  "marks": "M1 A1FT"
+                }
+              ],
+              "finalAnswer": "(x - 11)² + (y - 7)² = 25"
+            }
+          }
+        ]
+      },
+      {
+        "id": 11,
+        "number": "11",
+        "content": "The diagram shows part of the curve y = 8/(x + 2) and the line 2y + x = 8, intersecting at points A and B. The point C lies on the curve and the tangent to the curve at C is parallel to AB.",
+        "marks": 12,
+        "imageUrl": "https://cdn.mathpix.com/cropped/2025_06_15_a08f39d9165ca87d6234g-16.jpg?height=595&width=914&top_left_y=262&top_left_x=611",
+        "parts": [
+          {
+            "partId": "a",
+            "question": "Find, by calculation, the coordinates of A, B and C.",
+            "answer": {
+              "steps": [
+                {
+                  "step": "Simultaneous equations 8/(x+2) = 4 - 1/2 x",
+                  "marks": "M1"
+                },
+                {
+                  "step": "x = 0 or x = 6 → A(0,4) and B(6,1)",
+                  "marks": "B1A1"
+                },
+                {
+                  "step": "Gradient of AB = -1/2",
+                  "marks": "B1"
+                },
+                {
+                  "step": "At C: -8/(x+2)² = -1/2 → C(2,2)\n(B1 for the differentiation. M1 for equating and solving)",
+                  "marks": "B1 M1A1"
+                }
+              ],
+              "finalAnswer": "A(0,4), B(6,1), C(2,2)"
+            }
+          },
+          {
+            "partId": "b",
+            "question": "Find the volume generated when the shaded region, bounded by the curve and the line, is rotated through 360° about the x-axis.",
+            "answer": {
+              "steps": [
+                {
+                  "step": "Volume under line = π∫(-1/2 x + 4)² dx = π[x³/12 - 2x² + 16x] = (42π)\n(M1 for volume formula. A2,1 for integration)",
+                  "marks": "M1 A2,1"
+                },
+                {
+                  "step": "Volume under curve = π∫(8/(x+2))² dx = π[-64/(x+2)] = (24π)",
+                  "marks": "A1"
+                },
+                {
+                  "step": "Subtracts and uses 0 to 6 → 18π",
+                  "marks": "M1A1"
+                }
+              ],
+              "finalAnswer": "18π"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
